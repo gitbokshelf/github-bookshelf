@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+*.tsbuildinfo
+.env*
+!.env.example
+.openai/*.tar.gz
+research/
+GitHub Bookshelf.html
+.openai/

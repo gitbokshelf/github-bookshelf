@@ -1,0 +1,1347 @@
+{
+  "fetchedAt": "2026-10-16T18:25:52.950Z",
+  "source": "GitHub REST API: repos, readme, releases",
+  "projects": [
+    {
+      "repo": "freeCodeCamp/freeCodeCamp",
+      "name": "freeCodeCamp",
+      "tagline": "Aprenda construindo.",
+      "description": "Um caminho gratuito para sair do zero e criar seus primeiros projetos de programação.",
+      "category": "study",
+      "platforms": [
+        "Web"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "HTML",
+        "JavaScript",
+        "Português"
+      ],
+      "scores": [
+        5,
+        5,
+        5
+      ],
+      "start": "Comece por uma trilha no portal em português. Faça os exercícios no navegador antes de explorar o código da plataforma.",
+      "caveat": "O repositório contém a plataforma de ensino; você não precisa instalar esse código para estudar.",
+      "website": "https://www.freecodecamp.org/portuguese/",
+      "color": "ivory",
+      "icon": "flame",
+      "order": 0,
+      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+      "stars": 457167,
+      "forks": 49540,
+      "language": "TypeScript",
+      "license": "BSD-3-Clause",
+      "archived": false,
+      "createdAt": "2014-12-24T17:49:19Z",
+      "pushedAt": "2026-10-16T17:51:28Z",
+      "avatar": "https://avatars.githubusercontent.com/u/9892522?v=4",
+      "sourceDescription": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "readmeUrl": "https://github.com/freeCodeCamp/freeCodeCamp/blob/main/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:44.956Z"
+    },
+    {
+      "repo": "exelban/stats",
+      "name": "Stats",
+      "tagline": "Conheça seu Mac por dentro.",
+      "description": "CPU, memória, bateria e rede na barra de menus. Seu Mac, sem mistério.",
+      "category": "mac",
+      "platforms": [
+        "macOS"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Widgets",
+        "Monitoramento"
+      ],
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "start": "Abra a documentação e consulte a versão de macOS exigida. Depois, baixe a distribuição oficial na página de releases.",
+      "caveat": "Pode precisar de permissões para sensores e monitoramento. Compatibilidade depende da versão do macOS.",
+      "website": "https://mac-stats.com",
+      "color": "mint",
+      "icon": "activity",
+      "order": 1,
+      "url": "https://github.com/exelban/stats",
+      "stars": 42591,
+      "forks": 1575,
+      "language": "Swift",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2019-05-29T19:24:56Z",
+      "pushedAt": "2026-10-15T14:39:51Z",
+      "avatar": "https://avatars.githubusercontent.com/u/13332412?v=4",
+      "sourceDescription": "macOS system monitor in your menu bar",
+      "readmeUrl": "https://github.com/exelban/stats/blob/master/README.md",
+      "release": {
+        "name": "v3.0.21",
+        "tag": "v3.0.21",
+        "date": "2026-10-11T10:15:12Z",
+        "url": "https://github.com/exelban/stats/releases/tag/v3.0.21"
+      },
+      "checkedAt": "2026-10-16T18:25:44.495Z"
+    },
+    {
+      "repo": "openai/plugins",
+      "name": "OpenAI Plugins",
+      "tagline": "Ensine novas habilidades à IA.",
+      "description": "Exemplos oficiais de plugins e skills para ampliar o que você faz com o Codex.",
+      "category": "ai",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Codex",
+        "Skills",
+        "Automação"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Consulte o guia oficial Build plugins e explore um plugin de exemplo. Comece por uma skill de tarefa pequena e repetível.",
+      "caveat": "Substitui os exemplos do antigo openai/skills, hoje depreciado. Revise comandos e permissões antes de instalar.",
+      "website": "https://github.com/openai/plugins",
+      "color": "violet",
+      "icon": "sparkles",
+      "order": 2,
+      "url": "https://github.com/openai/plugins",
+      "stars": 7465,
+      "forks": 971,
+      "language": "JavaScript",
+      "license": "Não informada",
+      "archived": false,
+      "createdAt": "2026-03-04T21:52:32Z",
+      "pushedAt": "2026-10-08T05:21:35Z",
+      "avatar": "https://avatars.githubusercontent.com/u/14957082?v=4",
+      "sourceDescription": "OpenAI Plugins",
+      "readmeUrl": "https://github.com/openai/plugins/blob/main/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:45.035Z"
+    },
+    {
+      "repo": "actualbudget/actual",
+      "name": "Actual Budget",
+      "tagline": "Seu dinheiro. Sua direção.",
+      "description": "Orçamento pessoal com foco em dados locais e planejamento por envelopes.",
+      "category": "finance",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Orçamento",
+        "Local-first"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Explore a demonstração e a documentação de início antes de escolher uma instalação local ou um servidor.",
+      "caveat": "Sincronização e conexão bancária exigem configuração própria; não presuma suporte a bancos brasileiros.",
+      "website": "https://actualbudget.org",
+      "color": "peach",
+      "icon": "chart",
+      "order": 3,
+      "url": "https://github.com/actualbudget/actual",
+      "stars": 29548,
+      "forks": 3161,
+      "language": "TypeScript",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2022-04-29T02:41:34Z",
+      "pushedAt": "2026-10-16T15:43:51Z",
+      "avatar": "https://avatars.githubusercontent.com/u/37879538?v=4",
+      "sourceDescription": "A local-first personal finance app",
+      "readmeUrl": "https://github.com/actualbudget/actual/blob/master/README.md",
+      "release": {
+        "name": "v26.10.0",
+        "tag": "v26.10.0",
+        "date": "2026-10-02T15:32:36Z",
+        "url": "https://github.com/actualbudget/actual/releases/tag/v26.10.0"
+      },
+      "checkedAt": "2026-10-16T18:25:45.546Z"
+    },
+    {
+      "repo": "shadcn-ui/ui",
+      "name": "shadcn/ui",
+      "tagline": "Uma base bonita para criar.",
+      "description": "Componentes acessíveis que você copia, adapta e mantém no seu próprio projeto.",
+      "category": "web",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "React",
+        "Tailwind",
+        "UI"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Leia a instalação para seu framework e adicione apenas um componente. Ajuste os tokens antes de expandir o design.",
+      "caveat": "É uma distribuição de código de componentes; atualizações e personalizações ficam sob seu controle.",
+      "website": "https://ui.shadcn.com",
+      "color": "slate",
+      "icon": "layers",
+      "order": 4,
+      "url": "https://github.com/shadcn-ui/ui",
+      "stars": 125751,
+      "forks": 13445,
+      "language": "TypeScript",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2023-01-04T12:43:27Z",
+      "pushedAt": "2026-10-16T18:21:37Z",
+      "avatar": "https://avatars.githubusercontent.com/u/139895814?v=4",
+      "sourceDescription": "Composable, accessible components with thoughtful defaults. Build your own component library with code you can customize, extend, and make your own.",
+      "readmeUrl": "https://github.com/shadcn-ui/ui/blob/main/README.md",
+      "release": {
+        "name": "shadcn@4.22.0",
+        "tag": "shadcn@4.22.0",
+        "date": "2026-10-16T13:24:25Z",
+        "url": "https://github.com/shadcn-ui/ui/releases/tag/shadcn%404.22.0"
+      },
+      "checkedAt": "2026-10-16T18:25:45.606Z"
+    },
+    {
+      "repo": "localsend/localsend",
+      "name": "LocalSend",
+      "tagline": "Do seu Mac para qualquer tela.",
+      "description": "Transfira arquivos entre dispositivos na rede local, sem depender de uma nuvem.",
+      "category": "files",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux",
+        "Android",
+        "iOS"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Arquivos",
+        "Rede local"
+      ],
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "start": "Instale a versão oficial em dois dispositivos conectados à mesma rede e envie um arquivo de teste.",
+      "caveat": "Firewalls, redes de convidados e isolamento de clientes podem impedir a descoberta de dispositivos.",
+      "website": "https://localsend.org",
+      "color": "blue",
+      "icon": "send",
+      "order": 5,
+      "url": "https://github.com/localsend/localsend",
+      "stars": 94581,
+      "forks": 5291,
+      "language": "Dart",
+      "license": "Apache-2.0",
+      "archived": false,
+      "createdAt": "2022-12-16T00:46:07Z",
+      "pushedAt": "2026-10-15T23:24:12Z",
+      "avatar": "https://avatars.githubusercontent.com/u/120677616?v=4",
+      "sourceDescription": "An open-source cross-platform alternative to AirDrop",
+      "readmeUrl": "https://github.com/localsend/localsend/blob/main/README.md",
+      "release": {
+        "name": "v1.18.2",
+        "tag": "v1.18.2",
+        "date": "2026-08-21T14:02:01Z",
+        "url": "https://github.com/localsend/localsend/releases/tag/v1.18.2"
+      },
+      "checkedAt": "2026-10-16T18:25:45.628Z"
+    },
+    {
+      "repo": "rxhanson/Rectangle",
+      "name": "Rectangle",
+      "tagline": "Cada janela no seu lugar.",
+      "description": "Organize janelas do macOS com atalhos e áreas de encaixe.",
+      "category": "mac",
+      "platforms": [
+        "macOS"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Janelas",
+        "Produtividade"
+      ],
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "start": "Consulte os atalhos e os requisitos do macOS na documentação. Teste dois atalhos no seu fluxo diário.",
+      "caveat": "O app pede permissão de Acessibilidade para movimentar janelas. Rectangle Pro é uma oferta separada.",
+      "website": "https://rectangleapp.com",
+      "color": "sand",
+      "icon": "panels",
+      "order": 6,
+      "url": "https://github.com/rxhanson/Rectangle",
+      "stars": 30079,
+      "forks": 1019,
+      "language": "Swift",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2019-06-21T21:34:53Z",
+      "pushedAt": "2026-10-16T01:42:54Z",
+      "avatar": "https://avatars.githubusercontent.com/u/13651296?v=4",
+      "sourceDescription": "Move and resize windows on macOS with keyboard shortcuts and snap areas",
+      "readmeUrl": "https://github.com/rxhanson/Rectangle/blob/main/README.md",
+      "release": {
+        "name": "v2.0.3",
+        "tag": "v2.0.3",
+        "date": "2026-10-05T20:38:54Z",
+        "url": "https://github.com/rxhanson/Rectangle/releases/tag/v2.0.3"
+      },
+      "checkedAt": "2026-10-16T18:25:46.094Z"
+    },
+    {
+      "repo": "sfsam/Itsycal",
+      "name": "Itsycal",
+      "tagline": "Seu calendário, a um olhar.",
+      "description": "Um pequeno calendário na barra de menus para consultar o dia sem interromper o trabalho.",
+      "category": "mac",
+      "platforms": [
+        "macOS"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Calendário",
+        "Barra de menus"
+      ],
+      "scores": [
+        4,
+        4,
+        5
+      ],
+      "start": "Abra o site oficial e confira a versão compatível com seu macOS. Ajuste formato e início da semana.",
+      "caveat": "A exibição de eventos pode exigir permissão de acesso ao Calendário.",
+      "website": "https://github.com/sfsam/Itsycal",
+      "color": "rose",
+      "icon": "calendar",
+      "order": 7,
+      "url": "https://github.com/sfsam/Itsycal",
+      "stars": 4028,
+      "forks": 271,
+      "language": "Objective-C",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2016-01-27T17:33:22Z",
+      "pushedAt": "2026-10-13T19:16:50Z",
+      "avatar": "https://avatars.githubusercontent.com/u/118104?v=4",
+      "sourceDescription": "Itsycal is a tiny calendar for your Mac's menu bar. http://www.mowglii.com/itsycal",
+      "readmeUrl": "https://github.com/sfsam/Itsycal/blob/master/README.txt",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:46.560Z"
+    },
+    {
+      "repo": "Homebrew/brew",
+      "name": "Homebrew",
+      "tagline": "Seu kit de ferramentas no Mac.",
+      "description": "Um gerenciador de pacotes para instalar e manter ferramentas de desenvolvimento.",
+      "category": "mac",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Terminal",
+        "Pacotes"
+      ],
+      "scores": [
+        5,
+        5,
+        3
+      ],
+      "start": "Leia o guia oficial de instalação e confira os requisitos. Entenda uma fórmula e um cask antes de instalar.",
+      "caveat": "Comandos modificam seu computador. Leia o script e a origem dos pacotes antes de executar.",
+      "website": "https://brew.sh",
+      "color": "sand",
+      "icon": "terminal",
+      "order": 8,
+      "url": "https://github.com/Homebrew/brew",
+      "stars": 50031,
+      "forks": 11384,
+      "language": "Ruby",
+      "license": "BSD-2-Clause",
+      "archived": false,
+      "createdAt": "2016-03-06T05:08:38Z",
+      "pushedAt": "2026-10-16T17:57:25Z",
+      "avatar": "https://avatars.githubusercontent.com/u/1503512?v=4",
+      "sourceDescription": "🍺 The Package Manager for Everywhere",
+      "readmeUrl": "https://github.com/Homebrew/brew/blob/main/README.md",
+      "release": {
+        "name": "7.0.9",
+        "tag": "7.0.9",
+        "date": "2026-10-08T10:51:59Z",
+        "url": "https://github.com/Homebrew/brew/releases/tag/7.0.9"
+      },
+      "checkedAt": "2026-10-16T18:25:46.174Z"
+    },
+    {
+      "repo": "microsoft/PowerToys",
+      "name": "PowerToys",
+      "tagline": "Mais possibilidades no Windows.",
+      "description": "Utilitários para organizar janelas, renomear arquivos e acelerar tarefas do dia a dia.",
+      "category": "tools",
+      "platforms": [
+        "Windows"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Produtividade",
+        "Utilitários"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Consulte o instalador oficial e ative um utilitário por vez, começando por FancyZones ou PowerRename.",
+      "caveat": "Requisitos de Windows e privilégios variam por utilitário.",
+      "website": "https://github.com/microsoft/PowerToys",
+      "color": "blue",
+      "icon": "panels",
+      "order": 9,
+      "url": "https://github.com/microsoft/PowerToys",
+      "stars": 139384,
+      "forks": 8653,
+      "language": "C",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2019-05-01T17:44:02Z",
+      "pushedAt": "2026-10-16T18:11:40Z",
+      "avatar": "https://avatars.githubusercontent.com/u/6154722?v=4",
+      "sourceDescription": "Microsoft PowerToys is a collection of utilities that supercharge productivity and customization on Windows",
+      "readmeUrl": "https://github.com/microsoft/PowerToys/blob/main/README.md",
+      "release": {
+        "name": "Release v0.101.2362.0",
+        "tag": "v0.101.2362.0",
+        "date": "2026-08-25T08:34:52Z",
+        "url": "https://github.com/microsoft/PowerToys/releases/tag/v0.101.2362.0"
+      },
+      "checkedAt": "2026-10-16T18:25:47.721Z"
+    },
+    {
+      "repo": "microsoft/vscode",
+      "name": "Visual Studio Code",
+      "tagline": "Um editor. Muitos caminhos.",
+      "description": "Código-fonte do editor extensível para escrever, depurar e organizar projetos.",
+      "category": "tools",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "VS Code",
+        "Editor"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Instale a distribuição oficial e abra uma pasta de projeto. Configure extensões por necessidade real.",
+      "caveat": "Code - OSS e a distribuição Visual Studio Code têm condições de distribuição diferentes.",
+      "website": "https://code.visualstudio.com",
+      "color": "blue",
+      "icon": "code",
+      "order": 10,
+      "url": "https://github.com/microsoft/vscode",
+      "stars": 193745,
+      "forks": 45736,
+      "language": "TypeScript",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2015-09-03T20:23:38Z",
+      "pushedAt": "2026-10-16T18:25:10Z",
+      "avatar": "https://avatars.githubusercontent.com/u/6154722?v=4",
+      "sourceDescription": "Visual Studio Code",
+      "readmeUrl": "https://github.com/microsoft/vscode/blob/main/README.md",
+      "release": {
+        "name": "1.142.0",
+        "tag": "1.142.0",
+        "date": "2026-10-14T19:46:12Z",
+        "url": "https://github.com/microsoft/vscode/releases/tag/1.142.0"
+      },
+      "checkedAt": "2026-10-16T18:25:47.119Z"
+    },
+    {
+      "repo": "VSCodium/vscodium",
+      "name": "VSCodium",
+      "tagline": "Seu editor, em outra distribuição.",
+      "description": "Builds comunitários do Code - OSS, com uma proposta de distribuição aberta.",
+      "category": "tools",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "VS Code",
+        "Editor",
+        "Privacidade"
+      ],
+      "scores": [
+        4,
+        4,
+        4
+      ],
+      "start": "Leia as diferenças para o VS Code e teste as extensões essenciais pelo catálogo recomendado pelo projeto.",
+      "caveat": "Algumas extensões e integrações do Marketplace da Microsoft podem não estar disponíveis.",
+      "website": "https://vscodium.com",
+      "color": "mint",
+      "icon": "code",
+      "order": 11,
+      "url": "https://github.com/VSCodium/vscodium",
+      "stars": 33675,
+      "forks": 1890,
+      "language": "Shell",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2018-08-13T14:26:58Z",
+      "pushedAt": "2026-10-14T20:23:20Z",
+      "avatar": "https://avatars.githubusercontent.com/u/40338071?v=4",
+      "sourceDescription": "binary releases of VS Code without MS branding/telemetry/licensing",
+      "readmeUrl": "https://github.com/VSCodium/vscodium/blob/master/README.md",
+      "release": {
+        "name": "1.140.06880",
+        "tag": "1.140.06880",
+        "date": "2026-10-13T17:03:30Z",
+        "url": "https://github.com/VSCodium/vscodium/releases/tag/1.140.06880"
+      },
+      "checkedAt": "2026-10-16T18:25:47.635Z"
+    },
+    {
+      "repo": "21st-dev/magic-mcp",
+      "name": "21st MCP",
+      "tagline": "Ideias que viram interface.",
+      "description": "Integração do 21st.dev para descobrir componentes e trabalhar interfaces no editor.",
+      "category": "web",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "21st.dev",
+        "MCP",
+        "React"
+      ],
+      "scores": [
+        4,
+        4,
+        3
+      ],
+      "start": "Consulte o setup atual em 21st.dev/mcp e verifique quais editores e planos são compatíveis.",
+      "caveat": "O serviço e os componentes podem ter licenças e limites próprios. Confira antes de reutilizar.",
+      "website": "https://21st.dev/mcp",
+      "color": "violet",
+      "icon": "sparkles",
+      "order": 12,
+      "url": "https://github.com/21st-dev/magic-mcp",
+      "stars": 6061,
+      "forks": 489,
+      "language": "TypeScript",
+      "license": "ISC",
+      "archived": false,
+      "createdAt": "2025-02-19T13:17:50Z",
+      "pushedAt": "2026-09-09T20:38:22Z",
+      "avatar": "https://avatars.githubusercontent.com/u/199367026?v=4",
+      "sourceDescription": "It's like v0, but in your Cursor / Claude Code / Windsurf: search 10,000+ React/Tailwind components, generate new UI with AI, and publish your own — right from your editor. Magic MCP is now the 21st MCP; this package keeps old configs working. Setup: 21st.dev/mcp",
+      "readmeUrl": "https://github.com/21st-dev/magic-mcp/blob/main/README.md",
+      "release": {
+        "name": "21st MCP compatibility proxy 0.2.3",
+        "tag": "v0.2.3",
+        "date": "2026-09-09T20:06:21Z",
+        "url": "https://github.com/21st-dev/magic-mcp/releases/tag/v0.2.3"
+      },
+      "checkedAt": "2026-10-16T18:25:48.468Z"
+    },
+    {
+      "repo": "vitejs/vite",
+      "name": "Vite",
+      "tagline": "Da ideia ao navegador.",
+      "description": "Ferramentas de desenvolvimento e build para começar projetos web com rapidez.",
+      "category": "web",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Frontend",
+        "Build",
+        "TypeScript"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Siga o guia Getting Started e crie um projeto de estudo com um template adequado ao seu framework.",
+      "caveat": "Verifique a versão de Node.js exigida pela versão atual.",
+      "website": "http://vite.dev",
+      "color": "peach",
+      "icon": "bolt",
+      "order": 13,
+      "url": "https://github.com/vitejs/vite",
+      "stars": 83351,
+      "forks": 8863,
+      "language": "TypeScript",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2020-04-21T05:03:57Z",
+      "pushedAt": "2026-10-16T16:45:21Z",
+      "avatar": "https://avatars.githubusercontent.com/u/65625612?v=4",
+      "sourceDescription": "Next generation frontend tooling. It's fast!",
+      "readmeUrl": "https://github.com/vitejs/vite/blob/main/README.md",
+      "release": {
+        "name": "v8.3.4",
+        "tag": "v8.3.4",
+        "date": "2026-10-08T12:03:54Z",
+        "url": "https://github.com/vitejs/vite/releases/tag/v8.3.4"
+      },
+      "checkedAt": "2026-10-16T18:25:48.400Z"
+    },
+    {
+      "repo": "withastro/astro",
+      "name": "Astro",
+      "tagline": "Conteúdo em primeiro lugar.",
+      "description": "Framework para sites de conteúdo, documentação, blogs e páginas rápidas.",
+      "category": "web",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Sites",
+        "Conteúdo"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Comece pelo tutorial oficial e publique uma página pequena de conteúdo antes de adicionar integrações.",
+      "caveat": "Escolha o modo de renderização e a hospedagem de acordo com o que seu site precisa.",
+      "website": "https://astro.build",
+      "color": "rose",
+      "icon": "rocket",
+      "order": 14,
+      "url": "https://github.com/withastro/astro",
+      "stars": 63276,
+      "forks": 3854,
+      "language": "TypeScript",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2021-03-15T17:19:47Z",
+      "pushedAt": "2026-10-16T18:19:35Z",
+      "avatar": "https://avatars.githubusercontent.com/u/44914786?v=4",
+      "sourceDescription": "The web framework for content-driven websites.",
+      "readmeUrl": "https://github.com/withastro/astro/blob/main/README.md",
+      "release": {
+        "name": "create-astro@5.3.0",
+        "tag": "create-astro@5.3.0",
+        "date": "2026-10-15T14:45:48Z",
+        "url": "https://github.com/withastro/astro/releases/tag/create-astro%405.3.0"
+      },
+      "checkedAt": "2026-10-16T18:25:48.627Z"
+    },
+    {
+      "repo": "n8n-io/n8n",
+      "name": "n8n",
+      "tagline": "Conecte as partes do seu trabalho.",
+      "description": "Crie fluxos visuais entre serviços, APIs e rotinas de automação.",
+      "category": "ai",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Automação",
+        "Workflows"
+      ],
+      "scores": [
+        5,
+        5,
+        3
+      ],
+      "start": "Leia o guia de início e monte um fluxo com dados de teste antes de conectar contas reais.",
+      "caveat": "Usa licença fair-code com restrições de uso comercial. Hospedagem própria exige operação e backups.",
+      "website": "https://n8n.io",
+      "color": "rose",
+      "icon": "workflow",
+      "order": 15,
+      "url": "https://github.com/n8n-io/n8n",
+      "stars": 207679,
+      "forks": 61153,
+      "language": "TypeScript",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2019-06-22T09:24:21Z",
+      "pushedAt": "2026-10-16T18:13:28Z",
+      "avatar": "https://avatars.githubusercontent.com/u/45487711?v=4",
+      "sourceDescription": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+      "readmeUrl": "https://github.com/n8n-io/n8n/blob/master/README.md",
+      "release": {
+        "name": "stable",
+        "tag": "stable",
+        "date": "2026-10-16T07:23:58Z",
+        "url": "https://github.com/n8n-io/n8n/releases/tag/stable"
+      },
+      "checkedAt": "2026-10-16T18:25:49.158Z"
+    },
+    {
+      "repo": "ollama/ollama",
+      "name": "Ollama",
+      "tagline": "Modelos de IA perto de você.",
+      "description": "Execute modelos compatíveis localmente e explore uma API para seus experimentos.",
+      "category": "ai",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "IA local",
+        "Modelos"
+      ],
+      "scores": [
+        5,
+        4,
+        4
+      ],
+      "start": "Confira os requisitos de hardware e escolha um modelo compatível com a memória disponível.",
+      "caveat": "Modelos têm licenças próprias e podem consumir bastante memória e armazenamento.",
+      "website": "https://ollama.com",
+      "color": "ivory",
+      "icon": "bot",
+      "order": 16,
+      "url": "https://github.com/ollama/ollama",
+      "stars": 183469,
+      "forks": 18331,
+      "language": "Go",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2023-06-26T19:39:32Z",
+      "pushedAt": "2026-10-16T01:09:43Z",
+      "avatar": "https://avatars.githubusercontent.com/u/151674099?v=4",
+      "sourceDescription": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+      "readmeUrl": "https://github.com/ollama/ollama/blob/main/README.md",
+      "release": {
+        "name": "v0.40.5",
+        "tag": "v0.40.5",
+        "date": "2026-10-14T19:45:22Z",
+        "url": "https://github.com/ollama/ollama/releases/tag/v0.40.5"
+      },
+      "checkedAt": "2026-10-16T18:25:49.170Z"
+    },
+    {
+      "repo": "modelcontextprotocol/servers",
+      "name": "MCP Servers",
+      "tagline": "Dê contexto às suas ferramentas.",
+      "description": "Referências de servidores MCP para conectar agentes a fontes de dados e ferramentas.",
+      "category": "ai",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Avançado",
+      "tags": [
+        "MCP",
+        "Integrações"
+      ],
+      "scores": [
+        5,
+        4,
+        2
+      ],
+      "start": "Leia a descrição de cada servidor e teste uma integração local com um conjunto mínimo de permissões.",
+      "caveat": "São exemplos educacionais de referência, não soluções prontas para produção. Avalie permissões e proteção de dados antes de usar.",
+      "website": "https://modelcontextprotocol.io",
+      "color": "mint",
+      "icon": "network",
+      "order": 17,
+      "url": "https://github.com/modelcontextprotocol/servers",
+      "stars": 91313,
+      "forks": 11795,
+      "language": "JavaScript",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2024-11-19T01:10:17Z",
+      "pushedAt": "2026-10-13T05:54:47Z",
+      "avatar": "https://avatars.githubusercontent.com/u/182288589?v=4",
+      "sourceDescription": "Model Context Protocol Servers",
+      "readmeUrl": "https://github.com/modelcontextprotocol/servers/blob/main/README.md",
+      "release": {
+        "name": "v1.0.0",
+        "tag": "v1.0.0",
+        "date": "2026-10-11T02:40:29Z",
+        "url": "https://github.com/modelcontextprotocol/servers/releases/tag/v1.0.0"
+      },
+      "checkedAt": "2026-10-16T18:25:49.165Z"
+    },
+    {
+      "repo": "anthropics/skills",
+      "name": "Anthropic Skills",
+      "tagline": "Habilidades que podem ser repetidas.",
+      "description": "Exemplos públicos de skills para estruturar instruções e recursos usados por agentes.",
+      "category": "ai",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Skills",
+        "Claude"
+      ],
+      "scores": [
+        4,
+        5,
+        4
+      ],
+      "start": "Examine a estrutura de uma skill e sua licença. Defina quando a habilidade deve e não deve ser acionada.",
+      "caveat": "A compatibilidade varia entre agentes. Nem todos os diretórios têm a mesma licença.",
+      "website": "https://github.com/anthropics/skills",
+      "color": "sand",
+      "icon": "sparkles",
+      "order": 18,
+      "url": "https://github.com/anthropics/skills",
+      "stars": 181562,
+      "forks": 21505,
+      "language": "Python",
+      "license": "Não informada",
+      "archived": false,
+      "createdAt": "2025-09-22T15:53:31Z",
+      "pushedAt": "2026-10-09T18:45:52Z",
+      "avatar": "https://avatars.githubusercontent.com/u/76263028?v=4",
+      "sourceDescription": "Public repository for Agent Skills",
+      "readmeUrl": "https://github.com/anthropics/skills/blob/main/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:50.201Z"
+    },
+    {
+      "repo": "syncthing/syncthing",
+      "name": "Syncthing",
+      "tagline": "Seus arquivos, em sintonia.",
+      "description": "Sincronize pastas entre computadores sob seu controle.",
+      "category": "files",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Sincronização",
+        "Arquivos"
+      ],
+      "scores": [
+        5,
+        5,
+        3
+      ],
+      "start": "Leia o Getting Started e teste uma pasta sem dados importantes entre dois dispositivos.",
+      "caveat": "Sincronização também propaga exclusões. Configure versionamento e mantenha backups separados.",
+      "website": "https://syncthing.net/",
+      "color": "blue",
+      "icon": "refresh",
+      "order": 19,
+      "url": "https://github.com/syncthing/syncthing",
+      "stars": 89451,
+      "forks": 5527,
+      "language": "Go",
+      "license": "MPL-2.0",
+      "archived": false,
+      "createdAt": "2013-11-26T09:48:21Z",
+      "pushedAt": "2026-10-13T12:28:45Z",
+      "avatar": "https://avatars.githubusercontent.com/u/7628018?v=4",
+      "sourceDescription": "Open Source Continuous File Synchronization",
+      "readmeUrl": "https://github.com/syncthing/syncthing/blob/main/README.md",
+      "release": {
+        "name": "v2.1.6",
+        "tag": "v2.1.6",
+        "date": "2026-10-06T06:08:27Z",
+        "url": "https://github.com/syncthing/syncthing/releases/tag/v2.1.6"
+      },
+      "checkedAt": "2026-10-16T18:25:49.743Z"
+    },
+    {
+      "repo": "Stirling-Tools/Stirling-PDF",
+      "name": "Stirling PDF",
+      "tagline": "Uma caixa de ferramentas para PDFs.",
+      "description": "Recursos para organizar, converter e trabalhar documentos PDF em uma aplicação web.",
+      "category": "files",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "PDF",
+        "Documentos"
+      ],
+      "scores": [
+        5,
+        4,
+        3
+      ],
+      "start": "Leia as opções de implantação e teste primeiro com um documento público ou sem dados pessoais.",
+      "caveat": "Alguns recursos dependem de componentes, planos ou configuração. Revise a licença da edição escolhida.",
+      "website": "https://stirling.com",
+      "color": "peach",
+      "icon": "file",
+      "order": 20,
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "stars": 94339,
+      "forks": 11626,
+      "language": "TypeScript",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2023-01-27T18:22:42Z",
+      "pushedAt": "2026-10-16T17:14:57Z",
+      "avatar": "https://avatars.githubusercontent.com/u/139791695?v=4",
+      "sourceDescription": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere",
+      "readmeUrl": "https://github.com/Stirling-Tools/Stirling-PDF/blob/main/README.md",
+      "release": {
+        "name": "3.2.0 New Multi-tool, better passworded PDFs and lots of improvements",
+        "tag": "v3.2.0",
+        "date": "2026-10-15T20:36:26Z",
+        "url": "https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v3.2.0"
+      },
+      "checkedAt": "2026-10-16T18:25:50.112Z"
+    },
+    {
+      "repo": "paperless-ngx/paperless-ngx",
+      "name": "Paperless-ngx",
+      "tagline": "Um lar para seus documentos.",
+      "description": "Organize documentos digitalizados com busca, tags e reconhecimento de texto.",
+      "category": "files",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Avançado",
+      "tags": [
+        "OCR",
+        "Documentos",
+        "Arquivo"
+      ],
+      "scores": [
+        5,
+        5,
+        2
+      ],
+      "start": "Siga o guia de implantação, prepare um volume persistente e importe um conjunto pequeno de documentos.",
+      "caveat": "Precisa de servidor ou ambiente de contêineres, controle de acesso e uma rotina de backups.",
+      "website": "http://docs.paperless-ngx.com/",
+      "color": "sand",
+      "icon": "archive",
+      "order": 21,
+      "url": "https://github.com/paperless-ngx/paperless-ngx",
+      "stars": 46758,
+      "forks": 3243,
+      "language": "Python",
+      "license": "GPL-3.0",
+      "archived": false,
+      "createdAt": "2022-02-12T21:56:52Z",
+      "pushedAt": "2026-10-16T17:48:01Z",
+      "avatar": "https://avatars.githubusercontent.com/u/99562962?v=4",
+      "sourceDescription": "A community-supported supercharged document management system: scan, index and archive all your documents",
+      "readmeUrl": "https://github.com/paperless-ngx/paperless-ngx/blob/dev/README.md",
+      "release": {
+        "name": "Paperless-ngx v3.3.2",
+        "tag": "v3.3.2",
+        "date": "2026-10-16T06:14:32Z",
+        "url": "https://github.com/paperless-ngx/paperless-ngx/releases/tag/v3.3.2"
+      },
+      "checkedAt": "2026-10-16T18:25:50.732Z"
+    },
+    {
+      "repo": "firefly-iii/firefly-iii",
+      "name": "Firefly III",
+      "tagline": "Organize a vida financeira.",
+      "description": "Registre transações, contas e orçamentos em um gerenciador financeiro com hospedagem própria.",
+      "category": "finance",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Avançado",
+      "tags": [
+        "Finanças",
+        "Self-hosted"
+      ],
+      "scores": [
+        5,
+        5,
+        2
+      ],
+      "start": "Explore a demonstração e os guias de instalação e importação antes de escolher onde hospedar.",
+      "caveat": "Conexões bancárias dependem de importadores e provedores externos. Não é consultoria financeira.",
+      "website": "https://firefly-iii.org/",
+      "color": "rose",
+      "icon": "chart",
+      "order": 22,
+      "url": "https://github.com/firefly-iii/firefly-iii",
+      "stars": 24913,
+      "forks": 2344,
+      "language": "PHP",
+      "license": "AGPL-3.0",
+      "archived": false,
+      "createdAt": "2014-06-28T07:37:32Z",
+      "pushedAt": "2026-10-16T18:18:01Z",
+      "avatar": "https://avatars.githubusercontent.com/u/22821986?v=4",
+      "sourceDescription": "Firefly III: a personal finances manager",
+      "readmeUrl": "https://github.com/firefly-iii/firefly-iii/blob/main/readme.md",
+      "release": {
+        "name": "v6.7.9",
+        "tag": "v6.7.9",
+        "date": "2026-10-11T19:16:51Z",
+        "url": "https://github.com/firefly-iii/firefly-iii/releases/tag/v6.7.9"
+      },
+      "checkedAt": "2026-10-16T18:25:50.740Z"
+    },
+    {
+      "repo": "ghostfolio/ghostfolio",
+      "name": "Ghostfolio",
+      "tagline": "Sua carteira em perspectiva.",
+      "description": "Acompanhe investimentos e visualize a composição da sua carteira.",
+      "category": "finance",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Avançado",
+      "tags": [
+        "Investimentos",
+        "Self-hosted"
+      ],
+      "scores": [
+        4,
+        4,
+        2
+      ],
+      "start": "Conheça a demonstração e confira a cobertura de ativos e fontes de dados antes de importar sua carteira.",
+      "caveat": "Cobertura, cotações e recursos variam por provedor e edição. Não executa uma recomendação de investimento.",
+      "website": "https://Ghostfol.io",
+      "color": "mint",
+      "icon": "chart",
+      "order": 23,
+      "url": "https://github.com/ghostfolio/ghostfolio",
+      "stars": 9485,
+      "forks": 1375,
+      "language": "TypeScript",
+      "license": "AGPL-3.0",
+      "archived": false,
+      "createdAt": "2021-04-13T19:51:25Z",
+      "pushedAt": "2026-10-16T15:25:38Z",
+      "avatar": "https://avatars.githubusercontent.com/u/82473144?v=4",
+      "sourceDescription": "Open Source Wealth Management Software. Angular + NestJS + Prisma + Nx + TypeScript 🤍",
+      "readmeUrl": "https://github.com/ghostfolio/ghostfolio/blob/main/README.md",
+      "release": {
+        "name": "3.86.0",
+        "tag": "3.86.0",
+        "date": "2026-10-13T17:51:43Z",
+        "url": "https://github.com/ghostfolio/ghostfolio/releases/tag/3.86.0"
+      },
+      "checkedAt": "2026-10-16T18:25:50.742Z"
+    },
+    {
+      "repo": "TheOdinProject/curriculum",
+      "name": "The Odin Project",
+      "tagline": "Aprender, praticar, construir.",
+      "description": "Uma trilha de desenvolvimento web baseada em leitura, exercícios e projetos.",
+      "category": "study",
+      "platforms": [
+        "Web",
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Currículo",
+        "Web",
+        "Inglês"
+      ],
+      "scores": [
+        5,
+        5,
+        4
+      ],
+      "start": "Comece por Foundations no site oficial e acompanhe a sequência, reservando tempo para os projetos.",
+      "caveat": "O conteúdo principal é em inglês. O ambiente de desenvolvimento exige configuração.",
+      "website": "https://www.theodinproject.com/",
+      "color": "sand",
+      "icon": "book",
+      "order": 24,
+      "url": "https://github.com/TheOdinProject/curriculum",
+      "stars": 13151,
+      "forks": 16859,
+      "language": "JavaScript",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2013-06-11T03:22:30Z",
+      "pushedAt": "2026-10-16T14:36:52Z",
+      "avatar": "https://avatars.githubusercontent.com/u/4441966?v=4",
+      "sourceDescription": "The open curriculum for learning web development",
+      "readmeUrl": "https://github.com/TheOdinProject/curriculum/blob/main/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:51.701Z"
+    },
+    {
+      "repo": "nilbuild/developer-roadmap",
+      "name": "Developer Roadmaps",
+      "tagline": "Encontre seu próximo passo.",
+      "description": "Mapas visuais para entender caminhos de estudo em diferentes áreas de desenvolvimento.",
+      "category": "study",
+      "platforms": [
+        "Web"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Roadmap",
+        "Carreira"
+      ],
+      "scores": [
+        5,
+        4,
+        5
+      ],
+      "start": "Escolha um mapa relacionado ao seu objetivo e separe os primeiros tópicos para praticar em um projeto.",
+      "caveat": "Um mapa orienta escolhas; não é necessário dominar todos os tópicos para começar.",
+      "website": "https://roadmap.sh",
+      "color": "violet",
+      "icon": "route",
+      "order": 25,
+      "url": "https://github.com/nilbuild/developer-roadmap",
+      "stars": 369546,
+      "forks": 45090,
+      "language": "TypeScript",
+      "license": "NOASSERTION",
+      "archived": false,
+      "createdAt": "2017-03-15T13:45:52Z",
+      "pushedAt": "2026-10-16T16:41:47Z",
+      "avatar": "https://avatars.githubusercontent.com/u/4921183?v=4",
+      "sourceDescription": "Interactive roadmaps, guides and other educational content to help developers grow in their careers.",
+      "readmeUrl": "https://github.com/nilbuild/developer-roadmap/blob/master/readme.md",
+      "release": {
+        "name": "Roadmap 4.0",
+        "tag": "4.0",
+        "date": "2023-01-05T18:38:46Z",
+        "url": "https://github.com/nilbuild/developer-roadmap/releases/tag/4.0"
+      },
+      "checkedAt": "2026-10-16T18:25:51.689Z"
+    },
+    {
+      "repo": "ossu/computer-science",
+      "name": "Open Source Society University",
+      "tagline": "Computação, com profundidade.",
+      "description": "Um currículo aberto que reúne cursos e referências de ciência da computação.",
+      "category": "study",
+      "platforms": [
+        "Web"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Ciência da computação",
+        "Currículo"
+      ],
+      "scores": [
+        5,
+        5,
+        3
+      ],
+      "start": "Leia os pré-requisitos e escolha uma disciplina introdutória. Planeje uma rotina realista de estudo.",
+      "caveat": "Os cursos são externos; certificados, acesso e preços podem variar entre plataformas.",
+      "website": "https://cs.ossu.dev",
+      "color": "slate",
+      "icon": "graduation",
+      "order": 26,
+      "url": "https://github.com/ossu/computer-science",
+      "stars": 210045,
+      "forks": 26003,
+      "language": "HTML",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2014-05-04T00:18:39Z",
+      "pushedAt": "2026-07-14T05:38:25Z",
+      "avatar": "https://avatars.githubusercontent.com/u/14957346?v=4",
+      "sourceDescription": "🎓 Path to a free self-taught education in Computer Science!",
+      "readmeUrl": "https://github.com/ossu/computer-science/blob/master/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:51.777Z"
+    },
+    {
+      "repo": "alan2207/bulletproof-react",
+      "name": "Bulletproof React",
+      "tagline": "Uma casa organizada para seu React.",
+      "description": "Uma referência prática de estrutura, organização e decisões para aplicações React.",
+      "category": "structure",
+      "platforms": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Arquitetura",
+        "React",
+        "Pastas"
+      ],
+      "scores": [
+        5,
+        5,
+        3
+      ],
+      "start": "Leia a seção de estrutura do projeto e compare as responsabilidades das pastas com as do seu app.",
+      "caveat": "É uma referência opinativa. Adapte a complexidade ao tamanho e às necessidades do projeto.",
+      "website": "https://github.com/alan2207/bulletproof-react",
+      "color": "mint",
+      "icon": "folder",
+      "order": 27,
+      "url": "https://github.com/alan2207/bulletproof-react",
+      "stars": 35986,
+      "forks": 3267,
+      "language": "TypeScript",
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2021-05-30T14:47:16Z",
+      "pushedAt": "2026-05-14T13:53:04Z",
+      "avatar": "https://avatars.githubusercontent.com/u/12713315?v=4",
+      "sourceDescription": "🛡️ ⚛️ A simple, scalable, and powerful architecture for building production ready React applications. ",
+      "readmeUrl": "https://github.com/alan2207/bulletproof-react/blob/master/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:52.824Z"
+    },
+    {
+      "repo": "kriasoft/Folder-Structure-Conventions",
+      "name": "Folder Structure Conventions",
+      "tagline": "Cada arquivo com um endereço.",
+      "description": "Convenções e exemplos para pensar a organização de diretórios de um projeto.",
+      "category": "structure",
+      "platforms": [
+        "Web"
+      ],
+      "level": "Iniciante",
+      "tags": [
+        "Pastas",
+        "Convenções",
+        "Documentação"
+      ],
+      "scores": [
+        4,
+        4,
+        5
+      ],
+      "start": "Leia as convenções e escreva no README uma árvore curta com a responsabilidade de cada pasta.",
+      "caveat": "A estrutura ideal depende da stack. Confira a atividade do repositório e adapte os exemplos.",
+      "website": "https://github.com/kriasoft/Folder-Structure-Conventions",
+      "color": "sand",
+      "icon": "folder",
+      "order": 28,
+      "url": "https://github.com/kriasoft/Folder-Structure-Conventions",
+      "stars": 2056,
+      "forks": 5706,
+      "language": null,
+      "license": "MIT",
+      "archived": false,
+      "createdAt": "2014-02-04T13:57:30Z",
+      "pushedAt": "2024-12-19T20:41:03Z",
+      "avatar": "https://avatars.githubusercontent.com/u/773036?v=4",
+      "sourceDescription": "Folder / directory structure options and naming conventions for software projects",
+      "readmeUrl": "https://github.com/kriasoft/Folder-Structure-Conventions/blob/master/README.md",
+      "release": null,
+      "checkedAt": "2026-10-16T18:25:52.950Z"
+    },
+    {
+      "repo": "github/docs",
+      "name": "GitHub Docs",
+      "tagline": "Documentação como parte do projeto.",
+      "description": "O código-fonte da documentação do GitHub, com guias para organizar repositórios e colaborar.",
+      "category": "structure",
+      "platforms": [
+        "Web"
+      ],
+      "level": "Intermediário",
+      "tags": [
+        "Documentação",
+        "APIs"
+      ],
+      "scores": [
+        3,
+        3,
+        3
+      ],
+      "start": "Consulte os guias sobre README, licença e contribuição. Aplique uma convenção simples ao seu projeto.",
+      "caveat": "O repositório documenta o GitHub; você não precisa compilar o site para consultar os guias.",
+      "website": "https://docs.github.com",
+      "color": "blue",
+      "icon": "book",
+      "order": 29,
+      "url": "https://github.com/github/docs",
+      "stars": 21026,
+      "forks": 69088,
+      "language": "TypeScript",
+      "license": "CC-BY-4.0",
+      "archived": false,
+      "createdAt": "2019-05-31T15:57:39Z",
+      "pushedAt": "2026-10-16T17:29:49Z",
+      "avatar": "https://avatars.githubusercontent.com/u/9919?v=4",
+      "sourceDescription": "The open-source repo for docs.github.com",
+      "readmeUrl": "https://github.com/github/docs/blob/main/README.md",
+      "release": {
+        "name": "Version 1.0.1",
+        "tag": "v1.0.1",
+        "date": "2023-02-14T14:53:40Z",
+        "url": "https://github.com/github/docs/releases/tag/v1.0.1"
+      },
+      "checkedAt": "2026-10-16T18:25:52.325Z"
+    }
+  ]
+}
