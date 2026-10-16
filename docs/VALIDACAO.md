@@ -1,46 +1,61 @@
 # Validação da entrega
 
-Revisão em 16/10/2026.
+Revisão em 16/10/2026. Versão 1.1.0.
 
-## Verificado
+## Catálogo e fontes
 
-- Consulta dos metadados e leitura dos READMEs dos 30 projetos públicos.
-- Cinco testes de integridade do catálogo, fontes, releases e configuração da publicação.
-- TypeScript e build de produção concluídos.
-- Servidor local com resposta HTTP 200.
-- HTML independente aberto diretamente no Safari via arquivo local, sem servidor.
-- Renderização visual no Safari em desktop.
-- Busca por “finanças”, incluindo acentos, retornou três projetos da categoria.
-- Categoria Mac e sistema Windows combinaram corretamente, exibindo o estado sem resultados.
-- Favorito salvo, status alterado para Em uso, nota gravada e preservados após recarregar a página.
-- Contadores da estante refletiram o status real.
-- Reorganização de widgets por Alt + seta conferida visualmente, com restauração da ordem original.
-- Backup de teste importado no portal público; projeto, nota e status foram recuperados.
-- Backup exportado pelo portal e lido independentemente: versão, projeto, nota e status preservados.
-- Favoritos e arquivos temporários de teste removidos após a validação.
-- Pasta Mac abriu os quatro itens; escolher Rectangle abriu os detalhes corretos.
-- O espaçamento das pastas foi corrigido após inspeção visual.
-- Dados, versões e avaliações editoriais aparecem separados, com fontes e metodologia.
+- 150 projetos únicos, com metadados e README consultados pela API oficial do GitHub.
+- Distribuição: Mac 24, IA 25, web 19, arquivos 19, finanças 13, ferramentas dev 23, estudo 14 e organização 13.
+- Nenhum registro está arquivado na consulta. Os 120 novos candidatos também foram conferidos quanto à indicação de fork.
+- Os dados publicados são um retrato com data de consulta, sem números de popularidade simulados.
+- Plataformas foram revisadas com README, documentação, manifests e matrizes oficiais quando necessário. Isso não constitui teste funcional em cada sistema.
+- n8n, Paperless-ngx, Firefly III e Ghostfolio passaram a ser classificados como serviços Web, para não sugerir aplicativos nativos de desktop.
+- Exemplos depreciados foram substituídos por referências atuais. OpenAI Plugins substitui openai/skills; o cartão 21st MCP informa a migração do Magic MCP.
 
-## Limites
+## Testes e build
 
-Os projetos do catálogo não foram instalados ou certificados. A validação visual desta entrega foi feita em desktop; as regras responsivas foram implementadas, mas não equivalem a testes em dispositivos físicos Android e iOS.
+Seis testes de integridade passaram: correspondência entre seleção e catálogo, unicidade, fontes e datas, contagens, scores, releases, referências atuais, configuração da publicação e cobertura mínima de cada área. TypeScript e build de produção concluídos.
 
-Exportação e importação foram verificadas no Safari com dados de teste. A transferência em dispositivos físicos distintos ainda não foi conferida. A estante permanece local ao navegador. O portal não atualiza o catálogo em tempo real.
+O build gera `dist/` e um HTML independente. Na expansão, o JavaScript final ficou em aproximadamente 193 KB comprimidos com gzip. O Vite avisa sobre um chunk acima de 500 KB sem compressão; o build conclui, e o HTML independente mantém tudo em um arquivo. Dividir módulos para hospedagem é uma melhoria futura que deve preservar essa versão independente.
 
-As páginas oficiais dos dois componentes do 21st.dev identificam licença MIT. Autores, fontes e adaptações estão registrados [nos créditos](../THIRD_PARTY_NOTICES.md).
+## Revisão visual e de navegação
 
-## Publicação
+Chrome com viewports emulados, operado pela interface:
 
-Repositório público: [thiagoebias/github-bookshelf](https://github.com/thiagoebias/github-bookshelf).
+- 1366 × 600: rodapé da barra lateral permanece visível; a navegação tem rolagem própria e permite chegar aos últimos links.
+- 390 × 844: título da abertura quebra em linhas sem corte; o menu móvel exibe navegação e rodapé.
+- 844 × 390: menu mantém o rodapé acessível e a navegação rola dentro do espaço restante.
+- O painel decorativo se recolhe quando não há altura suficiente.
+- O menu fechado fica fora do foco no celular. No menu aberto, Shift + Tab circula para o último controle e Escape fecha e devolve o foco ao botão de abertura.
+- 24 cartões são exibidos inicialmente. A opção Mostrar todos foi acionada e os últimos registros, incluindo o cartão 150, foram conferidos na página.
+- Busca por Maccy retornou um projeto novo, com os detalhes corretos.
+- Nas abas de detalhes, a tecla End selecionou Dados e fontes e levou o foco à aba correspondente.
+- Notas editoriais usam separador decimal em português e estão distinguidas de estrelas do GitHub.
+- Pastas das coleções mostram uma prévia explícita de quatro projetos e um acesso à coleção completa.
+
+## Persistência já conferida
+
+Na versão 1.0, Safari foi usado para verificar favoritos, nota e status após recarregar, contadores reais, reorganização de widgets pelo teclado, importação de um backup de teste e exportação lida independentemente. Esses fluxos mantêm o mesmo esquema de armazenamento na versão 1.1; as estantes existentes não são migradas nem apagadas.
+
+O HTML independente da primeira entrega foi aberto diretamente no Safari, sem servidor. O HTML da versão 1.1 também foi aberto diretamente no Chrome, exibindo os 150 registros. Os dados de teste foram removidos após a verificação.
+
+## Publicação e autoria
+
+Repositório público da conta pessoal: [thiagoebias/github-bookshelf](https://github.com/thiagoebias/github-bookshelf).
 
 Portal: [GitHub Bookshelf](https://thiagoebias.github.io/github-bookshelf/).
 
-Primeira publicação concluída pelo GitHub Actions em 16/10/2026, com build e deploy aprovados na [execução 38948594065](https://github.com/thiagoebias/github-bookshelf/actions/runs/38948594065). Repositório e página responderam HTTP 200 sem autenticação. O workflow publica novas alterações da branch main após os checks.
+[Workflow de validação e publicação](https://github.com/thiagoebias/github-bookshelf/actions/workflows/pages.yml). Alterações da branch main são testadas e publicadas pelo GitHub Pages. A primeira publicação foi concluída na [execução 38948594065](https://github.com/thiagoebias/github-bookshelf/actions/runs/38948594065), com HTTP 200 sem autenticação.
 
-## Próximo passo
+Credenciais, arquivos de ambiente, cache de pesquisa e caminhos privados foram excluídos da entrega pública. Os componentes do 21st.dev preservam atribuição e licença nos [créditos](../THIRD_PARTY_NOTICES.md).
 
-Validar a experiência em um celular físico, conferir o backup entre dispositivos distintos e ampliar a curadoria com casos de uso reais.
+## Limites e próximo passo
+
+Os 150 projetos não foram instalados ou certificados. A curadoria é documental; avaliações e níveis são editoriais. Requisitos exatos e licenças devem ser conferidos nas fontes. Não há promessa de integração com bancos brasileiros.
+
+A revisão responsiva usa emulação no Chrome; não substitui testes em aparelhos físicos. A transferência do backup entre dois dispositivos físicos distintos ainda não foi conferida. A estante permanece local ao navegador, sem sincronização de conta.
+
+Próximo passo: conferir a experiência em um celular físico e evoluir a curadoria com casos de uso, comparações e feedback real.
 
 Relacionado: [[github-bookshelf/README|Guia do projeto]] e [[github-bookshelf/docs/CURADORIA|Curadoria]].
 

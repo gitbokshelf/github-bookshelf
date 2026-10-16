@@ -190,7 +190,7 @@ export default function App() {
     filtered = [...filtered].sort((a, b) =>
       b.pushedAt.localeCompare(a.pushedAt),
     );
-  const visible = filtered.slice(0, page * 12),
+  const visible = filtered.slice(0, page * 24),
     savedProjects = projects.filter((p) => library[p.repo]),
     activeFilters =
       Number(platform !== "Todos") +
@@ -262,8 +262,15 @@ export default function App() {
         nav={nav}
         reset={reset}
         chooseCategory={chooseCategory}
-        setGuide={setGuide}
-        setAbout={setAbout}
+        setGuide={(g) => {
+          setMenu(false);
+          setGuide(g);
+        }}
+        setAbout={(value) => {
+          setMenu(false);
+          setAbout(value);
+        }}
+        onClose={() => setMenu(false)}
       />
       {menu && (
         <button
@@ -740,8 +747,16 @@ export default function App() {
                       className="secondary-button"
                       onClick={() => setPage(page + 1)}
                     >
-                      Mais descobertas
+                      Carregar mais{" "}
+                      {Math.min(24, filtered.length - visible.length)} projetos
                       <Icon name="down" size={15} />
+                    </button>
+                    <button
+                      className="text-button show-all"
+                      onClick={() => setPage(Math.ceil(filtered.length / 24))}
+                    >
+                      Mostrar todos os {filtered.length} projetos
+                      <Icon name="grid" size={14} />
                     </button>
                     <span>
                       {visible.length} de {filtered.length} projetos

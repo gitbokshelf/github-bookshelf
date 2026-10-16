@@ -13,8 +13,9 @@ Um portal em português para descobrir projetos úteis do GitHub e entender onde
 
 ## O que você encontra
 
-- 30 projetos reais, distribuídos em 8 categorias.
+- 150 projetos reais, distribuídos em 8 categorias.
 - Busca por nome, descrição, categoria, tags e sistema, com tratamento de acentos.
+- 24 cartões por vez e opção para exibir todos os resultados.
 - Filtros por sistema, experiência e licença identificada.
 - Ordenação por curadoria, estrelas, avaliação editorial, release, criação e atividade.
 - Coleções com pastas de vidro interativas do 21st.dev.
@@ -66,7 +67,8 @@ src/
   App.tsx            Busca, filtros e composição das telas
   styles.css         Identidade visual e responsividade
 scripts/
-  curation.mjs       Seleção e contexto editorial dos projetos
+  curation.mjs       Agrega a seleção e o contexto editorial
+  curation-extra-*.mjs  Coleções adicionais por área
   refresh-catalog.mjs  Coleta de metadados públicos via GitHub CLI
   standalone.mjs     Geração do HTML independente
 public/              Recursos públicos
@@ -77,7 +79,7 @@ React 19, TypeScript, Vite, Tailwind CSS 4, Motion e Lucide. O alias `@/` aponta
 
 ## Atualizar o catálogo
 
-O portal publicado não chama a API do GitHub no navegador. Os dados são um retrato com data de consulta visível. A seleção e os textos editoriais ficam em `scripts/curation.mjs`.
+O portal publicado não chama a API do GitHub no navegador. Os dados são um retrato com data de consulta visível. A seleção e os textos editoriais ficam em `scripts/curation.mjs` e nos arquivos `scripts/curation-extra-*.mjs` que ele importa.
 
 Com [GitHub CLI](https://cli.github.com/) instalado e autenticado:
 

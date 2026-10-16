@@ -1,3 +1,5 @@
+import macAiTools from "./curation-extra-mac-tools.mjs";
+import content from "./curation-extra-content.mjs";
 // Textos editoriais: orientam a descoberta. Metadados vêm da API oficial.
 const rows = [
   [
@@ -481,7 +483,7 @@ const rows = [
     "book",
   ],
 ];
-export default rows.map(
+const original = rows.map(
   (
     [
       repo,
@@ -518,3 +520,18 @@ export default rows.map(
     order: index,
   }),
 );
+
+// Serviços web são classificados pelo acesso real, sem sugerir um app nativo.
+const webServices = new Set([
+  "n8n-io/n8n",
+  "paperless-ngx/paperless-ngx",
+  "firefly-iii/firefly-iii",
+  "ghostfolio/ghostfolio",
+]);
+export default [
+  ...original.map((p) =>
+    webServices.has(p.repo.toLowerCase()) ? { ...p, platforms: ["Web"] } : p,
+  ),
+  ...macAiTools,
+  ...content,
+].map((p, order) => ({ ...p, order }));

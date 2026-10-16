@@ -4556,3 +4556,91 @@ footer a:hover {
   text-underline-offset: 3px;
   color: #b1c99a;
 }
+/* A sidebar always fits its viewport. Only navigation scrolls when space runs out. */
+.sidebar {
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+.sidebar-header,
+.sidebar-bottom {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.sidebar-header .workspace-label {
+  display: block;
+}
+.sidebar-navigation {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #536a40 transparent;
+  padding: 2px 2px 8px;
+}
+.sidebar-navigation:focus-visible {
+  outline: 1px solid #728e57;
+  outline-offset: 1px;
+  border-radius: 7px;
+}
+.sidebar-navigation .main-nav > button.active:before {
+  left: 0;
+}
+.sidebar .sidebar-bottom {
+  margin-top: 0;
+  padding-top: 16px;
+}
+.sidebar .sidebar-note {
+  margin-top: 0;
+}
+.show-all {
+  color: var(--green);
+  padding: 5px;
+}
+@media (max-height: 1000px) {
+  .sidebar .sidebar-note {
+    display: none;
+  }
+}
+@media (max-height: 500px) {
+  .sidebar {
+    padding-top: 14px;
+    padding-bottom: 10px;
+  }
+  .sidebar-header .workspace-label {
+    padding-top: 12px;
+    padding-bottom: 14px;
+  }
+  .sidebar .sidebar-bottom {
+    padding-top: 10px;
+  }
+}
+/* Headlines wrap before they can be clipped by their card. */
+.hero-copy {
+  min-width: 0;
+}
+.hero h1 {
+  white-space: normal;
+  overflow-wrap: normal;
+}
+.card-title {
+  overflow-wrap: anywhere;
+  gap: 7px;
+}
+@media (max-width: 480px) {
+  .hero h1 em {
+    display: block;
+  }
+  .hero-copy {
+    padding-right: 22px;
+  }
+  .hero {
+    min-height: 0;
+  }
+  .hero h1 {
+    font-size: clamp(30px, 9.5vw, 39px);
+  }
+}

@@ -35,9 +35,9 @@ export default function Collections({
                   }
                   seed={i + 5}
                   label={c.label}
-                  meta={`${members.length} projetos selecionados`}
+                  meta={`${members.length} projetos · prévia de 4`}
                   action="none"
-                  files={members.map((p) => ({
+                  files={members.slice(0, 4).map((p) => ({
                     name: p.name,
                     meta: p.level,
                   }))}

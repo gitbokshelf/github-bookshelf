@@ -73,7 +73,7 @@ export default function ProjectCard({
             title="Média editorial de utilidade, clareza e facilidade. Não é avaliação de usuários."
           >
             <span className="score-dot" />
-            {score(p).toFixed(1)}
+            {score(p).toFixed(1).replace(".", ",")}
             <span>editorial</span>
           </span>
         </div>

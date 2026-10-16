@@ -15,8 +15,12 @@ const categories = new Set([
   "study",
   "structure",
 ]);
-test("O catálogo tem os 30 projetos da curadoria, sem repositórios repetidos", () => {
+test("O catálogo preserva toda a curadoria, sem repositórios repetidos", () => {
   assert.equal(catalog.projects.length, curation.length);
+  assert.ok(
+    catalog.projects.length >= 150,
+    "A coleção deve ter pelo menos 150 projetos",
+  );
   assert.equal(
     new Set(catalog.projects.map((p) => p.repo.toLowerCase())).size,
     curation.length,
@@ -67,4 +71,18 @@ test("Publicação usa caminhos relativos e não exige credenciais no navegador"
   assert.ok(
     !/gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]+/.test(publicText),
   );
+});
+
+test("Todas as áreas têm variedade real para explorar", () => {
+  for (const category of categories) {
+    assert.ok(
+      catalog.projects.filter((p) => p.category === category).length >= 10,
+      `Cobertura insuficiente em ${category}`,
+    );
+  }
+  for (const p of catalog.projects) {
+    assert.equal(p.archived, false, `Projeto arquivado: ${p.repo}`);
+    assert.ok(p.start.length >= 40);
+    assert.ok(p.caveat.length >= 40);
+  }
 });

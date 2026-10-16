@@ -1,6 +1,6 @@
 # Curadoria e rastreabilidade
 
-O objetivo é facilitar a descoberta e o primeiro contato com projetos do GitHub. A seleção inicial tem 30 projetos em 8 categorias e foi revisada em 16/10/2026.
+O objetivo é facilitar a descoberta e o primeiro contato com projetos do GitHub. A coleção atual tem 150 projetos em 8 categorias e foi revisada em 16/10/2026. A primeira versão tinha 30; a versão 1.1 acrescentou 120.
 
 ## Fontes
 
@@ -8,7 +8,7 @@ Cada registro contém a URL do repositório, README, data da consulta, estrelas,
 
 O script consulta as cinco releases mais recentes e seleciona a primeira que não seja draft ou prerelease. Se não encontrar uma, consulta `/releases/latest`. Em monorepos, a release pode corresponder a um pacote específico; a tag é preservada. Ausência de release não significa ausência de manutenção. Último push é atividade do repositório, não lançamento.
 
-O README foi lido para contextualizar cada ferramenta. O cache de leitura não faz parte do repositório ou do portal publicado. Cada projeto mantém seus direitos, licença e regras de distribuição.
+O README foi consultado para contextualizar cada ferramenta. Nos 120 novos registros, arquivamento e indicação de fork também foram verificados. Quando havia dúvida de compatibilidade, foram consultados guias, manifests ou matrizes de CI oficiais; isso não equivale a teste em todos os sistemas. O cache de leitura não faz parte do repositório ou do portal publicado. Cada projeto mantém seus direitos, licença e regras de distribuição.
 
 ## Avaliação editorial
 
@@ -22,7 +22,7 @@ Esses critérios são subjetivos. As notas não são votos de usuários, auditor
 
 ## Plataformas e níveis
 
-Web indica acesso pelo navegador. macOS, Windows e Linux indicam uso ou execução nesses ambientes, incluindo dependências e contêineres quando aplicável. Não representam certificação de todas as versões do sistema ou de todos os processadores. O README oficial é a fonte para os requisitos exatos.
+Web indica acesso pelo navegador, incluindo interfaces locais e serviços que exigem hospedagem. macOS, Windows e Linux indicam ambientes confirmados nas fontes consultadas. Serviços como n8n, Paperless-ngx, Firefly III e Ghostfolio são classificados como Web para não sugerir um aplicativo nativo de desktop. Bibliotecas e ferramentas de desenvolvimento podem depender de Node.js, Python ou outro runtime, conforme o primeiro passo e a ressalva do cartão. A lista de ambientes é conservadora e pode não cobrir todos os sistemas tecnicamente possíveis. Não representam certificação de todas as versões do sistema ou de todos os processadores. O README oficial é a fonte para os requisitos exatos.
 
 Os níveis descrevem a dificuldade editorial do primeiro uso: Iniciante, Intermediário ou Avançado. Podem mudar conforme a opção de instalação.
 

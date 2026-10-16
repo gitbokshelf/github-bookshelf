@@ -19,6 +19,11 @@ export default function ProjectDetails({
   onClose,
 }: Props) {
   const [detailTab, setDetailTab] = useState("overview");
+  const tabs = [
+    ["overview", "Visão geral"],
+    ["start", "Como começar"],
+    ["sources", "Dados e fontes"],
+  ];
   return (
     <Modal
       label={`Detalhes de ${selected.name}`}
@@ -50,7 +55,7 @@ export default function ProjectDetails({
             </span>
             <span>
               <span className="score-dot" />
-              {score(selected).toFixed(1)} editorial
+              {score(selected).toFixed(1).replace(".", ",")} editorial
             </span>
           </div>
         </div>
@@ -59,15 +64,32 @@ export default function ProjectDetails({
         className="detail-tabs"
         role="tablist"
         aria-label="Informações do projeto"
+        onKeyDown={(event) => {
+          const current = tabs.findIndex(([key]) => key === detailTab);
+          const next =
+            event.key === "ArrowRight"
+              ? (current + 1) % tabs.length
+              : event.key === "ArrowLeft"
+                ? (current + tabs.length - 1) % tabs.length
+                : event.key === "Home"
+                  ? 0
+                  : event.key === "End"
+                    ? tabs.length - 1
+                    : null;
+          if (next === null) return;
+          event.preventDefault();
+          const key = tabs[next][0];
+          setDetailTab(key);
+          event.currentTarget
+            .querySelector<HTMLButtonElement>(`#tab-${key}`)
+            ?.focus();
+        }}
       >
-        {[
-          ["overview", "Visão geral"],
-          ["start", "Como começar"],
-          ["sources", "Dados e fontes"],
-        ].map(([v, l]) => (
+        {tabs.map(([v, l]) => (
           <button
             key={v}
             role="tab"
+            tabIndex={detailTab === v ? 0 : -1}
             aria-selected={detailTab === v}
             aria-controls={`panel-${v}`}
             id={`tab-${v}`}
@@ -107,7 +129,7 @@ export default function ProjectDetails({
                 <span key={t}>{t}</span>
               ))}
             </div>
-            <h3>Por que vale conhecer</h3>
+            <h3>Seu primeiro contato</h3>
             <p>{selected.start}</p>
             <div className="caveat">
               <Icon name="help" size={18} />
@@ -244,7 +266,10 @@ export default function ProjectDetails({
                 </dd>
               </div>
             </dl>
-            <h3>Avaliação editorial: {score(selected).toFixed(1)} / 5</h3>
+            <h3>
+              Avaliação editorial:{" "}
+              {score(selected).toFixed(1).replace(".", ",")} / 5
+            </h3>
             <div className="score-breakdown">
               {[
                 "Utilidade no objetivo proposto",
