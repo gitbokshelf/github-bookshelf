@@ -239,7 +239,7 @@ export default function App() {
         throw new Error();
       update((old) => ({ ...old, ...v.library }));
       setToast(
-        `${entries.length} projetos importados. Notas dos mesmos projetos foram atualizadas.`,
+        `${entries.length} ${entries.length === 1 ? "projeto importado" : "projetos importados"}. Notas dos mesmos projetos foram atualizadas.`,
       );
     } catch {
       setToast(

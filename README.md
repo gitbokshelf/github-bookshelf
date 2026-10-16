@@ -9,7 +9,7 @@ Menos abas abertas. Mais descobertas.
 
 Um portal em português para descobrir projetos úteis do GitHub e entender onde eles entram na vida real. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
-[Abrir o portal](https://thiagoebias.github.io/github-bookshelf/) · [Como contribuir](CONTRIBUTING.md) · [Fontes e metodologia](docs/CURADORIA.md)
+[Abrir o portal](https://thiagoebias.github.io/github-bookshelf/) · [Baixar HTML](https://github.com/thiagoebias/github-bookshelf/releases/latest) · [Como contribuir](CONTRIBUTING.md) · [Fontes e metodologia](docs/CURADORIA.md)
 
 ## O que você encontra
 
