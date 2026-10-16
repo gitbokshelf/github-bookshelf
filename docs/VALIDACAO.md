@@ -16,7 +16,7 @@ Revisão em 16/10/2026. Versão 1.1.0.
 
 Seis testes de integridade passaram: correspondência entre seleção e catálogo, unicidade, fontes e datas, contagens, scores, releases, referências atuais, configuração da publicação e cobertura mínima de cada área. TypeScript e build de produção concluídos.
 
-O build gera `dist/` e um HTML independente. Na expansão, o JavaScript final ficou em aproximadamente 193 KB comprimidos com gzip. O Vite avisa sobre um chunk acima de 500 KB sem compressão; o build conclui, e o HTML independente mantém tudo em um arquivo. Dividir módulos para hospedagem é uma melhoria futura que deve preservar essa versão independente.
+O build gera `dist/` e um HTML independente. Após a revisão, a versão hospedada separa aplicação, catálogo e bibliotecas em três módulos, de aproximadamente 89 KB, 196 KB e 358 KB sem compressão, todos abaixo do limite de aviso do Vite. O gerador do HTML recombina esses módulos para manter o arquivo independente. As ações oficiais do workflow foram atualizadas para versões com runtime Node.js 24 e o runner foi fixado em Ubuntu 24.04, removendo os avisos de runtime antigo e migração implícita de ambiente.
 
 ## Revisão visual e de navegação
 
@@ -37,7 +37,7 @@ Chrome com viewports emulados, operado pela interface:
 
 Na versão 1.0, Safari foi usado para verificar favoritos, nota e status após recarregar, contadores reais, reorganização de widgets pelo teclado, importação de um backup de teste e exportação lida independentemente. Esses fluxos mantêm o mesmo esquema de armazenamento na versão 1.1; as estantes existentes não são migradas nem apagadas.
 
-O HTML independente da primeira entrega foi aberto diretamente no Safari, sem servidor. O HTML da versão 1.1 também foi aberto diretamente no Chrome, exibindo os 150 registros. Os dados de teste foram removidos após a verificação.
+O HTML independente da primeira entrega foi aberto diretamente no Safari, sem servidor. O HTML da versão 1.1 também foi aberto diretamente no Chrome, exibindo os 150 registros. Após a separação de módulos, tanto o HTML recomposto quanto a prévia de produção foram novamente abertos no Chrome e exibiram a coleção completa. Os dados de teste foram removidos após a verificação.
 
 ## Publicação e autoria
 

@@ -75,7 +75,7 @@ public/              Recursos públicos
 .github/workflows/   Validação e publicação no GitHub Pages
 ```
 
-React 19, TypeScript, Vite, Tailwind CSS 4, Motion e Lucide. O alias `@/` aponta para `src/`. Os componentes ficam em `src/components/ui`, conforme a configuração shadcn em `components.json`. Não há Redux, backend ou banco de dados porque a versão atual não precisa deles.
+React 19, TypeScript, Vite, Tailwind CSS 4, Motion e Lucide. A versão hospedada separa aplicação, catálogo e bibliotecas; esbuild os reúne novamente no HTML independente. O alias `@/` aponta para `src/`. Os componentes ficam em `src/components/ui`, conforme a configuração shadcn em `components.json`. Não há Redux, backend ou banco de dados porque a versão atual não precisa deles.
 
 ## Atualizar o catálogo
 

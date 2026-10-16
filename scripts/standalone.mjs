@@ -1,11 +1,39 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { build } from "esbuild";
 let html = await fs.readFile("dist/index.html", "utf8");
 const script = html.match(/<script[^>]+src="([^"]+)"[^>]*><\/script>/);
 const style = html.match(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"[^>]*>/);
 if (!script || !style)
   throw new Error("Build sem os assets esperados; HTML anterior preservado.");
-const js = await fs.readFile(path.join("dist", script[1]), "utf8");
+// Reunite the hosted chunks so the downloadable HTML has no module imports.
+const bundled = await build({
+  entryPoints: [path.resolve("dist", script[1])],
+  bundle: true,
+  write: false,
+  format: "iife",
+  platform: "browser",
+  target: "es2022",
+  minify: true,
+  legalComments: "inline",
+  metafile: true,
+});
+// Motion retains an optional require wrapped in try/catch. It does not request a browser module.
+// Unresolved ESM imports would break the standalone file and must fail the build.
+if (
+  Object.values(bundled.metafile.outputs).some((output) =>
+    output.imports.some(
+      (item) =>
+        item.external &&
+        !(
+          item.kind === "require-call" && item.path === "@emotion/is-prop-valid"
+        ),
+    ),
+  )
+)
+  throw new Error("HTML independente contém um módulo externo.");
+const js = bundled.outputFiles[0].text;
+html = html.replace(/<link\b(?=[^>]*\brel="modulepreload")[^>]*>/g, "");
 const css = await fs.readFile(path.join("dist", style[1]), "utf8");
 html = html
   .replace(
