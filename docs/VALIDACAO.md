@@ -8,6 +8,7 @@ Revisão em 16/10/2026.
 - Cinco testes de integridade do catálogo, fontes, releases e configuração da publicação.
 - TypeScript e build de produção concluídos.
 - Servidor local com resposta HTTP 200.
+- HTML independente aberto diretamente no Safari via arquivo local, sem servidor.
 - Renderização visual no Safari em desktop.
 - Busca por “finanças”, incluindo acentos, retornou três projetos da categoria.
 - Categoria Mac e sistema Windows combinaram corretamente, exibindo o estado sem resultados.
@@ -27,7 +28,11 @@ As páginas oficiais dos dois componentes do 21st.dev identificam licença MIT. 
 
 ## Publicação
 
-Destino autorizado: repositório público `thiagoebias/github-bookshelf` e GitHub Pages da conta pessoal. A verificação final do deploy será registrada após a execução do workflow.
+Repositório público: [thiagoebias/github-bookshelf](https://github.com/thiagoebias/github-bookshelf).
+
+Portal: [GitHub Bookshelf](https://thiagoebias.github.io/github-bookshelf/).
+
+Primeira publicação concluída pelo GitHub Actions em 16/10/2026, com build e deploy aprovados na [execução 38948594065](https://github.com/thiagoebias/github-bookshelf/actions/runs/38948594065). Repositório e página responderam HTTP 200 sem autenticação. O workflow publica novas alterações da branch main após os checks.
 
 ## Próximo passo
 

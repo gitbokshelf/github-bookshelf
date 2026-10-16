@@ -864,7 +864,7 @@ export default function App() {
               <button onClick={() => setAbout(true)}>Sobre a curadoria</button>
               <span className="footer-date">Dados de {date(fetchedAt)}</span>
               <a
-                href="https://github.com"
+                href="https://github.com/thiagoebias/github-bookshelf"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Abrir código do GitHub Bookshelf"
