@@ -208,3 +208,34 @@ Pedido: conferir o acesso informado pelo proprietário no domínio próprio. Esc
 Execução e revisão pelo próprio Codex: Safari mostrou Minha conta em `https://githubbokshelf.hubdetrabalho.com.br/`. A estante abriu com a indicação Estante salva na sua conta. Após recarregar, Minha conta permaneceu disponível e abrir a estante voltou a mostrar sincronização concluída. Nenhum projeto, nota ou progresso foi alterado nesta conferência; nenhuma senha foi recebida ou preenchida pelo agente.
 
 Conclusão: sessão e leitura da estante autenticada conferidas no domínio próprio, inclusive após recarregar. Atualizada a orientação do Supabase. Alteração somente documental; não há mudança de aplicação que exija repetir testes/build. Conferidos o diff e a ausência de dados privados na anotação. Recuperação por e-mail, SMTP e demais limites anteriores continuam pendentes. Documentação enviada ao repositório exclusivo nesta continuidade.
+
+## 17/10/2026: revisão de estado e pendências do produto
+
+Pedido: conferir o que falta e esclarecer o alcance da revisão.
+
+Responsável: Codex, executor e revisor desta sessão; sem revisão independente.
+
+Estado: revisão delimitada concluída; produto com pendências explícitas.
+
+Estado inicial: Git limpo, HEAD `50ab576`. Domínio próprio e acesso autenticado conferidos na etapa anterior. Existem pendências documentadas de idiomas, e-mails de produção e testes adicionais.
+
+Escopo: confrontar documentação, implementação, testes disponíveis e publicação atual. Não inclui excluir repositório, contratar serviço ou declarar auditoria completa de segurança/desempenho.
+
+Validação prevista: CI e implantação do HEAD, resposta pública, arquivos e configuração, implementação dos recursos ainda pendentes, dependências e documentação. Consolidar prioridades e limites reais ao concluir.
+
+Verificações realizadas nesta revisão:
+
+- HEAD inicial `50ab576`: CI concluída com sucesso na execução 39036932530, implantação Vercel aprovada e domínio próprio com HTTPS 200. Git estava limpo antes da anotação.
+- Safari mostrou sessão autenticada e leitura da estante concluída no domínio próprio. Nenhum dado de usuário foi alterado.
+- Painel Supabase em Emails/SMTP mostrou Toggle SMTP desligado. Não foi preenchida nem coletada credencial do serviço. Cadastro externo e recuperação completa permanecem pendentes de configuração e teste.
+- Inspecionados painel de conta, contexto de autenticação, serviço e hook de estante, migração SQL e suíte de testes. O código contempla validação, RLS e controle de revisão; não há suíte automática de autenticação/sincronização na CI. Os testes SQL anteriores foram manuais e não foram reaplicados nesta revisão.
+- Idiomas confirmados como parciais: dicionários presentes, com conteúdo espanhol de catálogo incompleto e sem seletor/contexto de idioma integrado à aplicação.
+- Conta oferece sair, cadastro e recuperação, sem fluxo próprio de exclusão. Há explicação resumida de armazenamento e exportação JSON; informações de privacidade, gestão/exclusão de dados e restauração operacional ainda precisam ser completadas.
+- `npm --prefix frontend audit --omit=dev --json` e auditoria completa `npm --prefix frontend audit --json`: zero vulnerabilidades conhecidas reportadas. Isso cobre os avisos do registro de dependências e não certifica a segurança do produto.
+- Não foram repetidos build ou testes sem alteração de aplicação; a CI aprovada do HEAD foi conferida. Não houve teste de carga, auditoria independente, medição de Core Web Vitals ou nova rodada em aparelhos físicos.
+
+Execução documental: README passou a mostrar as quatro pastas de integração e as prioridades de conclusão. Removida da lista atual do Supabase a pendência desatualizada de definir domínio/URL, já resolvida.
+
+Revisão: realizada pelo próprio Codex, confrontando evidências atuais, código e limites registrados. Conclusão: publicação e fluxos principais revisados; não declarar o produto integralmente revisado ou pronto para divulgar cadastros abertos.
+
+Próxima prioridade: SMTP e ciclo de cadastro/recuperação de usuários externos; em paralelo, concluir a localização dos três idiomas. Depois, ampliar testes de contas/sincronização, gestão de dados, desempenho e revisão em dispositivos. Excluir o repositório antigo somente na etapa futura registrada. Publicação da aplicação continua ativa; esta entrega altera documentação.

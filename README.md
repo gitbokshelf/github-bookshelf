@@ -16,7 +16,11 @@ A estrutura e as responsabilidades são definidas em [ARQUITETURA.md](docs/ARQUI
 ```text
 frontend/             Aplicação do navegador e seu build
 backend/supabase/     Autenticação, banco, funções SQL, RLS e migrações
-integrations/         GitHub, Outlook, Vercel e seus arquivos locais
+integrations/         Serviços externos e seus arquivos locais
+  github/             Repositório e publicação do código
+  vercel/             Hospedagem e domínio
+  locaweb/            DNS do subdomínio
+  outlook/            Contato do produto
 docs/                 Arquitetura, decisões, curadoria e validação
 tools/                Manutenção, testes do catálogo e cache ignorado
 artifacts/            Arquivos gerados para entrega
@@ -52,6 +56,18 @@ Para habilitar o Supabase, configure `backend/supabase/.env.local` a partir do e
 O portal está publicado na Vercel, com código aberto na conta `gitbokshelf`, temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login e a estante foram conferidos no Safari de produção e no Chrome local, na mesma conta. Salvar projeto, nota e progresso, recarregar, receber a alteração no outro navegador e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
 
 Português, inglês e espanhol ainda estão em desenvolvimento, sem seletor ativo. O repositório exclusivo [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf) foi criado. O código foi enviado e a primeira implantação na Vercel respondeu HTTP 200 sem autenticação. O envio transacional de e-mails de produção continua pendente. Consulte os registros de cada integração antes da próxima publicação.
+
+## Pendências para divulgação
+
+A infraestrutura está publicada e os fluxos principais foram conferidos. O produto ainda tem entregas pendentes:
+
+1. Configurar envio transacional e validar cadastro, confirmação e recuperação de senha para usuários externos. SMTP personalizado permanece desligado na conferência de 17/10/2026.
+2. Concluir português, inglês e espanhol, incluindo seletor, guias, ilustrações, mensagens e acessibilidade. Há dicionários parciais; a tradução ainda não está integrada à interface.
+3. Ampliar testes de autenticação, troca de contas, concorrência, uso offline e dois dispositivos físicos. A CI atual tem seis testes de catálogo/build, sem suíte automática desses fluxos.
+4. Completar informações de privacidade e gestão de dados, incluindo exclusão de conta. A exportação de estante existe; a conta hoje oferece saída, sem fluxo próprio de exclusão. Definir e testar restauração operacional do backend.
+5. Medir desempenho e ampliar revisão de acessibilidade e aparelhos físicos. O orçamento de build passou, sem teste de carga ou medição completa de produção.
+
+A exclusão futura do repositório pessoal permanece [registrada na integração GitHub](integrations/github/README.md). Antes dela, conferir itens exclusivos e acesso à conta correta.
 
 ## Contribuir e licença
 

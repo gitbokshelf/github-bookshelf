@@ -54,7 +54,7 @@ Retornos exatos permitidos: domínio próprio `https://githubbokshelf.hubdetraba
 - Validar entrega dos e-mails de confirmação e recuperação, recuperação completa de senha e entrada em dois dispositivos. O login da conta do produto e a persistência no portal já foram conferidos no Chrome.
 - Testar duas sessões/dispositivos, alternância de contas, uso offline e resolução de conflitos na interface.
 - Validar o ciclo completo de autenticação no endereço de produção. URL e chave publicável foram configuradas na Vercel; arquivos locais ignorados não foram enviados.
-- Definir e conferir URL final, domínio e textos de privacidade antes de abrir cadastros ao público.
+- Completar textos de privacidade e gestão de conta antes de divulgar cadastros ao público. URL final, domínio e login já foram configurados e conferidos.
 
 ## Fontes oficiais
 
