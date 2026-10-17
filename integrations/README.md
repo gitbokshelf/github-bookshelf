@@ -4,7 +4,8 @@
 | ---------------------------- | ---------------------------------------------- |
 | [github](github/README.md)   | Repositório, autoria e automação de publicação |
 | [outlook](outlook/README.md) | Endereço de contato do produto                 |
-| [vercel](vercel/README.md)   | Configuração prevista de hospedagem e domínio  |
+| [locaweb](locaweb/README.md) | DNS e subdomínio do produto |
+| [vercel](vercel/README.md)   | Hospedagem, publicação e domínio  |
 
 O Supabase é o backend do produto e fica em [backend/supabase](../backend/supabase/README.md).
 

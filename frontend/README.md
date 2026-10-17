@@ -3,13 +3,13 @@
 [![Validação](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml/badge.svg)](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml)
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-c3e99a)](../LICENSE)
 
-[![GitHub Bookshelf: sua biblioteca de possibilidades](../docs/assets/cover.svg)](https://github-bookshelf.vercel.app/)
+[![GitHub Bookshelf: sua biblioteca de possibilidades](../docs/assets/cover.svg)](https://githubbokshelf.hubdetrabalho.com.br/)
 
 Menos abas abertas. Mais descobertas.
 
 Um portal em português para descobrir projetos úteis do GitHub e entender onde eles entram na vida real. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
-[Abrir o portal](https://github-bookshelf.vercel.app/) · [HTML nos artefatos da CI](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml) · [Como contribuir](../CONTRIBUTING.md) · [Fontes e metodologia](../docs/CURADORIA.md)
+[Abrir o portal](https://githubbokshelf.hubdetrabalho.com.br/) · [HTML nos artefatos da CI](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml) · [Como contribuir](../CONTRIBUTING.md) · [Fontes e metodologia](../docs/CURADORIA.md)
 
 ## O que você encontra
 
@@ -110,7 +110,7 @@ Depois de revisar os textos e resultados, faça commit e envie para `main`. O Gi
 
 Como visitante, favoritos, notas e progresso ficam no `localStorage`. Em ambiente com Supabase configurado, entrar abre uma estante separada por conta e sincroniza projetos, notas e progresso com o banco. O cache é isolado por usuário. A estante de visitante não é enviada automaticamente. O controle de revisão interrompe gravações quando outra sessão já alterou a estante; a interface permite exportar a versão local e carregar a remota. A ordem dos widgets continua local e separada por conta.
 
-Origens locais e GitHub Pages têm armazenamentos separados. Exporte e importe o JSON para levar a estante entre eles. A importação mescla projetos e substitui notas e status dos mesmos registros. Não há analytics. O login da conta do produto e a persistência de projeto, nota e progresso após recarregar foram conferidos no Chrome. A remoção do registro temporário também persistiu. Recuperação de senha e uso em dois dispositivos continuam pendentes. A produção está em `https://github-bookshelf.vercel.app/`. Login, nota e progresso foram conferidos no Safari de produção e no Chrome local, na mesma conta e no mesmo Mac. SMTP de produção, recuperação e dois dispositivos físicos continuam pendentes.
+Domínio próprio, alias Vercel, origens locais e GitHub Pages têm sessões e caches separados. A mesma conta recupera a estante remota ao entrar em cada origem; os dados de visitante continuam locais. Exporte e importe o JSON para levar a estante entre eles. A importação mescla projetos e substitui notas e status dos mesmos registros. Não há analytics. O login da conta do produto e a persistência de projeto, nota e progresso após recarregar foram conferidos no Chrome. A remoção do registro temporário também persistiu. Recuperação de senha e uso em dois dispositivos continuam pendentes. A produção está em `https://githubbokshelf.hubdetrabalho.com.br/`. Login, nota e progresso foram conferidos no Safari de produção e no Chrome local, na mesma conta e no mesmo Mac. SMTP de produção, recuperação e dois dispositivos físicos continuam pendentes.
 
 ## Curadoria e limites
 

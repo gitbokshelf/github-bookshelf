@@ -152,3 +152,37 @@ Execução: pendência registrada em `integrations/github/README.md`, com alvo l
 Revisão: realizada pelo próprio Codex. Conferidos o pedido de execução futura, o nome das duas contas, o destino e a ausência de comandos de exclusão. Alteração somente documental; testes de aplicação não são necessários para esta anotação.
 
 Conclusão: registro concluído. A exclusão continua pendente; nenhuma conta foi alternada e nenhum repositório foi excluído.
+
+## 17/10/2026: subdomínio githubbokshelf.hubdetrabalho.com.br
+
+Pedido: criar e configurar o subdomínio do proprietário para o GitHub Bookshelf.
+
+Responsável: Codex, executor e revisor desta sessão.
+
+Estado: em execução.
+
+Estado inicial: Git limpo; portal ativo na Vercel; DNS autoritativo de hubdetrabalho.com.br na Locaweb. Consulta inicial não retornou registro A ou CNAME para o novo nome. Sessões da Locaweb, Vercel e Supabase disponíveis no Safari. O inventário genérico do OpenClaw não está no caminho indicado pela skill; o contexto foi obtido do README, arquitetura e registros locais deste projeto, sem varrer o disco.
+
+Escopo: adicionar somente o subdomínio solicitado, vinculá-lo ao projeto correto na Vercel, ajustar URL principal e retornos do Supabase, metadados e documentação. Preservar DNS do domínio raiz, demais serviços e repositório pessoal antigo.
+
+Validação prevista: destino DNS indicado pelo painel da Vercel; registro autoritativo e resolução pública; certificado HTTPS válido; HTTP e arquivos do portal; canonical/OG; configuração de autenticação; testes/build quando o frontend for alterado; CI e publicação; revisão final documentada.
+
+Execução e evidências desta etapa:
+
+- Subdomínio adicionado ao ambiente Production do projeto Vercel `githubbokshelf/github-bookshelf`.
+- Vercel indicou CNAME para `2bebc356914c41bf.vercel-dns-017.com` e solicitou TXT de posse porque o domínio já estava ligado a outra conta.
+- CNAME salvo na Locaweb com host `githubbokshelf` e TTL 3600. O proprietário confirmou a verificação; TXT específico do subdomínio foi salvo em `_vercel`.
+- Zona comparada antes e depois: 18 registros iniciais, 20 finais. Os 17 registros de serviços anteriores permaneceram iguais. O SOA teve somente atualização automática de serial, de 2026073001 para 2026101702; seus demais campos permaneceram iguais. Nenhum outro registro foi editado ou excluído.
+- Consultas ao DNS autoritativo ns1.locaweb.com.br e ao resolvedor público 1.1.1.1 retornaram CNAME e TXT esperados.
+- Vercel passou a exibir Valid Configuration. `curl` com validação normal de certificado retornou HTTPS 200. Nenhuma exceção de certificado foi usada.
+- Supabase Site URL alterada para o domínio próprio; retorno exato adicionado. Painel mostrou sete retornos, preservando alias Vercel, Pages anterior e quatro origens locais, sem curingas.
+- Portal abriu no Safari pelo domínio próprio, com 150 projetos e formulário de entrada disponível. O login foi solicitado ao proprietário porque a sessão é separada por origem; nenhum acesso a senha pelo agente.
+- Criada integração `integrations/locaweb/`, separando orientação pública de metadados locais ignorados. Canonical/OG, links principais e arquitetura foram preparados para o domínio próprio. Credenciais e variáveis do backend não foram alteradas.
+
+Revisão antes do envio, pelo próprio Codex:
+
+- Seis testes aprovados; TypeScript, Vite, HTML independente e orçamento de build aprovados. Quatro módulos JavaScript, 255,5 KB gzip no conjunto; não é teste de carga.
+- Conferidos 77 arquivos candidatos e 81 links relativos, sem destino ausente, arquivo privado proibido ou padrão de segredo examinado.
+- CNAME conferido nos três nameservers da Locaweb. HTTP redirecionou por 308 para HTTPS no mesmo hostname.
+- Verificação TLS independente com SNI e rejeição de certificado inválido aprovada: SAN corresponde exatamente ao subdomínio e cadeia emitida por Let's Encrypt. Evidência técnica sanitizada em `artifacts/validation/custom-domain-tls.json`, ignorada pelo Git.
+- Alterações de fonte limitadas a metadados e documentação do domínio. Login autenticado no novo domínio e publicação final continuam em conferência.

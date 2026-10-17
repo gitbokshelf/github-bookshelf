@@ -24,7 +24,8 @@ GitHub Bookshelf/
 ├── integrations/
 │   ├── github/                  Repositório e autoria
 │   ├── outlook/                 Contato do produto
-│   └── vercel/                  Hospedagem e domínio
+│   ├── vercel/                  Hospedagem e domínio
+│   └── locaweb/                 Zona DNS do subdomínio
 ├── docs/                        Arquitetura, curadoria e validação
 │   └── REGISTRO-DE-EXECUCAO.md   Registro obrigatório de cada tarefa
 ├── tools/
@@ -105,6 +106,12 @@ Cada mudança deve preservar os dados, passar pelos testes apropriados e registr
 
 O login da conta do produto, a gravação de um projeto com nota e progresso, a persistência após recarregar e a remoção do registro temporário foram conferidos no Chrome. Há testes de isolamento no banco. Recuperação de senha, dois dispositivos e concorrência pela interface continuam pendentes.
 
-Português, inglês e espanhol estão em elaboração, sem seletor completo ativo. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://github-bookshelf.vercel.app/`, com Supabase configurado para essa origem. SMTP de produção, domínio próprio e validações adicionais de autenticação permanecem pendentes. O endereço antigo da conta pessoal foi preservado como publicação anterior.
+Português, inglês e espanhol estão em elaboração, sem seletor completo ativo. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://githubbokshelf.hubdetrabalho.com.br/`, com Supabase configurado para essa origem. O subdomínio próprio usa CNAME na Locaweb e produção na Vercel. SMTP de produção e validações adicionais de autenticação permanecem pendentes. O endereço antigo da conta pessoal foi preservado como publicação anterior.
 
 [Regras obrigatórias](../AGENTS.md) · [Registro](REGISTRO-DE-EXECUCAO.md) · [Mapa geral](../README.md)
+
+## Domínio do produto
+
+Endereço principal: `https://githubbokshelf.hubdetrabalho.com.br/`. O domínio raiz e o DNS dos outros serviços continuam na Locaweb. O CNAME do subdomínio aponta para o destino indicado pela Vercel; o certificado HTTPS é gerenciado pela hospedagem. A configuração está em [Locaweb](../integrations/locaweb/README.md) e [Vercel](../integrations/vercel/README.md).
+
+O endereço `https://github-bookshelf.vercel.app/` permanece como alias funcional, com canonical apontando para o domínio principal. Origens diferentes têm sessões e caches de navegador separados; contas usam a mesma estante no Supabase. Não migrar dados locais de visitante silenciosamente.

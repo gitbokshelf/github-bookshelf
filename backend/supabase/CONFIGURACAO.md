@@ -36,9 +36,9 @@ Migração: [202610170001_user_shelves.sql](migrations/202610170001_user_shelves
 
 Login por e-mail habilitado, cadastro permitido, confirmação de e-mail exigida e senha mínima de 12 caracteres. Login anônimo continua desabilitado. O frontend usa PKCE, renovação de sessão e recuperação de senha. Senhas são enviadas diretamente ao Supabase pelo SDK e não são gravadas nos arquivos do projeto.
 
-Site URL de produção: `https://github-bookshelf.vercel.app/`, configurada em 17/10/2026 após a implantação.
+Site URL de produção: `https://githubbokshelf.hubdetrabalho.com.br/`, configurada em 17/10/2026 após validar o domínio próprio.
 
-Retornos exatos permitidos: `https://github-bookshelf.vercel.app/`, portal anterior da conta pessoal, `127.0.0.1` e `localhost` nas portas 5173 e 4173. Ao adotar domínio próprio, atualizar a Site URL e a lista. Não foram liberados curingas de domínio.
+Retornos exatos permitidos: domínio próprio `https://githubbokshelf.hubdetrabalho.com.br/`, alias `https://github-bookshelf.vercel.app/`, portal anterior da conta pessoal, `127.0.0.1` e `localhost` nas portas 5173 e 4173. São sete retornos, sem curingas de domínio. Para adotar outro domínio, validar HTTPS antes de atualizar a Site URL e a lista.
 
 ## Validação feita
 
@@ -95,3 +95,7 @@ Em 17/10/2026, a primeira organização foi corrigida para separar frontend, bac
 ## Validação da publicação Vercel
 
 Em 17/10/2026, o proprietário entrou no portal de produção no Safari. Um projeto temporário com nota e progresso foi salvo e permaneceu após recarregar. No Chrome local, autenticado na mesma conta, uma recarga trouxe projeto, nota e progresso do backend. O registro temporário foi removido e a remoção persistiu nas duas origens. Esse teste usa dois navegadores no mesmo Mac, sem comprovar dois dispositivos físicos. O estado inicial e final da estante foram preservados. A execução completa está no [registro obrigatório](../../docs/REGISTRO-DE-EXECUCAO.md).
+
+## Domínio próprio
+
+O domínio `githubbokshelf.hubdetrabalho.com.br` foi configurado na Vercel e na Locaweb em 17/10/2026. Site URL e retorno exato foram salvos e conferidos no painel. O alias Vercel e as origens locais continuam permitidos. Sessões de navegador são separadas por origem; entrar no novo endereço não reaproveita automaticamente o login de vercel.app. A conta usa a mesma estante no backend. O teste de login neste novo domínio está em execução e será registrado no histórico da tarefa.

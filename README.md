@@ -3,11 +3,11 @@
 [![Validação](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml/badge.svg)](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml)
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-c3e99a)](LICENSE)
 
-[![GitHub Bookshelf: sua biblioteca de possibilidades](docs/assets/cover.svg)](https://github-bookshelf.vercel.app/)
+[![GitHub Bookshelf: sua biblioteca de possibilidades](docs/assets/cover.svg)](https://githubbokshelf.hubdetrabalho.com.br/)
 
 Um portal para descobrir projetos úteis do GitHub, com 150 projetos em 8 categorias, coleções e estante pessoal. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
-[Portal publicado](https://github-bookshelf.vercel.app/) · [Guia da aplicação](frontend/README.md) · [Curadoria](docs/CURADORIA.md) · [Validação](docs/VALIDACAO.md)
+[Portal publicado](https://githubbokshelf.hubdetrabalho.com.br/) · [Guia da aplicação](frontend/README.md) · [Curadoria](docs/CURADORIA.md) · [Validação](docs/VALIDACAO.md)
 
 ## Organização e regra obrigatória
 
