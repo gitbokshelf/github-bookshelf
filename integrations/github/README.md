@@ -11,3 +11,17 @@ A CI em `.github/workflows/ci.yml` valida testes, TypeScript e orçamento de bui
 Credenciais locais usam `*.local.*` ou `private/`, ignorados pelo Git. A autenticação da CLI é gerenciada pelo próprio `gh`; nenhum token deve ser copiado para esta pasta. O vínculo da conta Gmail informado pelo proprietário permanece no cadastro privado da integração.
 
 [Voltar ao projeto](../../README.md)
+
+## Pendência solicitada: excluir o repositório pessoal
+
+O proprietário solicitou em 17/10/2026 a exclusão posterior de `thiagoebias/github-bookshelf`. Esta é uma etapa futura, ainda não executada. A conta pessoal `thiagoebias` deve permanecer existente; o alvo é somente o repositório antigo.
+
+Antes de executar:
+
+1. Conferir novamente o repositório exclusivo, a publicação Vercel e sua independência do repositório antigo.
+2. Inventariar e preservar histórico, tags, releases, anexos e outros itens que ainda existirem somente no repositório antigo.
+3. Confirmar acesso administrativo como `thiagoebias` e conferir o destino exato na ferramenta usada. A CLI estava autenticada como `gitbokshelf` ao registrar esta pendência.
+4. Cumprir a confirmação exigida pela ferramenta no momento da exclusão, se aplicável.
+5. Após excluir, revisar o remoto `legacy-personal`, os links e o retorno antigo do GitHub Pages no Supabase. Registrar o resultado real e a indisponibilidade esperada da publicação antiga.
+
+Nenhuma exclusão foi feita ao registrar este pedido.

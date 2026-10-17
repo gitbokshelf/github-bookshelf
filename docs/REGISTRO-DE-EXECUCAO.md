@@ -134,3 +134,21 @@ Conclusão desta tarefa: repositório público e publicação Vercel configurado
 Pendências do produto, sem declaração de conclusão: SMTP para cadastro público e recuperação por e-mail, domínio próprio, traduções completas com seletor e teste em dois dispositivos físicos. Próxima prioridade de infraestrutura: definir remetente/domínio e provedor transacional antes de divulgar cadastros abertos. A criação de e-mails e contas de hospedagem não fornece essas credenciais automaticamente.
 
 Publicação: https://github-bookshelf.vercel.app/ e https://github.com/gitbokshelf/github-bookshelf. A publicação antiga da conta pessoal foi preservada. Não foram contratados plano pago, domínio nem envio de e-mails.
+
+## 17/10/2026: registrar exclusão futura do repositório pessoal
+
+Pedido: lembrar de excluir posteriormente `thiagoebias/github-bookshelf`, conferindo o acesso à conta pessoal antes da ação.
+
+Responsável: Codex, executor e revisor desta anotação.
+
+Estado inicial: árvore de trabalho limpa; CLI autenticada como `gitbokshelf`. A publicação exclusiva está documentada na tarefa anterior.
+
+Escopo e validação prevista: registrar a pendência na integração GitHub, conferir o destino exato e revisar o diff. Nenhuma exclusão, troca de conta ou alteração de acesso integra esta anotação.
+
+Estado: em execução.
+
+Execução: pendência registrada em `integrations/github/README.md`, com alvo limitado ao repositório antigo, preservação prévia de itens exclusivos, conferência de acesso e revisão das referências após a futura exclusão.
+
+Revisão: realizada pelo próprio Codex. Conferidos o pedido de execução futura, o nome das duas contas, o destino e a ausência de comandos de exclusão. Alteração somente documental; testes de aplicação não são necessários para esta anotação.
+
+Conclusão: registro concluído. A exclusão continua pendente; nenhuma conta foi alternada e nenhum repositório foi excluído.
