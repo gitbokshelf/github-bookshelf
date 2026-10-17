@@ -72,7 +72,7 @@ Pedido: configurar pelo Safari a conta GitHub `gitbokshelf` e a Vercel com o e-m
 
 Responsável: Codex, executor e revisor desta sessão.
 
-Estado: em execução.
+Estado: concluída para configuração e publicação na conta exclusiva.
 
 Escopo: repositório público, integração e configuração de hospedagem, links do produto, CI e documentação. Supabase permanece no projeto exclusivo já configurado; a conta Outlook não será substituída pela conta Gmail do GitHub/Vercel.
 
@@ -80,7 +80,7 @@ Estado inicial: repositório local com histórico de `thiagoebias/github-bookshe
 
 Validação prevista: identidade e destino reais; exclusão de segredos e arquivos gerados; testes e build; repositório e implantação efetivamente criados; URL publicada e retornos de autenticação quando disponíveis. Registrar impedimentos de acesso sem afirmar publicação antes de confirmar.
 
-Execução, revisão e resultado: em andamento.
+Execução, revisão e resultado: documentados abaixo.
 
 Preparação confirmada:
 
@@ -119,3 +119,18 @@ Validação autenticada de produção:
 - A publicação automática do commit `69187e3` passou na Vercel e a CI passou na execução 39020312215. HTTP 200 nos quatro módulos JavaScript e CSS; canonical/OG de produção presentes; URL e chave publicável do backend presentes no código distribuído, sem padrão de chave administrativa.
 
 Conferência final dos dados: a produção confirmou gravação concluída e contagem zero após remover o teste. Recarregar Safari e Chrome manteve a estante vazia. Nenhuma senha foi preenchida ou recebida pelo agente. Metadados privados das integrações foram atualizados com o repositório e a URL reais; arquivos continuam ignorados e com permissão 600.
+
+Revisão de encerramento, realizada pelo próprio Codex executor:
+
+- Configuração de GitHub e Vercel concluída, código e histórico publicados, ligação automática de main conferida por implantação posterior.
+- Commit de código `bb625d4` com CI aprovada na execução 39020509989 e implantação Vercel aprovada. A correção do texto das notas foi conferida no JavaScript público e o endereço continua com HTTP 200.
+- Revisados 76 arquivos versionados, 74 links relativos existentes, ausência de caminhos privados proibidos e ausência dos padrões de segredos examinados. Os seis arquivos locais de conexão continuam ignorados e com permissão 600.
+- Os testes e o build da última alteração de frontend passaram, com quatro módulos e 255,5 KB gzip no orçamento. Não houve teste de carga ou medição de Core Web Vitals.
+- Autenticação de produção, persistência e sincronização entre Safari de produção e Chrome local conferidas. Teste temporário removido; estado inicial e final preservados.
+- README, arquitetura, orientações das integrações e configuração do Supabase atualizados. A conta Gmail atende GitHub/Vercel; Supabase e conta de teste do portal permanecem na conta Outlook.
+
+Conclusão desta tarefa: repositório público e publicação Vercel configurados e revisados. O projeto continua na pasta original escolhida pelo proprietário, com responsabilidades e registro obrigatórios.
+
+Pendências do produto, sem declaração de conclusão: SMTP para cadastro público e recuperação por e-mail, domínio próprio, traduções completas com seletor e teste em dois dispositivos físicos. Próxima prioridade de infraestrutura: definir remetente/domínio e provedor transacional antes de divulgar cadastros abertos. A criação de e-mails e contas de hospedagem não fornece essas credenciais automaticamente.
+
+Publicação: https://github-bookshelf.vercel.app/ e https://github.com/gitbokshelf/github-bookshelf. A publicação antiga da conta pessoal foi preservada. Não foram contratados plano pago, domínio nem envio de e-mails.

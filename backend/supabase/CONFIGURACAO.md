@@ -68,7 +68,7 @@ A aplicação do navegador fica em `frontend/`; o backend fica em `backend/supab
 
 A conta administrativa do Supabase e a conta de acesso ao portal têm funções diferentes. Criar a primeira não cria automaticamente um usuário em `auth.users`. O cadastro pelo portal deve confirmar o e-mail antes do login.
 
-## Implementação local no portal
+## Implementação do cliente no portal
 
 O botão Entrar abre os formulários de acesso, cadastro e recuperação. O SDK oficial envia as credenciais diretamente ao Supabase. O cache de estantes usa uma chave por usuário. A estante de visitante permanece no formato anterior e não é enviada silenciosamente ao criar uma conta.
 
@@ -82,7 +82,7 @@ O HTML aberto por `file://` mantém o modo de visitante. Login e sincronização
 
 Não foi copiada a chave secret/service_role, não foi acessada a senha do banco, não foi criado login com senha inventada e não foi enviada mensagem à caixa postal. Nenhum plano pago, domínio ou serviço de envio foi contratado. A publicação na Vercel e o repositório exclusivo foram configurados na etapa seguinte, registrada na documentação das integrações.
 
-## Estado ao encerrar esta etapa
+## Histórico da configuração inicial
 
 TypeScript e build de produção aprovados; os seis testes do catálogo também passaram. A verificação de arquivos candidatos ao Git não encontrou padrões de chave administrativa ou chave privada. Os arquivos locais de conexão estão ignorados e com permissão 600. Os links relativos deste documento foram conferidos.
 
@@ -91,3 +91,7 @@ O proprietário concluiu o primeiro cadastro. A interface mostrou a conta do pro
 ## Reorganização da aplicação
 
 Em 17/10/2026, a primeira organização foi corrigida para separar frontend, backend, integrações, documentação e ferramentas. Os arquivos de conexão foram preservados em `backend/supabase/`, com seus valores e permissões. `frontend/vite.config.ts` resolve `../backend/supabase/` a partir do próprio arquivo, com tratamento de espaços no caminho. Para iniciar, use `npm --prefix frontend run dev` na raiz. A arquitetura vigente está em [ARQUITETURA.md](../../docs/ARQUITETURA.md) e toda execução/revisão deve ser registrada em [REGISTRO-DE-EXECUCAO.md](../../docs/REGISTRO-DE-EXECUCAO.md).
+
+## Validação da publicação Vercel
+
+Em 17/10/2026, o proprietário entrou no portal de produção no Safari. Um projeto temporário com nota e progresso foi salvo e permaneceu após recarregar. No Chrome local, autenticado na mesma conta, uma recarga trouxe projeto, nota e progresso do backend. O registro temporário foi removido e a remoção persistiu nas duas origens. Esse teste usa dois navegadores no mesmo Mac, sem comprovar dois dispositivos físicos. O estado inicial e final da estante foram preservados. A execução completa está no [registro obrigatório](../../docs/REGISTRO-DE-EXECUCAO.md).

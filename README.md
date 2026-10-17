@@ -49,7 +49,7 @@ Para habilitar o Supabase, configure `backend/supabase/.env.local` a partir do e
 
 ## Estado atual
 
-O portal está publicado na Vercel, com código aberto na conta `gitbokshelf`, temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login da conta do produto foi conferido no Chrome. Salvar projeto, nota e progresso, recarregar e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
+O portal está publicado na Vercel, com código aberto na conta `gitbokshelf`, temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login e a estante foram conferidos no Safari de produção e no Chrome local, na mesma conta. Salvar projeto, nota e progresso, recarregar, receber a alteração no outro navegador e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
 
 Português, inglês e espanhol ainda estão em desenvolvimento, sem seletor ativo. O repositório exclusivo [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf) foi criado. O código foi enviado e a primeira implantação na Vercel respondeu HTTP 200 sem autenticação. O envio transacional de e-mails de produção continua pendente. Consulte os registros de cada integração antes da próxima publicação.
 
