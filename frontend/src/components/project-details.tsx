@@ -167,7 +167,7 @@ export default function ProjectDetails({
                     placeholder="O que você quer experimentar? O que já descobriu?"
                   />
                 </label>
-                <small>Salvas automaticamente neste navegador.</small>
+                <small>Salvas automaticamente na sua estante.</small>
               </div>
             )}
           </>

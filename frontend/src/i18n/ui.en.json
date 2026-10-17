@@ -173,7 +173,6 @@
   "SUA PRÓXIMA BOA IDEIA MORA AQUI": "YOUR NEXT GREAT IDEA LIVES HERE",
   "SUA PRÓXIMA DESCOBERTA": "YOUR NEXT DISCOVERY",
   "Salvar na estante": "Save to bookshelf",
-  "Salvas automaticamente neste navegador.": "Saved automatically in this browser.",
   "Salve na estante, registre o resultado e marque como “Em uso” quando fizer parte da sua rotina.": "Save it to your bookshelf, record the result, and mark it as “In use” when it becomes part of your routine.",
   "Salvo na estante": "Saved to bookshelf",
   "Salvo neste navegador. Exporte um backup para levar sua estante.": "Saved in this browser. Export a backup to take your bookshelf with you.",
@@ -311,5 +310,6 @@
   " learn. build. repeat.": " learn. build. repeat.",
   " projetos": " projects",
   " projetos selecionados": " curated projects",
-  " universos para explorar": " worlds to explore"
+  " universos para explorar": " worlds to explore",
+  "Salvas automaticamente na sua estante.": "Saved automatically to your bookshelf."
 }

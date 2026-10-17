@@ -173,7 +173,6 @@
   "SUA PRÓXIMA BOA IDEIA MORA AQUI": "TU PRÓXIMA GRAN IDEA ESTÁ AQUÍ",
   "SUA PRÓXIMA DESCOBERTA": "TU PRÓXIMO DESCUBRIMIENTO",
   "Salvar na estante": "Guardar en la estantería",
-  "Salvas automaticamente neste navegador.": "Se guardan automáticamente en este navegador.",
   "Salve na estante, registre o resultado e marque como “Em uso” quando fizer parte da sua rotina.": "Guárdalo en tu estantería, registra el resultado y márcalo como «En uso» cuando forme parte de tu rutina.",
   "Salvo na estante": "Guardado en la estantería",
   "Salvo neste navegador. Exporte um backup para levar sua estante.": "Guardado en este navegador. Exporta una copia de seguridad para llevarte tu estantería.",
@@ -311,5 +310,6 @@
   " learn. build. repeat.": " aprende. crea. repite.",
   " projetos": " proyectos",
   " projetos selecionados": " proyectos seleccionados",
-  " universos para explorar": " universos por explorar"
+  " universos para explorar": " universos por explorar",
+  "Salvas automaticamente na sua estante.": "Se guardan automáticamente en tu estantería."
 }

@@ -96,3 +96,26 @@ Preparação confirmada:
 - Revisão dos 76 arquivos candidatos ao Git: nenhum arquivo privado de conexão, cache, dependência, build ou padrão de chave administrativa/privada encontrado.
 
 Revisão pré-envio: realizada pelo próprio Codex executor. Foram conferidos os destinos, preservação do histórico, mudanças de CI/build e exclusão de arquivos privados. Publicação e retornos de autenticação continuam em execução e serão registrados após conferência real.
+
+Publicação conferida nesta etapa:
+
+- Código enviado em `9f61adb`, com igualdade entre o HEAD local e main remoto. A CI remota passou na execução 39020086487.
+- Vercel criou `github-bookshelf` na equipe `githubbokshelf`; implantação `dpl_FEcyMRNByxeThiqEGzwofFiXeRVj` ficou Ready.
+- Endereço estável confirmado no painel e por HTTP sem sessão: https://github-bookshelf.vercel.app/ (200).
+- Somente URL e chave publicável do Supabase configuradas em Production e Preview. O tipo da chave foi conferido sem registrar o valor; nenhuma chave administrativa foi usada.
+- Supabase Site URL e retorno exato da produção salvos. A interface mostrou seis retornos: produção, portal anterior e quatro origens locais. Nenhum curinga adicionado.
+- Portal publicado abriu no Safari com 150 projetos, links da conta exclusiva e formulário de acesso disponível. O tema Claro foi acionado e conferido visualmente no endereço público.
+- Canonical, OG e metadados de repositório foram ajustados para a publicação real. Os links históricos permanecem identificados como versão anterior.
+- Autoria dos próximos commits locais vinculada ao noreply da conta exclusiva, preservando o nome do criador e todos os commits anteriores.
+- Validação de acesso na produção solicitada ao proprietário; pendente neste registro. SMTP público, domínio próprio, recuperação e traduções completas não foram concluídos nesta etapa.
+
+Validação autenticada de produção:
+
+- O proprietário informou que entrou na produção. A sessão foi conferida pela interface do Safari e a estante exibiu sincronização concluída.
+- A estante começou vazia. Um Maccy temporário foi salvo com nota de teste e status Em uso. A interface confirmou gravação e a contagem permaneceu após recarregar a produção.
+- No Chrome já autenticado na mesma conta, em origem local, uma recarga trouxe do backend o projeto, a nota temporária e o status Em uso. Isso confere dois navegadores e duas origens no mesmo Mac; não equivale a dois dispositivos físicos.
+- Foi removido somente o Maccy temporário. A confirmação final da remoção está em revisão.
+- Na revisão, o texto de notas ainda dizia que eram salvas neste navegador, inclusive para contas sincronizadas. Foi corrigido para Salvas automaticamente na sua estante, mantendo a indicação de sincronização na página da estante. Os dicionários parciais correspondentes foram ajustados, sem afirmar que o seletor de idiomas está ativo.
+- A publicação automática do commit `69187e3` passou na Vercel e a CI passou na execução 39020312215. HTTP 200 nos quatro módulos JavaScript e CSS; canonical/OG de produção presentes; URL e chave publicável do backend presentes no código distribuído, sem padrão de chave administrativa.
+
+Conferência final dos dados: a produção confirmou gravação concluída e contagem zero após remover o teste. Recarregar Safari e Chrome manteve a estante vazia. Nenhuma senha foi preenchida ou recebida pelo agente. Metadados privados das integrações foram atualizados com o repositório e a URL reais; arquivos continuam ignorados e com permissão 600.
