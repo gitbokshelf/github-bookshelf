@@ -49,7 +49,7 @@ export interface WidgetItem {
 
 export interface DraggableWidgetGridProps {
   /** Initial arrangement. The grid manages the order after mount. */
-  items?: WidgetItem[];
+  items: WidgetItem[];
   /** Called with the new order after a drop or a keyboard move. */
   onChange?: (items: WidgetItem[]) => void;
   /** Renders a widget's content. */
@@ -80,18 +80,6 @@ const SIZE_LABELS: { [K in WidgetSize]: string } = {
   tall: "Alto",
   lg: "Grande",
 };
-
-const DEFAULT_ITEMS: WidgetItem[] = [
-  { id: "widget-1", size: "wide" },
-  { id: "widget-2", size: "sm" },
-  { id: "widget-3", size: "sm" },
-  { id: "widget-4", size: "sm" },
-  { id: "widget-5", size: "wide" },
-  { id: "widget-6", size: "sm" },
-  { id: "widget-7", size: "sm" },
-  { id: "widget-8", size: "wide" },
-  { id: "widget-9", size: "sm" },
-];
 
 const useIsoLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
@@ -664,7 +652,7 @@ export function DraggableWidgetGrid({
   radius = 24,
   className = "",
 }: DraggableWidgetGridProps) {
-  const [items, setItems] = useState(() => initialItems ?? DEFAULT_ITEMS);
+  const [items, setItems] = useState(() => initialItems);
   const grid = useRef(null as HTMLDivElement | null);
   const hintId = useId();
   const minColumns = Math.min(2, Math.max(1, maxColumns));

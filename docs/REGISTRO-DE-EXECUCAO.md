@@ -299,3 +299,13 @@ Execução e revisão antes do envio da limpeza:
 - Safari de produção, após implantação `4b1dc9b`, manteve sessão e leitura da estante com CSP. HTTP 200, sete headers comparados e sete recursos próprios conferidos; cache imutável restrito a assets com hash. CI 39038873872 e workflow de segurança 39038873831 concluídos; os três alertas foram tratados como correção pendente, sem afirmar aprovação integral por job verde.
 
 Publicação desta continuidade: preparada para envio; nova análise de alertas e implantação serão registradas após resultado real.
+
+Continuidade da conferência da limpeza e dos alertas:
+
+- CI 39039406607 e análise 39039406534 passaram para `2f7c847`. Consulta dos resultados confirmou os três alertas iniciais como corrigidos, mas encontrou uma variante adicional no verificador HTML. Não foi descartada manualmente.
+- O verificador passou a usar AST HTML5 por parse5 8.0.1, dependência de desenvolvimento com lockfile. O parser detectou dois caracteres de controle literais na saída minificada independente; o empacotador agora usa escapes JS, confere sua sintaxe e escapa fechamentos de script em qualquer caixa. Regressão cobre variações de tags, atributos duplicados, fechamento malformado e tentativa de criar script externo no HTML independente.
+- Retirados nove widgets e três arquivos fictícios de demonstração nos componentes 21st.dev. Itens/arquivos e nome da coleção agora são entradas obrigatórias da aplicação. Atribuições preservadas.
+- Dezesseis testes e build passaram, incluindo parser HTML5; bundle final ~251,7 KB JS gzip. Instalação da dependência reportou zero vulnerabilidades conhecidas; npm local também advertiu sobre scripts de instalação antigos de esbuild/fsevents sem aprovação local explícita, sem instalar ou ampliar nova permissão. O build executou com os binários presentes.
+- HTML independente final aberto no Safari, mostrando 150 projetos e coleções reais. Os componentes receberam os dados da aplicação, sem fallbacks fictícios. Nenhum dado autenticado foi editado.
+
+Publicação: correção adicional preparada. A consulta final de alertas é obrigatória antes de concluir.

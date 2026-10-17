@@ -7,6 +7,7 @@ Referências verificadas em 17/10/2026. Seleção por função e adequação, n�
 | [Gitleaks](https://github.com/gitleaks/gitleaks) | Segredos no Git | CLI 8.30.1 executada; CI com versão e SHA-256 do pacote fixados. O mantenedor informa foco em correções de segurança; reavaliar manutenção periodicamente |
 | [CodeQL](https://github.com/github/codeql) e [Action](https://github.com/github/codeql-action) | Análise estática JS/TS | Workflow com security-extended e agendamento semanal. Consultar execução e alertas, não apenas o badge |
 | [Dependabot](https://github.com/dependabot/dependabot-core) | Atualizações de dependências | Configuração semanal npm/Actions; correções de segurança habilitadas no repositório |
+| [parse5](https://github.com/inikulin/parse5) | Parser HTML5 da distribuição | Dependência de desenvolvimento 8.0.1, usada no build para verificar scripts e HTML; não entra no runtime do portal |
 | [k6](https://github.com/grafana/k6) | Ensaio de carga reprodutível | CLI 2.3.0 e cenário limitado a localhost executados; sem ensaio de banco ou produção |
 | [OWASP CheatSheetSeries](https://github.com/OWASP/CheatSheetSeries) | Referência de engenharia | Usada para CSP, headers, autorização e prompt injection; não é certificação |
 | [OWASP GenAI Security](https://github.com/OWASP/www-project-top-10-for-large-language-model-applications) | Modelo de riscos de IA | Referência para manutenção assistida e futura IA no produto |

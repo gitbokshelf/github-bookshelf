@@ -71,7 +71,7 @@ export type FolderMenuItem = {
 };
 
 export type GlassFolderProps = {
-  label?: string;
+  label: string;
   /** The second line. Defaults to the number of files, which rolls as you add. */
   meta?: string;
   /** `light` is milk glass, `dark` is smoked glass. */
@@ -83,7 +83,7 @@ export type GlassFolderProps = {
   /** Your own picture for the back panel, instead of generated art. */
   image?: string;
   /** The folder's contents. Read once; after that the folder owns the list. */
-  files?: FolderFile[];
+  files: FolderFile[];
   /** `add` drops new files in, `more` opens a menu, `none` hides the key. */
   action?: "add" | "more" | "none";
   /** What `add` puts in the folder. Return nothing for an "Untitled" sheet. */
@@ -606,20 +606,14 @@ const FRONT_PATH =
 
 const MAX_VISIBLE = 4;
 
-const SAMPLE_FILES: FolderFile[] = [
-  { name: "Cover — final", meta: "PNG · 4.8 MB", art: "ember" },
-  { name: "Moodboard", meta: "24 images", art: "dusk" },
-  { name: "Brief.pdf", meta: "PDF · 1.2 MB" },
-];
-
 export default function GlassFolder({
-  label = "My Files",
+  label,
   meta,
   tone = "light",
   art = "aurora",
   seed = 3,
   image,
-  files: initialFiles = SAMPLE_FILES,
+  files: initialFiles,
   action = "add",
   onAdd,
   onFilesChange,

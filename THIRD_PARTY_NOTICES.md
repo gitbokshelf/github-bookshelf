@@ -12,7 +12,7 @@ Os componentes abaixo foram fornecidos como código pelo autor do projeto para i
 - Autor original: Kedhareswer Naidu.
 - Fonte: https://21st.dev/@kedhareswer/components/glass-folder-cards
 - Licença indicada na página original: MIT.
-- Adaptações: textos acessíveis em português, integração com as coleções e extração do CSS para `frontend/src/components/ui/glass-folder-cards.css`, permitindo a política CSP sem estilos inline em elementos style.
+- Adaptações: textos acessíveis em português, integração com as coleções e extração do CSS para `frontend/src/components/ui/glass-folder-cards.css`, permitindo a política CSP sem estilos inline em elementos style. Dados fictícios de demonstração removidos; nome e arquivos vêm da aplicação.
 
 Copyright (c) 2026 Kedhareswer Naidu. O texto da licença MIT está reproduzido em [LICENSE](LICENSE); a atribuição original deste componente permanece com seu autor.
 
@@ -22,7 +22,7 @@ Copyright (c) 2026 Kedhareswer Naidu. O texto da licença MIT está reproduzido 
 - Autor atribuído no 21st.dev: carolina, perfil carolinaraulino.
 - Fonte: https://21st.dev/@carolinaraulino/components/draggable-widget-grid
 - Preview oficial: https://cdn.21st.dev/carolinaraulino/draggable-widget-grid/default/bundle.1789591791445-437dc773-753c-46e5-a8cb-2fd3fe99a4c8.html
-- Adaptações: instruções acessíveis em português e integração com contadores reais da estante.
+- Adaptações: instruções acessíveis em português, integração com contadores reais da estante e remoção dos widgets fictícios de demonstração.
 - Licença indicada na página original: MIT.
 
 A página oficial do componente foi consultada em 16/10/2026 e identifica o autor carolina e a licença MIT. O texto da licença MIT está reproduzido em [LICENSE](LICENSE); a atribuição original deste componente permanece com sua autora.

@@ -1,15 +1,33 @@
 import assert from 'node:assert/strict';
-// Validador conservador da saída gerada por Vite; não sanitiza HTML arbitrário.
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+const require = createRequire(new URL('../../frontend/package.json', import.meta.url));
+const { parse } = await import(pathToFileURL(require.resolve('parse5')).href);
+// AST HTML5 da saída de build. Não é um sanitizador de conteúdo de usuário.
+function scriptsIn(html) {
+  const errors = [];
+  const document = parse(html, {onParseError: error => errors.push(error.code)});
+  assert.ok(errors.every(code => code === 'missing-doctype'), 'HTML de build malformado');
+  const scripts = [];
+  function visit(node) {
+    if (node.tagName === 'script') scripts.push(node);
+    for (const child of node.childNodes ?? []) visit(child);
+    if (node.content) visit(node.content);
+  }
+  visit(document);
+  return scripts;
+}
+export function externalScriptSources(html) {
+  return scriptsIn(html).flatMap(node => node.attrs.filter(attr=>attr.name==='src').map(attr=>attr.value));
+}
 export function hostedScripts(html) {
-  const opening = [...html.matchAll(/<script\b/gi)];
-  const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)];
-  assert.equal(scripts.length, opening.length, 'Tag de script fora do formato esperado no build');
+  const scripts = scriptsIn(html);
   assert.ok(scripts.length >= 2, 'Inicialização e aplicação devem ter scripts próprios');
-  return scripts.map(([,attrs,body]) => {
-    const sources = [...attrs.matchAll(/(?:^|\s)src\s*=\s*(["'])([^"']+)\1/gi)];
-    assert.ok(sources.length === 1 && !body.trim(), 'Script inline ou atributo duplicado não é permitido na versão hospedada');
-    const source = sources[0];
-    assert.ok(/^\.\/[A-Za-z0-9_./-]+\.js$/i.test(source[2]) && !source[2].includes('..'), 'Script fora da distribuição própria');
-    return source[2];
+  return scripts.map(node => {
+    const source = node.attrs.find(attr=>attr.name==='src')?.value;
+    const body = (node.childNodes ?? []).map(child=>child.value ?? '').join('');
+    assert.ok(source && !body.trim(), 'Script inline não é permitido na versão hospedada');
+    assert.ok(/^\.\/[A-Za-z0-9_./-]+\.js$/i.test(source) && !source.includes('..'), 'Script fora da distribuição própria');
+    return source;
   });
 }

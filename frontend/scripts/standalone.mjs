@@ -1,7 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { build } from "esbuild";
+import { build, transform } from "esbuild";
+import { inlineScriptText } from "./html-text.mjs";
 const distDir = fileURLToPath(new URL("../dist/", import.meta.url));
 const artifactsDir = fileURLToPath(
   new URL("../../artifacts/", import.meta.url),
@@ -37,20 +38,23 @@ if (
   )
 )
   throw new Error("HTML independente contém um módulo externo.");
-const js = bundled.outputFiles[0].text;
+// Mantém caracteres de controle em escapes JS, para HTML5 válido.
+// Escapa fechamento de script sem diferenciar caixa, inclusive em textos do catálogo.
+const js = inlineScriptText(bundled.outputFiles[0].text);
+await transform(js, { loader: "js", target: "es2022" });
 const theme = await fs.readFile(path.join(distDir, "theme-init.js"), "utf8");
-html = html.replace(/<script src="(?:\.\/|\/)?theme-init\.js"><\/script>/, () => `<script>${theme.replaceAll("</script", "<\\/script")}</script>`);
+html = html.replace(/<script src="(?:\.\/|\/)?theme-init\.js"><\/script>/, () => `<script>${inlineScriptText(theme)}</script>`);
 html = html.replace(/<link\b(?=[^>]*\brel="modulepreload")[^>]*>/g, "");
 const css = await fs.readFile(path.join(distDir, style[1]), "utf8");
 html = html
   .replace(
     script[0],
     () =>
-      `<script type="module">${js.replaceAll("</script", "<\\/script")}</script>`,
+      `<script type="module">${js}</script>`,
   )
   .replace(
     style[0],
-    () => `<style>${css.replaceAll("</style", "<\\/style")}</style>`,
+    () => `<style>${css.replace(/<\/style/gi, (match) => "<\\/" + match.slice(2))}</style>`,
   );
 html = html.replace(
   /href="(?:\.\/|\/)?favicon.svg"/,

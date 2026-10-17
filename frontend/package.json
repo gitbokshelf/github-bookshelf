@@ -14,21 +14,22 @@
     "check:source": "node ../tools/check-source-usage.mjs"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "@supabase/supabase-js": "2.118.0",
     "lucide-react": "^0.468.0",
     "motion": "^12.23.0",
-    "@supabase/supabase-js": "2.118.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.0",
-    "@tailwindcss/vite": "^4.1.0",
+    "esbuild": "0.28.2",
+    "parse5": "8.0.1",
     "tailwindcss": "^4.1.0",
     "typescript": "~5.9.3",
-    "vite": "^7.1.0",
-    "esbuild": "0.28.2"
+    "vite": "^7.1.0"
   },
   "description": "Um catálogo de projetos do GitHub com curadoria em português, coleções interativas e estante pessoal.",
   "author": "Thiago Ebias (https://github.com/thiagoebias)",

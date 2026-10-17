@@ -14,8 +14,8 @@ Executor e revisor: Codex. Não houve auditor independente ou pentest completo. 
 
 | Verificação | Resultado | Limite |
 | --- | --- | --- |
-| Testes Node | 15 aprovados, catálogo e entradas/configuração defensivas | Não é suíte E2E completa de autenticação |
-| TypeScript, Vite, HTML independente e orçamento | Aprovados, aproximadamente 251,8 KB gzip de JS | Não prova acessibilidade ou escala |
+| Testes Node | 16 aprovados, catálogo e entradas/configuração defensivas | Não é suíte E2E completa de autenticação |
+| TypeScript, Vite, HTML independente e orçamento | Aprovados, aproximadamente 251,7 KB gzip de JS | Não prova acessibilidade ou escala |
 | Distribuição | 9 arquivos conferidos, scripts próprios e padrões administrativos examinados ausentes | Scanner de padrões não detecta todo segredo possível |
 | npm audit completo | 0 vulnerabilidades conhecidas reportadas | Não cobre falha inédita ou regra de negócio |
 | Gitleaks 8.30.1, histórico | 14 commits, aproximadamente 1,07 MB, nenhum achado | Prévio ao commit desta entrega; mudanças novas conferidas antes de enviar |
@@ -45,3 +45,7 @@ Conclusão: primeira rodada defensiva com correções concretas e evidência del
 A primeira execução CodeQL concluiu com três alertas nas ferramentas: verificação de tags sem variação de caixa e dois fluxos de leitura de arquivo para HTTP no teste anônimo. A inspeção passou a conferir caixa, origem própria, atributos duplicados e scripts incompletos, com regressão. O teste de backend deixou de ler arquivo de conexão: obtém somente a chave já pública no módulo da publicação e acessa destinos fixos, sem ler .env ou sessão. Nova análise precisa confirmar o estado dos alertas.
 
 Safari de produção após implantação: sessão e leitura da estante mantidas. Safari local: backup sintético importado, nota hostil exibida como texto, backup inválido rejeitado preservando o item; item sintético removido ao terminar, voltando a zero. Fixtures temporárias removidas na limpeza solicitada.
+
+O reteste automatizado encerrou os três alertas iniciais e detectou uma variante adicional de fechamento HTML. A inspeção passou a usar AST com parse5 8.0.1, rejeitando HTML malformado, atributos duplicados e scripts fora da distribuição. O parser encontrou caracteres de controle literais no JavaScript minificado do HTML independente; o empacotador passou a escapá-los e validar a sintaxe JS, além de proteger fechamentos de script em qualquer caixa. Dezesseis testes e build com análise HTML5 passaram; alertas finais ainda serão consultados após envio.
+
+A limpeza também retirou nove widgets e três arquivos fictícios de demonstração dos componentes 21st.dev. A aplicação fornece os itens reais obrigatórios. HTML independente abriu no Safari com 150 projetos e coleções reais após a mudança, sem editar dados do proprietário.

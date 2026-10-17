@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
-import { hostedScripts } from './inspect-html.mjs';
+import { hostedScripts, externalScriptSources } from './inspect-html.mjs';
 const dist = fileURLToPath(new URL('../../frontend/dist/', import.meta.url));
 const walk = (dir) => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(path.join(dir,e.name)) : [path.join(dir,e.name)]);
 const files = walk(dist);
@@ -21,5 +21,5 @@ for (const file of files) {
   }
 }
 const standalone = fs.readFileSync(new URL('../../artifacts/GitHub Bookshelf.html',import.meta.url),'utf8');
-assert.ok(!/<script[^>]*\bsrc=/i.test(standalone), 'HTML independente ainda depende de script externo');
+assert.equal(externalScriptSources(standalone).length, 0, 'HTML independente ainda depende de script externo');
 console.log(`Distribuição conferida: ${files.length} arquivos, scripts próprios e sem os padrões administrativos examinados.`);
