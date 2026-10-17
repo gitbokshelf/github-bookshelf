@@ -1,0 +1,51 @@
+name: Monitorar produção
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+    inputs:
+      test_email:
+        description: Enviar teste para o e-mail técnico autorizado
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: production-monitor
+  cancel-in-progress: false
+jobs:
+  monitor:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: artifacts/security/monitor-state.json
+          key: monitor-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: monitor-v1-
+      - name: Verificar e notificar
+        env:
+          BOOKSHELF_ALERTS_RESEND_KEY: ${{ secrets.BOOKSHELF_ALERTS_RESEND_KEY }}
+          SEND_TEST: ${{ inputs.test_email }}
+        run: |
+          if [ "$SEND_TEST" = true ]; then
+            node security/tools/monitor.mjs --test-email
+          else
+            node security/tools/monitor.mjs
+          fi
+      - uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+        if: always()
+        with:
+          path: artifacts/security/monitor-state.json
+          key: monitor-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: monitor-report
+          path: artifacts/security/monitor-report.json
+          retention-days: 14

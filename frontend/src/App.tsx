@@ -535,6 +535,7 @@ export default function App() {
                         ? {
                             loading: "Carregando sua estante...",
                             saving: "Salvando na sua conta...",
+                            limited: "Limite temporário de gravação. Suas alterações estão preservadas neste navegador; aguarde a sincronização ou tente novamente.",
                             saved: "Estante salva na sua conta.",
                             offline:
                               "Sem conexão com a conta. Alterações guardadas neste navegador.",
@@ -546,7 +547,7 @@ export default function App() {
                     </span>
                     <span>Arraste os widgets ou use Alt + setas.</span>
                   </div>
-                  {user && ["offline", "conflict"].includes(syncStatus) && (
+                  {user && ["offline", "conflict", "limited"].includes(syncStatus) && (
                     <div className="sync-actions">
                       <button
                         className="secondary-button"

@@ -1,3 +1,4 @@
+import { MAX_QUOTA_RETRIES, quotaRetry } from "../utils/sync-quota";
 import { useEffect, useReducer, useRef } from "react";
 import { loadShelf, saveShelf } from "../services/shelf-service";
 import { validLibrary, type Library, type Entry } from "../utils/library-validation";
@@ -5,7 +6,7 @@ export { validLibrary };
 export type { Library, Entry };
 export const STORAGE = "github-bookshelf:v1";
 export type SyncStatus =
-  "local" | "loading" | "saving" | "saved" | "offline" | "conflict";
+  "local" | "loading" | "saving" | "saved" | "offline" | "conflict" | "limited";
 export function readLibrary(): Library {
   try {
     return validLibrary(JSON.parse(localStorage.getItem(STORAGE) || "{}"));
@@ -21,6 +22,8 @@ type Model = {
   ready: boolean;
   busy: boolean;
   status: SyncStatus;
+  quotaRetries: number;
+  retryAt: number;
 };
 export function useLibrary(userId?: string) {
   const owner = userId ?? "guest";
@@ -35,6 +38,8 @@ export function useLibrary(userId?: string) {
     ready: !userId,
     busy: false,
     status: userId ? "loading" : "local",
+    quotaRetries: 0,
+    retryAt: 0,
   });
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const cache = (model: Model) => {
@@ -66,6 +71,12 @@ export function useLibrary(userId?: string) {
       current.current !== model
     )
       return;
+    if (model.quotaRetries > MAX_QUOTA_RETRIES) return;
+    if (Date.now() < model.retryAt) {
+      clearTimeout(timer.current);
+      timer.current = setTimeout(() => { void flush(model); }, model.retryAt - Date.now());
+      return;
+    }
     model.busy = true;
     model.status = "saving";
     render();
@@ -75,14 +86,25 @@ export function useLibrary(userId?: string) {
         const saved = await saveShelf(model.owner, snapshot, model.revision);
         if (current.current !== model) return;
         model.revision = saved.revision;
+        model.quotaRetries = 0;
+        model.retryAt = 0;
         model.dirty = model.entries !== snapshot;
         cache(model);
       }
       model.status = "saved";
     } catch (error) {
       if (current.current !== model) return;
-      model.status =
-        (error as { code?: string }).code === "40001" ? "conflict" : "offline";
+      const code = (error as { code?: string }).code;
+      if (code === "PT429") {
+        model.status = "limited";
+        const next = quotaRetry(model.quotaRetries, Date.now());
+        model.quotaRetries = next.attempts;
+        model.retryAt = next.retryAt;
+        if (next.automatic) {
+          clearTimeout(timer.current);
+          timer.current = setTimeout(() => { void flush(model); }, model.retryAt - Date.now());
+        }
+      } else model.status = code === "40001" ? "conflict" : "offline";
     } finally {
       model.busy = false;
       if (current.current === model) render();
@@ -98,6 +120,8 @@ export function useLibrary(userId?: string) {
       ready: owner === "guest",
       busy: false,
       status: owner === "guest" ? "local" : "loading",
+      quotaRetries: 0,
+      retryAt: 0,
     };
     if (userId) {
       try {
@@ -155,7 +179,8 @@ export function useLibrary(userId?: string) {
     if (
       owner !== "guest" &&
       model.status !== "conflict" &&
-      model.status !== "offline"
+      model.status !== "offline" &&
+      model.status !== "limited"
     )
       model.status = "saving";
     cache(model);
@@ -210,6 +235,8 @@ export function useLibrary(userId?: string) {
       model.entries = validLibrary(remote.entries);
       model.revision = remote.revision;
       model.dirty = false;
+      model.quotaRetries = 0;
+      model.retryAt = 0;
       model.status = "saved";
       cache(model);
       render();

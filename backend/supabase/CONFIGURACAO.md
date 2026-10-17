@@ -105,3 +105,13 @@ O domínio `githubbokshelf.hubdetrabalho.com.br` foi configurado na Vercel e na 
 Duas verificações anônimas de baixo volume retornaram HTTP 401: leitura de `user_shelves` e tentativa de chamar `save_my_shelf`. Executadas por `security/tools/check-anonymous.mjs --live` com somente chave publicável; nenhum dado de estante retornado ou alterado. Não substituem teste entre duas contas. A migração aplicada não foi modificada nem reaplicada.
 
 Painel Auth, somente leitura: login/cadastro 30 requisições por 5 minutos/IP, verificação 30 por 5 minutos/IP, refresh 150 por 5 minutos/IP, e-mails 2/h; CAPTCHA desligado. Esses limites não cobrem RPC. Quota de gravação, automação, SMTP e recuperação precisam de implantação/teste próprios. Detalhes e limites em [segurança](../../security/README.md).
+
+## Atualização de SMTP e gravações, 17/10/2026
+
+SMTP personalizado ativo e persistido no painel: [Resend](../../integrations/resend/README.md), porta 465, remetente `acesso@auth.githubbokshelf.hubdetrabalho.com.br`. Chave somente de envio, restrita ao domínio, guardada no campo privado do Supabase. E-mails passam ao limite inicial de 30/h. Recuperação completa ainda depende de teste com o proprietário definindo a senha; não foi feita troca automática de senha.
+
+Migração `202610170002_write_quota.sql` aplicada pelo SQL Editor ao projeto `dxnfhzgxdkhdggqoogft`. Sucesso confirmado, seguido de consulta somente leitura: tabela de quota existe, RLS ativo, acesso direto negado, escrita direta em estantes negada, RPC permitida para authenticated e PT429 presente no corpo. Os seis indicadores retornaram true.
+
+A quota é por conta, compartilhada entre dispositivos: rajada de 10 escritas aceitas, reposição de um crédito/2 segundos, 30/min em média. Registros inválidos e conflitos sofrem rollback sem consumir crédito; isso não limita todas as requisições maliciosas nem substitui WAF/controle de IP. O cliente mantém o cache e faz três novas tentativas espaçadas; depois exige tentativa manual. Nenhuma estante real foi modificada pela migração/conferência.
+
+Ensaio isolado: `node backend/supabase/tools/test-database.mjs`. Requer PostgreSQL local e Node 24; usa cluster descartável somente loopback, sem serviço permanente, com contrato Auth mínimo emulado. Testa migrações, RLS/isolamento, quota/refill e pg_dump/pg_restore em outro banco, incluindo dado sintético, RLS e privilégios. Remove cluster e dump ao terminar. Relatório sanitizado em artifacts/security/database-tests.json. Não comprova recuperação do Supabase Auth real ou backup de produção.

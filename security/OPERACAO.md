@@ -34,3 +34,13 @@ Rollback do frontend: selecionar uma implantação anterior comprovada na Vercel
 ## Arquivos e contas
 
 Credenciais administrativas não devem ser arquivadas em Markdown. Os arquivos reais ignorados das integrações não foram movidos nesta tarefa. Estar ignorado pelo Git não protege contra malware, usuário local ou sincronização OneDrive. Preferir cofre de senhas e armazenamento secreto do provedor. Auditar compartilhamento e permissões locais com o proprietário, sem imprimir conteúdo.
+
+## Implementação de monitoramento e restore, 17/10/2026
+
+`Monitorar produção` em `.github/workflows/monitor.yml`: cron nominal de 15 minutos e disparo manual. Executa `security/tools/monitor.mjs` somente em main, com timeout e recursos fixos. Confere HTTP, módulo, CSP/HSTS/nosniff e negação de leitura/escrita anônima. Não lê notas, sessões, senhas ou dados de usuários.
+
+Avisos via `BOOKSHELF_ALERTS_RESEND_KEY`, remetente/destinatário fixos conforme [Resend](../integrations/resend/README.md). Falha inicial, lembrete após seis horas e recuperação; teste explícito não altera o estado de incidente. Se o envio falhar, o estado não consome a notificação e o job falha. Cache perdido pode produzir aviso repetido. Actions atrasado, desativado ou indisponível pode impedir o próprio aviso; acompanhar falhas do workflow também. Ainda não cobre métricas/alertas de consumo, exaustão de plano ou atividade interna autenticada.
+
+Teste sem envio: `node security/tools/monitor.mjs --dry-run`. Relatório sanitizado em artifacts/security/monitor-report.json. Envio real somente via workflow com secret, sem gravar chave em arquivo local.
+
+O ensaio de restauração roda na CI em banco descartável: `node backend/supabase/tools/test-database.mjs`. pg_dump/pg_restore preservaram um dado sintético, RLS e privilégios. O contrato Auth é emulado; produção não foi exportada, não há backup criptografado real ainda e não há RPO/RTO comprovado. Para isso faltam conexão de backup autorizada, destino seguro e restauração em projeto separado.

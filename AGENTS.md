@@ -16,7 +16,7 @@ Estas regras valem para qualquer agente ou pessoa que execute, altere ou revise 
 - `integrations/`: integração com GitHub, Outlook, Vercel e outros serviços externos que não sejam o backend do produto.
 - `docs/`: arquitetura, decisões, curadoria, validação e registro de execução/revisão.
 - `security/`: engenharia de segurança, ameaças, regras de agentes/integrações, testes defensivos, ferramentas, carga controlada e modelos reutilizáveis.
-- `tools/`: manutenção de catálogo, verificações correspondentes e verificações correspondentes.
+- `tools/`: manutenção de catálogo e verificações correspondentes.
 - `artifacts/`: entregas geradas, ignoradas pelo Git, com orientação de geração.
 - Raiz: mapa do projeto, regras, licença, contribuições e metadados do repositório. `.github/` fica na raiz por convenção da plataforma.
 

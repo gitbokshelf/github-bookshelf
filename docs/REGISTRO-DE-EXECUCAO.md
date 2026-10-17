@@ -323,3 +323,25 @@ Conclusão: limpeza dos itens ociosos identificados, remoção de demonstraçõe
 Permanecem pendentes SMTP/recuperação, idiomas/seletor, CAPTCHA, quota de escrita no backend, alertas operacionais, revisão completa de acessos/MFA, backup/restauração, testes de isolamento automatizados e capacidade autenticada em staging. Repositório pessoal anterior não foi excluído nesta tarefa. Não declarar segurança absoluta, auditoria independente ou capacidade de produção sem ensaio.
 
 Próximo passo prioritário: concluir ciclo de acesso e proteção de automação, com quotas no backend e ambiente separado para ensaios/restore. Documentação final desta conferência enviada em commit próprio, sem mudança adicional da aplicação.
+
+## 17/10/2026: evolução de acesso, idiomas e operação
+
+Pedido: prosseguir com SMTP/recuperação, idiomas, proteção contra bots, limites de gravação, alertas e restauração de backups.
+
+Responsável: Codex, executor e revisor. Estado: em execução. Git inicialmente limpo, HEAD 5a6da62.
+
+Escopo: integrar PT/EN/ES ao produto; limitar escrita por conta no backend com tratamento no cliente; preparar proteção CAPTCHA integrada, envio transacional e monitoramento; implementar e ensaiar backup/restauração com dados sintéticos antes de qualquer procedimento real. Não contratar plano, aceitar termos, receber senhas no chat, disparar volume de e-mails ou sobrescrever dados de produção.
+
+Validação prevista: regressões de idioma e cobertura de textos; banco local descartável para RLS, quota e migrações; restauração isolada; build e navegador; CI/CodeQL e publicação; conferir estado efetivamente aplicado no Supabase. Configurações externas que dependam de conta/credencial ou decisão devem ser identificadas concretamente, sem marcar como prontas por existir código.
+
+Contexto: inventário e regras do OpenClaw indicados pela skill continuam ausentes. Usados README, arquitetura, AGENTS e área de segurança local. Perguntados serviço SMTP e canal de alertas enquanto avançamos nas tarefas independentes. PostgreSQL local solicitado pelo Homebrew para ensaios descartáveis; nenhum serviço permanente será iniciado por essa instalação.
+
+Continuidade confirmada:
+
+- Resend autorizado: domínio auth.githubbokshelf.hubdetrabalho.com.br criado e verificado, região São Paulo, recebimento off. Adicionados três DNS exclusivos; comparação preservou os 20 registros anteriores. Chaves de envio distintas/restritas transferidas diretamente para Supabase SMTP e secret privado Actions, sem exibição dos valores. SMTP ativo e persistido após recarga; entrega em validação.
+- Migração 002 aplicada e conferida por seis indicadores SQL true (tabela/RLS/privacidade/negação direta/RPC/PT429). Nenhuma estante real alterada. Cliente preserva cache e limita repetição automática; teste puro do backoff adicionado.
+- PostgreSQL 17.11 instalado pelo Homebrew oficial, sem iniciar serviço permanente. Três ensaios em cluster descartável passaram: isolamento, quota e restauração lógica em outro banco. Contrato Auth emulado, sem exportação real de produção. Cluster/dump removidos ao terminar. CI ganhou job próprio.
+- Monitor implementado com destinatário técnico fixo, estado de incidente, supressão de repetição, teste manual, timeout e checagens públicas/negação anônima. Dry-run real passou nove controles. Chave privada confirmada no GitHub; workflow ainda precisa ser publicado e disparado.
+- Dezenove testes Node e build passaram; grafo 31 fontes, ~251,9 KB JS gzip. Revisão do diff e permissões SQL feita pelo executor. Solicitada conta Cloudflare para viabilizar Turnstile sem aceitar termos pelo proprietário.
+
+Esta é uma entrega intermediária de infraestrutura. Idiomas, CAPTCHA, teste completo de recuperação e backup real permanecem em execução/pendência, não concluídos.

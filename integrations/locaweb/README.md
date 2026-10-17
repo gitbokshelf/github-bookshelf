@@ -31,3 +31,7 @@ A zona tinha 18 registros. Após adicionar CNAME e TXT, passou a 20. Os 17 regis
 ## Referência de manutenção
 
 [Configurar domínio próprio na Vercel](https://vercel.com/docs/domains/set-up-custom-domain). O valor do CNAME deve ser obtido no projeto vigente; não assumir que todos os projetos usam o mesmo destino.
+
+## Envio transacional, 17/10/2026
+
+Adicionados três registros exclusivos de `auth.githubbokshelf`, após autorização expressa, para o [Resend](../resend/README.md). TXT DKIM e CNAMEs em `rsend.auth.githubbokshelf`/`send.auth.githubbokshelf`, TTL 3600. Resend confirmou os três como Verified. A zona passou de 20 para 23 entradas; preservados todos os valores anteriores, com apenas serial SOA automático e ordem visual dos TXT da raiz. Recebimento no Resend continua desligado.
