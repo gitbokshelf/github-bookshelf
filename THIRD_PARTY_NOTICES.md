@@ -8,7 +8,7 @@ Os componentes abaixo foram fornecidos como código pelo autor do projeto para i
 
 ### Glassmorphism Folder Cards
 
-- Arquivo: `src/components/ui/glass-folder-cards.tsx`.
+- Arquivo: `frontend/src/components/ui/glass-folder-cards.tsx`.
 - Autor original: Kedhareswer Naidu.
 - Fonte: https://21st.dev/@kedhareswer/components/glass-folder-cards
 - Licença indicada na página original: MIT.
@@ -18,7 +18,7 @@ Copyright (c) 2026 Kedhareswer Naidu. O texto da licença MIT está reproduzido 
 
 ### Draggable Widget Grid
 
-- Arquivo: `src/components/ui/draggable-widget-grid.tsx`.
+- Arquivo: `frontend/src/components/ui/draggable-widget-grid.tsx`.
 - Autor atribuído no 21st.dev: carolina, perfil carolinaraulino.
 - Fonte: https://21st.dev/@carolinaraulino/components/draggable-widget-grid
 - Preview oficial: https://cdn.21st.dev/carolinaraulino/draggable-widget-grid/default/bundle.1789591791445-437dc773-753c-46e5-a8cb-2fd3fe99a4c8.html

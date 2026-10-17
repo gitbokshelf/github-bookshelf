@@ -38,6 +38,6 @@ O n8n usa fair-code, com condições próprias. A descrição preserva essa dist
 
 A atualização é manual por `npm run refresh`. Os tokens permanecem sob gestão do GitHub CLI. O bundle não contém autenticação, acesso a repositórios privados ou dados pessoais. A estante usa armazenamento local e oferece backup explícito.
 
-Relacionado: [[github-bookshelf/README|Guia do projeto]] e [[github-bookshelf/docs/VALIDACAO|Validação]].
+Relacionado: [Guia do projeto](../frontend/README.md) e [Validação](VALIDACAO.md).
 
-[Voltar ao README](../README.md)
+[Voltar ao README](../frontend/README.md)

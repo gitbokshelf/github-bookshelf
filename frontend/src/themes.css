@@ -1,0 +1,461 @@
+/* The paper theme keeps the illustrated book covers in their original palette. */
+:root {
+  color-scheme: dark;
+}
+.theme-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--green);
+  flex-shrink: 0;
+}
+.theme-control select {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 3px 0;
+  max-width: 72px;
+}
+.theme-control:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+.theme-control select:focus-visible {
+  outline: none;
+}
+.topbar-actions {
+  flex-shrink: 0;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  color: #263020;
+  background: #f7f6f0;
+  --green: #3f642c;
+  --muted: #5d6854;
+  --line: #d7dccd;
+  --color-background: #f7f6f0;
+  --color-foreground: #263020;
+  --color-card: #ffffff;
+  --color-muted-foreground: #5d6854;
+  --color-border: #d7dccd;
+  --light-text: #263020;
+  --light-secondary: #4e5f43;
+  --light-muted: #5f6c55;
+  --light-border: #cdd5c3;
+  --light-surface: #ffffff;
+  --light-soft: #edf1e6;
+  --light-active: #e0eacd;
+}
+[data-theme="light"] {
+  button:hover {
+    color: var(--light-text);
+  }
+  .sidebar {
+    background: #efefe6;
+  }
+  .workspace-label,
+  .nav-section-title,
+  .category-count,
+  .curation-about small,
+  .breadcrumb,
+  .curated-label,
+  .sidebar-note p,
+  .search-field,
+  .search-field input::placeholder,
+  .search-field kbd,
+  .library-strip,
+  .library-strip > button,
+  .catalog-heading p,
+  .section-eyebrow,
+  .view-switch button,
+  .sort-select,
+  .platform-pills button,
+  .load-more > span,
+  .card-eyebrow,
+  .card-tags > span:last-child,
+  .editorial-score > span:last-child,
+  .quick-collections small,
+  footer,
+  footer button,
+  .page-heading p,
+  .page-heading small,
+  .collection-description p,
+  .component-credit,
+  .guide-time,
+  .guide-card p,
+  .guide-note p,
+  .shelf-meta,
+  .shelf-card-state button,
+  .empty-state p,
+  .personal-notes small,
+  .source-data dt {
+    color: var(--light-muted);
+  }
+  .main-nav > button,
+  .category-nav button,
+  .category-nav button svg,
+  .breadcrumb strong,
+  .github-button,
+  .text-button,
+  .icon-button,
+  .card-title svg,
+  .card-content > p,
+  .card-foot,
+  .card-foot > span > svg,
+  .save-button,
+  .card-tags > span,
+  .library-strip > span svg,
+  .catalog-heading-right > .text-button,
+  .sort-select select,
+  .active-filters,
+  .active-filters button,
+  .spotlight-copy p,
+  .spotlight-copy > a:last-child,
+  .collections-preview > .catalog-heading > .text-button,
+  .quick-collections > button > svg,
+  footer .footer-brand,
+  .curation-about,
+  .shelf-tabs button,
+  .backup-actions button,
+  .shelf-card-state,
+  .release-line,
+  .modal p,
+  .modal .detail-tagline,
+  .detail-stat,
+  .detail-tabs button,
+  .detail-body > .detail-description,
+  .detail-tags > span,
+  .field-label,
+  .source-data dd,
+  .score-breakdown > div,
+  .score-breakdown b {
+    color: var(--light-secondary);
+  }
+  .catalog-heading h2,
+  .card-title,
+  .library-strip b,
+  .modal,
+  .modal h3,
+  .search-field input {
+    color: var(--light-text);
+  }
+  .main-nav > button:hover,
+  .category-nav button:hover,
+  .github-button:hover,
+  .search-filter:hover,
+  .icon-button:hover,
+  .platform-pills button:hover,
+  .save-button:hover,
+  .quick-collections > button:hover,
+  .backup-actions button:hover {
+    background: var(--light-soft);
+    color: var(--light-text);
+  }
+  .main-nav > button.active,
+  .category-nav button.selected,
+  .platform-pills button.active,
+  .view-switch button.active,
+  .save-button.is-saved,
+  .detail-actions .saved-action {
+    background: var(--light-active);
+    color: #345820;
+    border-color: #91a77a;
+  }
+  .nav-count,
+  .sidebar-note,
+  .sidebar-note button,
+  .github-button,
+  .search-field,
+  .search-field kbd,
+  .search-filter,
+  .result-count,
+  .view-switch,
+  .project-card,
+  .save-button,
+  .card-tags > span,
+  .card-foot,
+  .spotlight,
+  .quick-collections > button,
+  .collection-tile,
+  .guide-card,
+  .guide-note,
+  .backup-actions button,
+  .shelf-tabs,
+  .shelf-card-state,
+  .release-line > span,
+  .empty-state,
+  .modal,
+  .modal .close,
+  .detail-tabs,
+  .detail-tags > span,
+  .detail-actions,
+  .field-label select,
+  .notes-heading select,
+  .field-label textarea,
+  .personal-notes,
+  .source-data > div,
+  .guide-steps > div,
+  .guide-sources a {
+    border-color: var(--light-border);
+  }
+  .search-field,
+  .search-filter,
+  .project-card,
+  .quick-collections > button,
+  .modal,
+  .field-label select,
+  .notes-heading select,
+  .field-label textarea,
+  select option,
+  .sort-select option {
+    background: var(--light-surface);
+  }
+  .search-field:focus-within {
+    border-color: #6e8b55;
+  }
+  .search-field kbd,
+  .result-count,
+  .card-tags > span,
+  .detail-tags > span,
+  .modal .close,
+  .shelf-tabs button > span,
+  .empty-state > span,
+  .curation-avatar {
+    background: var(--light-soft);
+    color: #3d5e2d;
+    border-color: var(--light-border);
+  }
+  .card-tags > span:last-child {
+    background: transparent;
+    border: 0;
+  }
+  .project-card:hover {
+    border-color: #7a9465;
+    box-shadow: 0 12px 25px #35452914;
+  }
+  .sidebar-note {
+    background: radial-gradient(ellipse at 100% 0, #dce6cd, transparent 75%);
+  }
+  .hero {
+    background:
+      radial-gradient(ellipse at 78% 45%, #d0dfb780, transparent 64%),
+      linear-gradient(120deg, #edf0df, #e7edda 55%, #dce7cb);
+    border-color: #c4d2b4;
+  }
+  .hero h1 {
+    color: #263c20;
+  }
+  .hero h1 em {
+    color: #4e6b30;
+  }
+  .eyebrow,
+  .tiny-star,
+  .hero-trust,
+  .hero-copy > p,
+  .scene-label,
+  .scene-caption,
+  .scene-spark {
+    color: #50683d;
+  }
+  .orbital {
+    border-color: #7c96542b;
+  }
+  .book-shelf {
+    opacity: 0.25;
+  }
+  .primary-button,
+  .skip-link {
+    background: #3f642c;
+    color: #fff;
+    border-color: #3f642c;
+  }
+  .primary-button:hover {
+    background: #2f501f;
+    color: #fff;
+  }
+  .secondary-button {
+    background: #e8eedf;
+    border-color: #aebf9b;
+    color: #345123;
+  }
+  .secondary-button:hover {
+    background: #dce7cf;
+    color: #263c20;
+  }
+  .text-button:hover,
+  .editorial-score,
+  .page-heading h1 em,
+  .spotlight-copy h2 em,
+  .collection-description .text-button,
+  .repo-link,
+  .guide-sources a,
+  .start-steps > div > span,
+  .guide-steps > div > span,
+  .modal h2 em,
+  .detail-tabs button[aria-selected="true"],
+  .shelf-tabs button.active {
+    color: #3f642c;
+  }
+  .score-dot,
+  .new-indicator,
+  .status-dot {
+    background: #52783b;
+  }
+  .spotlight {
+    background: #edf1e5;
+  }
+  .collection-tile {
+    background:
+      radial-gradient(ellipse at 50% 30%, #e0e9d1, transparent 75%), #f2f4eb;
+  }
+  .collection-icon {
+    background: #dce8cc;
+    color: #42612f;
+  }
+  .ci-1 {
+    background: #e8dff0;
+    color: #6c5081;
+  }
+  .ci-2 {
+    background: #eee5ca;
+    color: #75602c;
+  }
+  .ci-3 {
+    background: #d7e8e4;
+    color: #396a62;
+  }
+  .guide-card {
+    background: #eaf0df;
+  }
+  .guide-1 {
+    background: #f2edda;
+  }
+  .guide-2 {
+    background: #eee7f4;
+  }
+  .guide-3 {
+    background: #e0eeea;
+  }
+  .guide-icon,
+  .guide-note {
+    color: #4a6538;
+  }
+  .personal-widget {
+    background: #e7efd9;
+    border-color: #bbcd9e;
+  }
+  .personal-widget > span,
+  .personal-widget > span > svg:last-child,
+  .personal-widget b,
+  .personal-widget p {
+    color: #42602d;
+  }
+  .widget-using {
+    background: #eee5f5;
+    border-color: #cdbbdd;
+  }
+  .widget-using > span,
+  .widget-using b,
+  .widget-using p,
+  .shelf-card-state .status-using {
+    color: #705188;
+  }
+  .widget-done {
+    background: #f3ecd5;
+    border-color: #d6c995;
+  }
+  .widget-done > span,
+  .widget-done b,
+  .widget-done p,
+  .shelf-card-state .status-done {
+    color: #776025;
+  }
+  .widget-areas {
+    background: #dfede9;
+    border-color: #adcdc5;
+  }
+  .widget-areas > span,
+  .widget-areas b,
+  .widget-areas p {
+    color: #3d6b61;
+  }
+  .shelf-tabs button.active,
+  .detail-tabs button[aria-selected="true"] {
+    border-color: #507535;
+  }
+  .release-line > span {
+    color: #42642c;
+  }
+  .empty-state {
+    background: #eff3e7;
+  }
+  .modal {
+    box-shadow: 0 30px 100px #25321e3d;
+    scrollbar-color: #9aac89 #edf1e6;
+  }
+  .modal::backdrop {
+    background: #25321e55;
+  }
+  .field-label select,
+  .notes-heading select,
+  .field-label textarea,
+  select option {
+    color: var(--light-text);
+  }
+  .field-label textarea::placeholder {
+    color: var(--light-muted);
+  }
+  .field-hint {
+    color: var(--light-muted) !important;
+  }
+  .caveat {
+    background: #f7f0db;
+    border-color: #d8c790;
+    color: #80672c;
+  }
+  .caveat strong {
+    color: #715820;
+  }
+  .caveat p {
+    color: #79683c;
+  }
+  .score-breakdown i {
+    background: #e3e9da;
+  }
+  .score-breakdown i.filled {
+    background: #5a7b3e;
+  }
+}
+
+@media (max-width: 1100px) {
+  .curated-label {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .topbar-actions {
+    gap: 8px;
+  }
+  .topbar-left {
+    min-width: 0;
+  }
+  .breadcrumb {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .theme-control {
+    padding: 5px 7px;
+    gap: 5px;
+  }
+  .theme-control select {
+    font-size: 10px;
+    max-width: 61px;
+  }
+}

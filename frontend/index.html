@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111311" />
+    <script>
+      (() => {
+        let preference;
+        try { preference = localStorage.getItem("bookshelf:theme"); } catch {}
+        const theme = preference === "light" || preference === "dark"
+          ? preference
+          : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f7f6f0" : "#111311";
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Menos abas abertas. Mais descobertas. Uma estante de projetos open source para criar, aprender e melhorar seu dia."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>GitHub Bookshelf · Sua próxima descoberta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="canonical"
+      href="https://thiagoebias.github.io/github-bookshelf/"
+    />
+    <meta name="author" content="Thiago Ebias" />
+    <meta
+      property="og:title"
+      content="GitHub Bookshelf · Sua biblioteca de possibilidades"
+    />
+    <meta
+      property="og:description"
+      content="Descubra projetos úteis do GitHub, organizados em 8 categorias. Curadoria em português, coleções e estante pessoal."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://thiagoebias.github.io/github-bookshelf/"
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      property="og:image"
+      content="https://thiagoebias.github.io/github-bookshelf/og-image.png"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

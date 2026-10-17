@@ -1,0 +1,70 @@
+.account-modal {
+  max-width: min(540px, calc(100vw - 32px));
+}
+.account-modal > .modal-inner > p {
+  margin-top: 18px;
+}
+.account-modal .field-label input {
+  min-height: 46px;
+  background: #141e10;
+  border: 1px solid #465f34;
+  border-radius: 6px;
+  color: inherit;
+  padding: 11px 12px;
+  width: 100%;
+}
+.account-modal form > button,
+.account-modal .secondary-button {
+  margin-top: 24px;
+}
+.account-links,
+.sync-actions {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.account-links button {
+  min-height: 40px;
+}
+.account-modal .account-email {
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+.account-modal .account-message {
+  color: #c3e99a;
+}
+.account-modal .account-error {
+  color: #f2b9a7;
+}
+[data-theme="light"] .account-modal .field-label input {
+  background: white;
+  border-color: var(--light-border);
+  color: var(--light-text);
+}
+[data-theme="light"] .account-modal .account-message {
+  color: #3f642c;
+}
+[data-theme="light"] .account-modal .account-error {
+  color: #963922;
+}
+@media (max-width: 700px) {
+  .topbar {
+    height: auto;
+    min-height: 70px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 10px;
+  }
+  .topbar-actions {
+    gap: 8px;
+    margin-left: auto;
+  }
+  .breadcrumb {
+    max-width: 100px;
+  }
+  .account-button {
+    padding: 8px;
+  }
+}

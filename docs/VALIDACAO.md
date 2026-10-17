@@ -1,6 +1,6 @@
 # Validação da entrega
 
-Revisão em 16/10/2026. Versão 1.1.0.
+Revisão inicial em 16/10/2026. Versão 1.1.0. As seções seguintes preservam as evidências de cada etapa; o estado mais recente está no [registro obrigatório](REGISTRO-DE-EXECUCAO.md).
 
 ## Catálogo e fontes
 
@@ -57,6 +57,34 @@ A revisão responsiva usa emulação no Chrome; não substitui testes em aparelh
 
 Próximo passo: conferir a experiência em um celular físico e evoluir a curadoria com casos de uso, comparações e feedback real.
 
-Relacionado: [[github-bookshelf/README|Guia do projeto]] e [[github-bookshelf/docs/CURADORIA|Curadoria]].
+Relacionado: [Guia do projeto](../frontend/README.md) e [Curadoria](CURADORIA.md).
 
-[Voltar ao README](../README.md)
+[Voltar ao README](../frontend/README.md)
+
+## Integração em preparação, 17/10/2026
+
+O projeto foi movido, com o histórico Git preservado, para a pasta do OneDrive escolhida pelo proprietário. Não permanece dentro do cofre Obsidian; os links relacionados passaram a ser Markdown relativos.
+
+Supabase foi configurado no projeto exclusivo. O registro detalhado está em [CONFIGURACAO.md](../backend/supabase/CONFIGURACAO.md). Foram conferidos RLS, isolamento de duas identidades em transação desfeita, revisão otimista, validação e bloqueio de acesso anônimo por HTTP. Esses testes não equivalem a login e recuperação por e-mail completos.
+
+No código local foram acrescentados cliente Supabase, contexto de sessão, formulário de acesso/cadastro/recuperação, estante remota, cache por conta e proteção contra troca de sessão durante gravações. O modo claro, a preferência do sistema, o link superior para o perfil pessoal e fontes maiores também estão no código local. O modal passou a ser centralizado explicitamente.
+
+Os seis testes existentes passaram. O frontend abriu no Chrome, com formulário nos temas escuro e claro; a largura emulada de 390 px não apresentou transbordamento horizontal. Descrições dos cartões passaram para 15 px. Essa revisão é parcial e precisa ser ampliada antes da próxima publicação.
+
+Português, inglês e espanhol ainda não estão ativos: há dicionários parciais, sem seletor integrado. A publicação destas alterações e a abertura de cadastros aguardam a conta GitHub exclusiva, a Vercel e a entrega de e-mails de produção. O portal público continua com a versão anteriormente publicada.
+
+## Primeira reorganização e verificação do acesso, 17/10/2026
+
+Registro histórico da primeira tentativa de organização, posteriormente corrigida. Ela concentrou também documentação, ferramentas e cache em `frontend/`. A estrutura vigente separa essas responsabilidades e está em [ARQUITETURA.md](ARQUITETURA.md). A execução e revisão da correção constam no [registro obrigatório](REGISTRO-DE-EXECUCAO.md).
+
+Antes de ajustar referências, foram comparados hashes de 53 arquivos da aplicação após a mudança, sem divergência. Os seis arquivos privados de conexão permaneceram intactos. Workflow, cache do npm, caminhos de artefatos e orientações da Vercel foram ajustados para `frontend`. O alias e a pasta de variáveis do Vite passaram a usar `fileURLToPath`, pois o caminho local tem espaços. Foram conferidos 40 links relativos, sem destino ausente. Os seis testes e o build passaram no novo diretório.
+
+O servidor foi reiniciado em `127.0.0.1:5173`. O login foi preservado e a conta do produto foi conferida pela interface. Um registro temporário de Maccy, com nota e status Em uso, foi salvo e permaneceu após recarregar; a interface indicou sincronização concluída. O registro foi removido e uma nova recarga confirmou a remoção. O teste terminou com a estante autenticada vazia, como estava antes. Não houve preenchimento ou leitura de senha pelo agente.
+
+Essa validação cobre um usuário no Chrome. Recuperação por e-mail, concorrência na interface e transferência entre dispositivos continuam pendentes. Não houve nova publicação pública nesta reorganização.
+
+## Estrutura de produto e registro obrigatório
+
+A estrutura vigente está em [ARQUITETURA.md](ARQUITETURA.md). Frontend, backend Supabase, integrações, documentação, ferramentas e artefatos têm áreas próprias. O registro obrigatório da execução e da revisão desta correção está em [REGISTRO-DE-EXECUCAO.md](REGISTRO-DE-EXECUCAO.md); as regras vinculantes ficam em [AGENTS.md](../AGENTS.md).
+
+O build passou no novo layout, incluindo o orçamento de peso. A revisão da interface confirmou o catálogo, a sessão e a leitura da estante autenticada após mover o ambiente para `backend/supabase/`. A estrutura local foi corrigida; não houve nova publicação ou mudança no schema remoto.

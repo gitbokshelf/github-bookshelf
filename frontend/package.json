@@ -1,0 +1,39 @@
+{
+  "name": "github-bookshelf",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build && node scripts/standalone.mjs && npm run check:bundle",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "refresh": "node ../tools/catalog/refresh-catalog.mjs",
+    "test": "node --test ../tools/tests/*.test.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "lucide-react": "^0.468.0",
+    "motion": "^12.23.0",
+    "@supabase/supabase-js": "2.118.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.0",
+    "esbuild": "0.28.2"
+  },
+  "description": "Um catálogo de projetos do GitHub com curadoria em português, coleções interativas e estante pessoal.",
+  "author": "Thiago Ebias (https://github.com/thiagoebias)",
+  "homepage": "https://thiagoebias.github.io/github-bookshelf/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gitbokshelf/github-bookshelf.git"
+  },
+  "license": "MIT"
+}

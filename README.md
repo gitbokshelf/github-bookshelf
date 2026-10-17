@@ -1,41 +1,41 @@
 # GitHub Bookshelf
 
-[![Publicação](https://github.com/thiagoebias/github-bookshelf/actions/workflows/pages.yml/badge.svg)](https://github.com/thiagoebias/github-bookshelf/actions/workflows/pages.yml)
+[![Validação](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml/badge.svg)](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml)
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-c3e99a)](LICENSE)
 
 [![GitHub Bookshelf: sua biblioteca de possibilidades](docs/assets/cover.svg)](https://thiagoebias.github.io/github-bookshelf/)
 
-Menos abas abertas. Mais descobertas.
+Um portal para descobrir projetos úteis do GitHub, com 150 projetos em 8 categorias, coleções e estante pessoal. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
-Um portal em português para descobrir projetos úteis do GitHub e entender onde eles entram na vida real. Criado por [Thiago Ebias](https://github.com/thiagoebias).
+[Portal publicado](https://thiagoebias.github.io/github-bookshelf/) · [Guia da aplicação](frontend/README.md) · [Curadoria](docs/CURADORIA.md) · [Validação](docs/VALIDACAO.md)
 
-[Abrir o portal](https://thiagoebias.github.io/github-bookshelf/) · [Baixar HTML](https://github.com/thiagoebias/github-bookshelf/releases/latest) · [Como contribuir](CONTRIBUTING.md) · [Fontes e metodologia](docs/CURADORIA.md)
+## Organização e regra obrigatória
 
-## O que você encontra
+A estrutura e as responsabilidades são definidas em [ARQUITETURA.md](docs/ARQUITETURA.md). Toda tarefa deve consultar essa arquitetura e registrar execução e revisão no [registro obrigatório](docs/REGISTRO-DE-EXECUCAO.md), conforme [AGENTS.md](AGENTS.md).
 
-- 150 projetos reais, distribuídos em 8 categorias.
-- Busca por nome, descrição, categoria, tags e sistema, com tratamento de acentos.
-- 24 cartões por vez e opção para exibir todos os resultados.
-- Filtros por sistema, experiência e licença identificada.
-- Ordenação por curadoria, estrelas, avaliação editorial, release, criação e atividade.
-- Coleções com pastas de vidro interativas do 21st.dev.
-- Estante pessoal com favoritos, notas, progresso e widgets reorganizáveis.
-- Exportação e importação da estante em JSON.
-- Guias sobre GitHub, organização de projetos, skills e produtividade no Mac.
-- Uma versão HTML independente gerada no build, para abrir localmente.
+```text
+frontend/             Aplicação do navegador e seu build
+backend/supabase/     Autenticação, banco, funções SQL, RLS e migrações
+integrations/         GitHub, Outlook, Vercel e seus arquivos locais
+docs/                 Arquitetura, decisões, curadoria e validação
+tools/                Manutenção, testes do catálogo e cache ignorado
+artifacts/            Arquivos gerados para entrega
+.github/              Workflow do repositório
+```
 
-As categorias cobrem Mac e produtividade, IA e agentes, web e interfaces, arquivos, finanças pessoais, ferramentas de desenvolvimento, estudo e organização de projetos.
+O código que acessa a API pelo navegador fica no frontend. O código executado no Supabase fica no backend. As credenciais reais são ignoradas pelo Git e não pertencem ao código público.
 
-## Executar localmente
+## Executar
 
-Pré-requisito: Node.js 24 LTS e npm.
+Node.js 24 LTS e npm:
 
 ```bash
+cd frontend
 npm ci
 npm run dev
 ```
 
-Abra a URL informada pelo Vite. Para validar e gerar a versão final:
+Para conferir e gerar a aplicação, dentro de `frontend/`:
 
 ```bash
 npm test
@@ -43,75 +43,16 @@ npm run build
 npm run preview
 ```
 
-O build cria `dist/` para hospedagem e `GitHub Bookshelf.html` na raiz. Esse HTML reúne JavaScript, CSS e catálogo no próprio arquivo. Fontes externas são opcionais; links para os projetos precisam de internet. O arquivo independente pode ser obtido também como artefato da execução do GitHub Actions.
+Saídas: `frontend/dist/` e `artifacts/GitHub Bookshelf.html`. O HTML aberto por arquivo usa a estante de visitante.
 
-## Estrutura
+Para habilitar o Supabase, configure `backend/supabase/.env.local` a partir do exemplo. O Vite localiza essa pasta a partir do próprio arquivo de configuração, inclusive quando o caminho do projeto contém espaços. Consulte [configuração e orientações do Supabase](backend/supabase/CONFIGURACAO.md).
 
-```text
-src/
-  components/
-    layout/          Navegação da aplicação
-    ui/              Componentes reutilizáveis, incluindo os anexos do 21st.dev
-    hero.tsx         Abertura visual da biblioteca
-    project-*.tsx    Capa, cartão e detalhes de projeto
-  data/
-    catalog.json     Retrato dos metadados oficiais do GitHub
-    guides.ts        Conteúdo editorial dos guias
-    index.ts         Categorias, tipos e formatação
-    types.ts         Tipos compartilhados de navegação
-  hooks/
-    use-library.ts   Estado, notas e persistência da estante
-  pages/
-    collections.tsx  Coleções temáticas
-    guides.tsx       Entrada dos guias
-  App.tsx            Busca, filtros e composição das telas
-  styles.css         Identidade visual e responsividade
-scripts/
-  curation.mjs       Agrega a seleção e o contexto editorial
-  curation-extra-*.mjs  Coleções adicionais por área
-  refresh-catalog.mjs  Coleta de metadados públicos via GitHub CLI
-  standalone.mjs     Geração do HTML independente
-public/              Recursos públicos
-.github/workflows/   Validação e publicação no GitHub Pages
-```
+## Estado atual
 
-React 19, TypeScript, Vite, Tailwind CSS 4, Motion e Lucide. A versão hospedada separa aplicação, catálogo e bibliotecas; esbuild os reúne novamente no HTML independente. O alias `@/` aponta para `src/`. Os componentes ficam em `src/components/ui`, conforme a configuração shadcn em `components.json`. Não há Redux, backend ou banco de dados porque a versão atual não precisa deles.
+O portal público mantém a versão já publicada. O código local inclui temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login da conta do produto foi conferido no Chrome. Salvar projeto, nota e progresso, recarregar e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
 
-## Atualizar o catálogo
+Português, inglês e espanhol ainda estão em desenvolvimento, sem seletor ativo. O repositório exclusivo [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf) foi criado. O envio do código, a implantação Vercel, a URL final e o envio transacional de e-mails de produção continuam em preparação. Consulte os registros de cada integração antes da próxima publicação.
 
-O portal publicado não chama a API do GitHub no navegador. Os dados são um retrato com data de consulta visível. A seleção e os textos editoriais ficam em `scripts/curation.mjs` e nos arquivos `scripts/curation-extra-*.mjs` que ele importa.
+## Contribuir e licença
 
-Com [GitHub CLI](https://cli.github.com/) instalado e autenticado:
-
-```bash
-npm run refresh
-npm test
-npm run build
-```
-
-O script consulta apenas endpoints públicos de repositórios, README e releases. Usa a autenticação já gerenciada pelo `gh`, sem copiar tokens para arquivos ou para o navegador. Se uma consulta falhar, preserva o catálogo anterior. A pasta `research/` é um cache local ignorado pelo Git.
-
-Depois de revisar os textos e resultados, faça commit e envie para `main`. O GitHub Actions valida e publica a versão no Pages. A atualização dos dados é manual nesta versão.
-
-## Seus dados
-
-Favoritos, notas, progresso e ordem dos widgets ficam no `localStorage` do navegador. Não há conta, analytics ou sincronização com servidor. Originais, versões locais e GitHub Pages têm armazenamentos separados. Exporte e importe o JSON para levar a estante entre eles. A importação mescla os projetos e substitui as notas e o status dos projetos que já existirem no backup.
-
-## Curadoria e limites
-
-Estrelas e datas vêm da API oficial. Nível, compatibilidade e avaliações são editoriais. A nota não é uma avaliação da comunidade nem certificação de qualidade. Os projetos catalogados não foram instalados como parte da curadoria. Plataformas podem envolver dependências como Docker. Licenças, serviços pagos e requisitos devem ser conferidos nas fontes.
-
-Leia a [metodologia](docs/CURADORIA.md), o [registro de validação](docs/VALIDACAO.md) e os [créditos de terceiros](THIRD_PARTY_NOTICES.md).
-
-## Próximos passos
-
-- Ampliar a curadoria com casos de uso e fontes verificadas.
-- Adicionar comparações entre ferramentas para o mesmo objetivo.
-- Avaliar atualização periódica dos metadados sem perder revisão editorial.
-- Considerar sincronização opcional da estante entre dispositivos.
-
-## Licença
-
-O código original do portal está sob [MIT](LICENSE). Componentes e dependências de terceiros preservam suas próprias atribuições. GitHub Bookshelf é um projeto independente, sem afiliação oficial com o GitHub ou com os projetos listados.
-
-Documentação relacionada: [[github-bookshelf/docs/CURADORIA|Curadoria]] e [[github-bookshelf/docs/VALIDACAO|Validação]]. Os links Markdown acima continuam disponíveis para navegação no GitHub.
+[Como contribuir](CONTRIBUTING.md), [licença MIT](LICENSE) e [créditos](THIRD_PARTY_NOTICES.md). Projeto independente, sem afiliação oficial com o GitHub ou os projetos catalogados.

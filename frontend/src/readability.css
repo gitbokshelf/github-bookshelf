@@ -1,0 +1,310 @@
+/* Interface legível sem depender do zoom do navegador. Capas são ilustrações. */
+:root {
+  --sidebar: 280px;
+}
+.brand > span:last-child {
+  font-size: 16px;
+}
+.brand-serif {
+  font-size: 32px;
+}
+.workspace-label,
+.nav-section-title {
+  font-size: 11px;
+  letter-spacing: 1.3px;
+}
+.main-nav > button,
+.secondary-nav > button {
+  font-size: 14px;
+  height: 44px;
+}
+.category-nav button {
+  font-size: 13px;
+  min-height: 40px;
+}
+.category-count,
+.nav-count {
+  font-size: 12px;
+}
+.curation-about {
+  font-size: 12px;
+}
+.curation-about small {
+  font-size: 11px;
+}
+.sidebar-note p,
+.sidebar-note button {
+  font-size: 13px;
+}
+.breadcrumb,
+.github-button,
+.curated-label,
+.theme-control select {
+  font-size: 13px;
+}
+.search-field {
+  min-height: 48px;
+}
+.search-field input,
+.search-filter {
+  font-size: 15px;
+}
+.search-field input::placeholder {
+  font-size: 14px;
+}
+.eyebrow,
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+}
+.hero-copy > p {
+  font-size: 16px;
+}
+.hero-trust {
+  font-size: 12px;
+}
+.primary-button,
+.secondary-button,
+.text-button {
+  font-size: 14px;
+}
+.library-strip {
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.library-strip > button {
+  font-size: 12px;
+}
+.catalog-heading h2 {
+  font-size: 29px;
+}
+.catalog-heading p,
+.catalog-heading-right > .text-button {
+  font-size: 14px;
+}
+.result-count {
+  font-size: 13px;
+}
+.platform-pills button,
+.sort-select,
+.sort-select select,
+.active-filters,
+.active-filters button {
+  font-size: 13px;
+}
+.card-title {
+  font-size: 19px;
+  gap: 10px;
+}
+.card-eyebrow {
+  font-size: 12px;
+  min-height: 30px;
+}
+.card-content > p {
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 75px;
+}
+.card-tags > span,
+.card-tags > span:last-child {
+  font-size: 11px;
+  padding: 4px 6px;
+}
+.card-foot {
+  font-size: 13px;
+}
+.editorial-score > span:last-child {
+  font-size: 11px;
+}
+.save-button,
+.project-card .save-button {
+  width: 32px;
+  height: 32px;
+}
+.load-more > span,
+.load-more .secondary-button {
+  font-size: 13px;
+}
+.page-heading p,
+.spotlight-copy p,
+.guide-card p,
+.guide-note p {
+  font-size: 16px;
+}
+.page-heading small,
+.component-credit {
+  font-size: 13px;
+}
+.collection-description p,
+.collection-description .text-button {
+  font-size: 14px;
+}
+.quick-collections strong {
+  font-size: 14px;
+}
+.quick-collections small {
+  font-size: 12px;
+}
+.guide-time,
+.guide-note h3 {
+  font-size: 13px;
+}
+.backup-actions button,
+.shelf-tabs button,
+.personal-widget p {
+  font-size: 14px;
+}
+.shelf-meta,
+.shelf-card-state,
+.shelf-card-state button,
+.release-line {
+  font-size: 12px;
+}
+.empty-state p {
+  font-size: 16px;
+}
+.modal p,
+.modal .detail-tagline,
+.start-steps p,
+.guide-steps p {
+  font-size: 15px;
+}
+.modal h3,
+.guide-steps h3 {
+  font-size: 17px;
+}
+.modal .eyebrow,
+.repo-link,
+.detail-stat,
+.detail-tabs button,
+.detail-tags > span {
+  font-size: 13px;
+}
+.caveat strong,
+.caveat p,
+.field-label,
+.field-label select,
+.notes-heading select,
+.field-label textarea {
+  font-size: 14px;
+}
+.field-hint {
+  font-size: 13px !important;
+}
+.personal-notes small,
+.source-data > div,
+.score-breakdown > div,
+.score-breakdown b,
+.guide-sources a {
+  font-size: 13px;
+}
+footer .footer-brand {
+  font-size: 14px;
+}
+footer > p,
+footer button,
+footer > div {
+  font-size: 12px;
+}
+footer {
+  flex-wrap: wrap;
+}
+@media (max-width: 1200px) and (min-width: 901px) {
+  :root {
+    --sidebar: 260px;
+  }
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero {
+    grid-template-columns: 1.3fr 1fr;
+  }
+  .hero h1 {
+    font-size: 34px;
+  }
+  .breadcrumb {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  :root {
+    --sidebar: 0px;
+  }
+  .sidebar {
+    width: 280px;
+  }
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .topbar {
+    gap: 8px;
+  }
+  .topbar-left {
+    flex: 0 0 auto;
+  }
+  .breadcrumb {
+    display: none;
+  }
+  .topbar-actions {
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .github-button,
+  .theme-control select {
+    font-size: 12px;
+  }
+  .hero-copy > p {
+    font-size: 15px;
+  }
+  .hero-trust {
+    font-size: 10px;
+    white-space: normal;
+  }
+  .hero .eyebrow {
+    font-size: 9px;
+  }
+  .hero-actions .primary-button {
+    font-size: 13px;
+  }
+  .library-strip {
+    gap: 10px 18px;
+    font-size: 12px;
+  }
+  .catalog-heading h2 {
+    font-size: 25px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-content > p {
+    min-height: 0;
+  }
+  .platform-pills {
+    flex-wrap: wrap;
+  }
+  .filter-bar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .sort-select select {
+    max-width: 190px;
+  }
+  .quick-collections {
+    grid-template-columns: 1fr 1fr;
+  }
+  .shelf-meta {
+    flex-direction: column;
+  }
+  .shelf-tabs {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .modal .detail-tabs {
+    gap: 18px;
+  }
+  .detail-tabs button {
+    font-size: 12px;
+  }
+}
