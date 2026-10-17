@@ -246,7 +246,7 @@ Pedido: criar área própria e revisar o projeto contra ataques e sobrecarga de 
 
 Responsável: Codex, executor e revisor desta sessão, sem auditoria independente.
 
-Estado: em execução.
+Estado: rodada defensiva concluída, com riscos operacionais pendentes registrados e conferência final na continuidade abaixo.
 
 Estado inicial: Git limpo, aplicação estática na Vercel com Supabase para contas/estantes. Há RLS e revisão otimista no backend, mas faltam política formal de segurança, controles HTTP próprios, testes automatizados de segurança e ensaio reprodutível de carga.
 
@@ -280,7 +280,7 @@ Conferência adicional antes do commit: coleções 21st.dev renderizadas e pasta
 
 Pedido: excluir arquivos, trechos de teste e dados sem uso ou validade, mantendo somente o necessário ao produto. Continuidade: corrigir os alertas encontrados pela primeira análise CodeQL e conferir a publicação.
 
-Responsável: Codex, executor e revisor, sem auditor independente. Estado: em execução.
+Responsável: Codex, executor e revisor, sem auditor independente. Estado: limpeza e revisão delimitada concluídas; pendências do produto preservadas explicitamente.
 
 Escopo e cuidado: inventariar arquivos e referências; remover cache de pesquisa sem consumidor, fixtures sintéticas já usadas, snapshot inicial obsoleto, rascunhos de idioma sem importação e configuração de scaffolding sem uso. Preservar credenciais, dados de usuários, migração aplicada, histórico obrigatório e testes ativos de regressão. Os idiomas solicitados continuam pendentes de implementação; rascunhos removidos permanecem recuperáveis pelo Git, sem apresentá-los como recurso ativo.
 
@@ -309,3 +309,17 @@ Continuidade da conferência da limpeza e dos alertas:
 - HTML independente final aberto no Safari, mostrando 150 projetos e coleções reais. Os componentes receberam os dados da aplicação, sem fallbacks fictícios. Nenhum dado autenticado foi editado.
 
 Publicação: correção adicional preparada. A consulta final de alertas é obrigatória antes de concluir.
+
+Revisão final pelo próprio Codex, 17/10/2026:
+
+- Código `ee6902e` enviado e publicado. CI 39039774205 e segurança 39039774152 concluídas com sucesso. API CodeQL mostrou os quatro alertas como fixed e consulta de abertos retornou zero. Não houve descarte manual ou supressão para obter o resultado.
+- Gitleaks final examinou 17 commits/~1,18 MB sem achados, além dos diffs preparados. Quinze testes haviam passado antes da última correção; a suíte final tem dezesseis aprovados. Build, grafo de 30 fontes, TypeScript estrito e AST HTML5 aprovados, com ~251,7 KB de JS gzip.
+- Domínio próprio respondeu HTTP 200 com o módulo final, sete headers comparados e sete recursos próprios 200. Relatório atual em `artifacts/security/hosting.json`. Safari de produção recarregou e manteve Minha conta e Estante salva na sua conta, com contadores reais, sem editar dados.
+- HTML independente final aberto no Safari com 150 projetos e coleções. Servidor preview e duas abas de ensaio desta rodada encerrados; aba de produção preservada. Fixtures já excluídas.
+- Conferidos caminhos e documentação corrente, inclusive remoção das referências ao cache/scaffolding desativados. Validação corrente consolidada em docs/VALIDACAO.md; a trilha histórica permanece neste registro. Arquivos de conexão/segredos e estantes do proprietário foram preservados.
+
+Conclusão: limpeza dos itens ociosos identificados, remoção de demonstrações fictícias, engenharia própria de segurança, correções e revisão delimitada concluídas e publicadas. A análise de grafo não certifica todo seletor CSS ou dependência transitiva como usado em cada interação; não foi feita remoção cega desses elementos.
+
+Permanecem pendentes SMTP/recuperação, idiomas/seletor, CAPTCHA, quota de escrita no backend, alertas operacionais, revisão completa de acessos/MFA, backup/restauração, testes de isolamento automatizados e capacidade autenticada em staging. Repositório pessoal anterior não foi excluído nesta tarefa. Não declarar segurança absoluta, auditoria independente ou capacidade de produção sem ensaio.
+
+Próximo passo prioritário: concluir ciclo de acesso e proteção de automação, com quotas no backend e ambiente separado para ensaios/restore. Documentação final desta conferência enviada em commit próprio, sem mudança adicional da aplicação.

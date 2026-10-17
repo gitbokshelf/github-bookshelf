@@ -13,7 +13,7 @@ Catálogo com 150 projetos únicos em oito categorias. Metadados são um retrato
 - Dezesseis testes aprovados: catálogo, contratos de backup, tamanho UTF-8, entradas malformadas, chaves hostis, URLs, headers, CSS do componente e inspeção de scripts.
 - TypeScript, grafo de 30 fontes, Vite, HTML independente, orçamento e inspeção da distribuição aprovados. Aproximadamente 251,7 KB gzip de JavaScript em quatro módulos. Nenhum import local ausente, fonte sem vínculo ou declaração local sem uso identificada pelo conjunto de verificações.
 - Auditoria npm completa: zero vulnerabilidades conhecidas reportadas. Gitleaks verificou histórico e diff preparado sem achados nos padrões examinados. Isso não prova ausência de falhas inéditas ou de todo tipo de segredo.
-- Primeira execução CodeQL encontrou três alertas nas ferramentas de verificação. Correções e regressão foram implementadas; o resultado da nova análise e da publicação fica no registro de execução.
+- CodeQL encontrou quatro alertas nas ferramentas ao longo da revisão. Correções e regressões foram implementadas; a análise final confirmou todos corrigidos e zero abertos, com CI e publicação aprovadas para ee6902e.
 - Publicação conferida com HTTP 200, sete headers esperados e sete recursos próprios com HTTP 200. Assets com hash usam cache imutável; script de tema permanece revalidável.
 - Safari de produção: sessão e leitura de estante mantidas após implantação da CSP, sem edição de dados da conta.
 - Safari local: modo claro preservado após recarregar, busca por Maccy, detalhes, coleções 21st.dev e abertura de pasta. Backup sintético válido importado; nota hostil exibida como texto; backup inválido rejeitado sem apagar a estante. Item e arquivos sintéticos removidos ao terminar.

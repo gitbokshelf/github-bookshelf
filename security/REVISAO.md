@@ -18,7 +18,8 @@ Executor e revisor: Codex. Não houve auditor independente ou pentest completo. 
 | TypeScript, Vite, HTML independente e orçamento | Aprovados, aproximadamente 251,7 KB gzip de JS | Não prova acessibilidade ou escala |
 | Distribuição | 9 arquivos conferidos, scripts próprios e padrões administrativos examinados ausentes | Scanner de padrões não detecta todo segredo possível |
 | npm audit completo | 0 vulnerabilidades conhecidas reportadas | Não cobre falha inédita ou regra de negócio |
-| Gitleaks 8.30.1, histórico | 14 commits, aproximadamente 1,07 MB, nenhum achado | Prévio ao commit desta entrega; mudanças novas conferidas antes de enviar |
+| Gitleaks 8.30.1, histórico | 17 commits, aproximadamente 1,18 MB, nenhum achado | Histórico até ee6902e e diffs preparados conferidos; não detecta todo tipo de segredo |
+| CodeQL security-extended | Quatro alertas corrigidos, zero abertos após análise 39039774152 | Escopo da análise estática, sem certificação/pentest completo |
 | Supabase anônimo | Leitura e RPC negados com HTTP 401 | Duas requisições, sem JWT de usuário; não prova isolamento entre contas |
 | Auth no painel | Quotas registradas; CAPTCHA off e SMTP próprio pendente | Sem mudança de limite e sem ataque simulado |
 | Safari local com CSP | Catálogo, busca Maccy, detalhes e tema claro após recarregar e coleções 21st.dev com abertura da pasta conferidos | Sem novo cadastro/recuperação ou edição de conta |
@@ -40,12 +41,14 @@ Relatórios sanitizados ignorados: `artifacts/security/`; resultados públicos r
 
 Conclusão: primeira rodada defensiva com correções concretas e evidência delimitada. O produto não deve ser anunciado como invulnerável, auditado integralmente ou capaz de atender um volume específico de produção. A operação contínua e os riscos abertos fazem parte da entrega profissional.
 
-## Análise, correção e limpeza na continuidade
+## Conferência final e limpeza
 
-A primeira execução CodeQL concluiu com três alertas nas ferramentas: verificação de tags sem variação de caixa e dois fluxos de leitura de arquivo para HTTP no teste anônimo. A inspeção passou a conferir caixa, origem própria, atributos duplicados e scripts incompletos, com regressão. O teste de backend deixou de ler arquivo de conexão: obtém somente a chave já pública no módulo da publicação e acessa destinos fixos, sem ler .env ou sessão. Nova análise precisa confirmar o estado dos alertas.
+Código final desta rodada em `ee6902e`: CI 39039774205, segurança 39039774152 e implantação Vercel aprovadas. API de code scanning confirmou os quatro achados como corrigidos, sem alertas abertos. Os fluxos de arquivo para HTTP saíram do teste anônimo; a verificação obtém somente chave já pública na distribuição, sem ler .env ou sessão, e usa destinos fixos.
 
-Safari de produção após implantação: sessão e leitura da estante mantidas. Safari local: backup sintético importado, nota hostil exibida como texto, backup inválido rejeitado preservando o item; item sintético removido ao terminar, voltando a zero. Fixtures temporárias removidas na limpeza solicitada.
+A inspeção usa AST HTML5 por parse5 8.0.1 e rejeita HTML malformado, atributos duplicados e scripts fora da distribuição. O empacotador independente escapa caracteres de controle e fechamentos de script em qualquer caixa e valida a sintaxe JS resultante. Parser, testes e build passaram. HTML independente abriu no Safari com 150 projetos e coleções reais.
 
-O reteste automatizado encerrou os três alertas iniciais e detectou uma variante adicional de fechamento HTML. A inspeção passou a usar AST com parse5 8.0.1, rejeitando HTML malformado, atributos duplicados e scripts fora da distribuição. O parser encontrou caracteres de controle literais no JavaScript minificado do HTML independente; o empacotador passou a escapá-los e validar a sintaxe JS, além de proteger fechamentos de script em qualquer caixa. Dezesseis testes e build com análise HTML5 passaram; alertas finais ainda serão consultados após envio.
+Removidos 324 arquivos/~3,60 MB sem uso, incluindo cache, rascunhos não integrados, fixtures e snapshots superados. Retirados nove widgets e três arquivos fictícios dos componentes; dados reais são obrigatórios. TypeScript e grafo de 30 fontes conferidos. Testes ativos e histórico de migração foram mantidos.
 
-A limpeza também retirou nove widgets e três arquivos fictícios de demonstração dos componentes 21st.dev. A aplicação fornece os itens reais obrigatórios. HTML independente abriu no Safari com 150 projetos e coleções reais após a mudança, sem editar dados do proprietário.
+Safari local: backup sintético importado, nota hostil exibida como texto, backup inválido rejeitado preservando o item. Item sintético removido, estante local voltou a zero e fixtures foram excluídas. Safari de produção: sessão e leitura da estante preservadas após publicação, sem alteração de dados da conta. Sete headers e sete recursos próprios conferidos por HTTP. Servidor de preview e abas temporárias desta rodada encerrados.
+
+Evidências e limites desta revisão estão no registro obrigatório. As pendências da tabela anterior permanecem abertas; a limpeza e as análises não representam monitoramento operacional, capacidade de produção medida ou proteção absoluta.
