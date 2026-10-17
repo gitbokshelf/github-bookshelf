@@ -85,7 +85,7 @@ A estante de visitante fica separada das contas. Para uma conta, o cache local �
 
 Comandos da aplicação: `npm --prefix frontend test` e `npm --prefix frontend run build`. O build gera `frontend/dist/` e `artifacts/GitHub Bookshelf.html`.
 
-O workflow permanece em `.github/workflows/`, com diretório de execução `frontend`, cache em `frontend/package-lock.json` e artefatos nos caminhos acima. Na Vercel, usar a raiz do repositório e o arquivo `vercel.json`: instalação e build apontam para `frontend`, e a saída é `frontend/dist`. Isso mantém os diretórios irmãos disponíveis para as ferramentas de build. A CI valida em `ci.yml`; a publicação na nova conta será feita pela integração da Vercel, sem exigir GitHub Pages.
+O workflow permanece em `.github/workflows/`, com diretório de execução `frontend`, cache em `frontend/package-lock.json` e artefatos nos caminhos acima. Na Vercel, usar a raiz do repositório e o arquivo `vercel.json`: instalação e build apontam para `frontend`, e a saída é `frontend/dist`. Isso mantém os diretórios irmãos disponíveis para as ferramentas de build. A CI valida em `ci.yml`; a publicação na nova conta é feita pela integração da Vercel, sem exigir GitHub Pages.
 
 O Vite resolve `backend/supabase/` a partir do arquivo de configuração, com `fileURLToPath`. Isso evita depender do diretório do terminal e trata espaços no caminho do projeto. Na hospedagem, os valores são configurados como variáveis de ambiente, sem enviar o arquivo local.
 
@@ -105,6 +105,6 @@ Cada mudança deve preservar os dados, passar pelos testes apropriados e registr
 
 O login da conta do produto, a gravação de um projeto com nota e progresso, a persistência após recarregar e a remoção do registro temporário foram conferidos no Chrome. Há testes de isolamento no banco. Recuperação de senha, dois dispositivos e concorrência pela interface continuam pendentes.
 
-Português, inglês e espanhol estão em elaboração, sem seletor completo ativo. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O envio do código, SMTP de produção, implantação Vercel e domínio permanecem em preparação. A versão pública anterior continua ativa até uma nova publicação validada.
+Português, inglês e espanhol estão em elaboração, sem seletor completo ativo. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://github-bookshelf.vercel.app/`, com Supabase configurado para essa origem. SMTP de produção, domínio próprio e validações adicionais de autenticação permanecem pendentes. O endereço antigo da conta pessoal foi preservado como publicação anterior.
 
 [Regras obrigatórias](../AGENTS.md) · [Registro](REGISTRO-DE-EXECUCAO.md) · [Mapa geral](../README.md)

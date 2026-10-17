@@ -1,6 +1,8 @@
 # Vercel
 
-Conta dedicada confirmada no Safari, equipe `githubbokshelf` e perfil `githubbokshelf-5039`. O e-mail fica no cadastro privado da integração. A conexão GitHub e a implantação ainda não foram concluídas.
+Conta dedicada confirmada no Safari, equipe `githubbokshelf` e perfil `githubbokshelf-5039`. O e-mail fica no cadastro privado da integração. A conexão GitHub foi concluída e a primeira implantação ficou Ready em 17/10/2026.
+
+Portal público: [github-bookshelf.vercel.app](https://github-bookshelf.vercel.app/). Painel: [projeto Vercel](https://vercel.com/githubbokshelf/github-bookshelf). Primeira implantação: `dpl_FEcyMRNByxeThiqEGzwofFiXeRVj`, código `9f61adb`. O endereço público respondeu HTTP 200 sem autenticação.
 
 ## Build do monorepositório
 
@@ -12,7 +14,7 @@ Configurar no painel as variáveis `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHA
 
 Conectar somente `gitbokshelf/github-bookshelf` na instalação GitHub quando a plataforma oferecer seleção por repositório. A conexão requer revisão das permissões na tela de autorização.
 
-Após a implantação, registrar a URL real, atualizar canonical/OG e adicionar essa origem aos retornos exatos e à Site URL no Supabase. Validar o endereço público e a autenticação antes de declarar a publicação concluída.
+A Site URL do Supabase foi atualizada para `https://github-bookshelf.vercel.app/`, também incluída como retorno exato. Os retornos locais e do portal anterior foram preservados, sem curingas. Canonical e OG apontam para a URL de produção. O SMTP transacional de produção e a recuperação completa continuam pendentes; criar as contas dos provedores não configura esse envio.
 
 Credenciais e metadados locais devem usar `*.local.*` ou `private/`. O diretório `.vercel/` também é ignorado pelo Git.
 

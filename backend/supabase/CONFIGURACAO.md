@@ -36,9 +36,9 @@ Migração: [202610170001_user_shelves.sql](migrations/202610170001_user_shelves
 
 Login por e-mail habilitado, cadastro permitido, confirmação de e-mail exigida e senha mínima de 12 caracteres. Login anônimo continua desabilitado. O frontend usa PKCE, renovação de sessão e recuperação de senha. Senhas são enviadas diretamente ao Supabase pelo SDK e não são gravadas nos arquivos do projeto.
 
-Site URL temporária: `https://thiagoebias.github.io/github-bookshelf/`.
+Site URL de produção: `https://github-bookshelf.vercel.app/`, configurada em 17/10/2026 após a implantação.
 
-Retornos exatos permitidos: portal atual, `127.0.0.1` e `localhost` nas portas 5173 e 4173. Ao definir a Vercel/domínio, atualizar a Site URL e a lista, removendo endereços que deixarem de ser usados. Não foram liberados curingas de domínio.
+Retornos exatos permitidos: `https://github-bookshelf.vercel.app/`, portal anterior da conta pessoal, `127.0.0.1` e `localhost` nas portas 5173 e 4173. Ao adotar domínio próprio, atualizar a Site URL e a lista. Não foram liberados curingas de domínio.
 
 ## Validação feita
 
@@ -53,7 +53,7 @@ Retornos exatos permitidos: portal atual, `127.0.0.1` e `localhost` nas portas 5
 - SMTP próprio ou Send Email Hook: o remetente padrão do Supabase só atende membros da organização e tem limite baixo. Não é um serviço de cadastro público em produção.
 - Validar entrega dos e-mails de confirmação e recuperação, recuperação completa de senha e entrada em dois dispositivos. O login da conta do produto e a persistência no portal já foram conferidos no Chrome.
 - Testar duas sessões/dispositivos, alternância de contas, uso offline e resolução de conflitos na interface.
-- Publicar com variáveis de ambiente na Vercel. Arquivos locais ignorados não são enviados ao provedor.
+- Validar o ciclo completo de autenticação no endereço de produção. URL e chave publicável foram configuradas na Vercel; arquivos locais ignorados não foram enviados.
 - Definir e conferir URL final, domínio e textos de privacidade antes de abrir cadastros ao público.
 
 ## Fontes oficiais
@@ -80,7 +80,7 @@ O HTML aberto por `file://` mantém o modo de visitante. Login e sincronização
 
 ## O que não foi feito
 
-Não foi copiada a chave secret/service_role, não foi acessada a senha do banco, não foi criado login com senha inventada e não foi enviada mensagem à caixa postal. Nenhum plano pago, domínio ou serviço de envio foi contratado. A conta Vercel e a transferência para o GitHub exclusivo ainda dependem da conclusão das contas pelo proprietário.
+Não foi copiada a chave secret/service_role, não foi acessada a senha do banco, não foi criado login com senha inventada e não foi enviada mensagem à caixa postal. Nenhum plano pago, domínio ou serviço de envio foi contratado. A publicação na Vercel e o repositório exclusivo foram configurados na etapa seguinte, registrada na documentação das integrações.
 
 ## Estado ao encerrar esta etapa
 

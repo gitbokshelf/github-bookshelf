@@ -3,11 +3,11 @@
 [![Validação](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml/badge.svg)](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml)
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-c3e99a)](LICENSE)
 
-[![GitHub Bookshelf: sua biblioteca de possibilidades](docs/assets/cover.svg)](https://thiagoebias.github.io/github-bookshelf/)
+[![GitHub Bookshelf: sua biblioteca de possibilidades](docs/assets/cover.svg)](https://github-bookshelf.vercel.app/)
 
 Um portal para descobrir projetos úteis do GitHub, com 150 projetos em 8 categorias, coleções e estante pessoal. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
-[Portal publicado](https://thiagoebias.github.io/github-bookshelf/) · [Guia da aplicação](frontend/README.md) · [Curadoria](docs/CURADORIA.md) · [Validação](docs/VALIDACAO.md)
+[Portal publicado](https://github-bookshelf.vercel.app/) · [Guia da aplicação](frontend/README.md) · [Curadoria](docs/CURADORIA.md) · [Validação](docs/VALIDACAO.md)
 
 ## Organização e regra obrigatória
 
@@ -49,9 +49,9 @@ Para habilitar o Supabase, configure `backend/supabase/.env.local` a partir do e
 
 ## Estado atual
 
-O portal público mantém a versão já publicada. O código local inclui temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login da conta do produto foi conferido no Chrome. Salvar projeto, nota e progresso, recarregar e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
+O portal está publicado na Vercel, com código aberto na conta `gitbokshelf`, temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login da conta do produto foi conferido no Chrome. Salvar projeto, nota e progresso, recarregar e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
 
-Português, inglês e espanhol ainda estão em desenvolvimento, sem seletor ativo. O repositório exclusivo [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf) foi criado. O envio do código, a implantação Vercel, a URL final e o envio transacional de e-mails de produção continuam em preparação. Consulte os registros de cada integração antes da próxima publicação.
+Português, inglês e espanhol ainda estão em desenvolvimento, sem seletor ativo. O repositório exclusivo [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf) foi criado. O código foi enviado e a primeira implantação na Vercel respondeu HTTP 200 sem autenticação. O envio transacional de e-mails de produção continua pendente. Consulte os registros de cada integração antes da próxima publicação.
 
 ## Contribuir e licença
 

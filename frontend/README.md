@@ -3,13 +3,13 @@
 [![Validação](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml/badge.svg)](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml)
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-c3e99a)](../LICENSE)
 
-[![GitHub Bookshelf: sua biblioteca de possibilidades](../docs/assets/cover.svg)](https://thiagoebias.github.io/github-bookshelf/)
+[![GitHub Bookshelf: sua biblioteca de possibilidades](../docs/assets/cover.svg)](https://github-bookshelf.vercel.app/)
 
 Menos abas abertas. Mais descobertas.
 
 Um portal em português para descobrir projetos úteis do GitHub e entender onde eles entram na vida real. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
-[Abrir o portal](https://thiagoebias.github.io/github-bookshelf/) · [Baixar HTML](https://github.com/thiagoebias/github-bookshelf/releases/latest) · [Como contribuir](../CONTRIBUTING.md) · [Fontes e metodologia](../docs/CURADORIA.md)
+[Abrir o portal](https://github-bookshelf.vercel.app/) · [HTML nos artefatos da CI](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml) · [Como contribuir](../CONTRIBUTING.md) · [Fontes e metodologia](../docs/CURADORIA.md)
 
 ## O que você encontra
 
@@ -104,7 +104,7 @@ npm run build
 
 O script consulta apenas endpoints públicos de repositórios, README e releases. Usa a autenticação já gerenciada pelo `gh`, sem copiar tokens para arquivos ou para o navegador. Se uma consulta falhar, preserva o catálogo anterior. A pasta `tools/research/`, na raiz do projeto, é um cache local ignorado pelo Git.
 
-Depois de revisar os textos e resultados, faça commit e envie para `main`. O GitHub Actions valida a mudança; a integração da Vercel publicará o frontend quando a conexão e a implantação estiverem concluídas. A atualização dos dados é manual nesta versão.
+Depois de revisar os textos e resultados, faça commit e envie para `main`. O GitHub Actions valida a mudança; a integração da Vercel publica o frontend a partir de `main`. A atualização dos dados é manual nesta versão.
 
 ## Seus dados
 
