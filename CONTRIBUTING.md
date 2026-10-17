@@ -16,4 +16,6 @@ Antes de iniciar qualquer tarefa, consulte [AGENTS.md](AGENTS.md), [a arquitetur
 4. Entre em `frontend/` e rode `npm test` e `npm run build`.
 5. Confira visualmente a tela afetada e descreva o que validou no pull request.
 
-Mudanças de plataforma, hospedagem ou persistência devem explicar como preservam as estantes existentes. Não versione arquivos de ambiente, backups pessoais ou o cache `tools/research/`. As integrações ficam em `integrations/` e o backend em `backend/supabase/`; os dados privados de conexão continuam ignorados pelo Git.
+Mudanças de plataforma, hospedagem ou persistência devem explicar como preservam as estantes existentes. Não versione arquivos de ambiente, backups pessoais ou relatórios privados. As integrações ficam em `integrations/` e o backend em `backend/supabase/`; os dados privados de conexão continuam ignorados pelo Git.
+
+Mudanças em segurança devem seguir [security/README.md](security/README.md). Testes ativos fazem parte da entrega. O build também rejeita fontes sem vínculo com a aplicação e declarações locais sem uso.

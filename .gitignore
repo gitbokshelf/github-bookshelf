@@ -1,7 +1,6 @@
 # Dependências, builds, cache e saídas geradas
 node_modules/
 dist/
-research/
 *.tsbuildinfo
 .DS_Store
 artifacts/*

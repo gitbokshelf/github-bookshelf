@@ -13,7 +13,7 @@ GitHub Bookshelf/
 │   ├── public/                  Recursos públicos do portal
 │   ├── scripts/standalone.mjs    Empacotamento específico do frontend
 │   ├── package.json             Comandos e dependências da aplicação
-│   ├── vite.config.ts           Build, alias e localização do ambiente
+│   ├── vite.config.ts           Build e localização do ambiente
 │   └── dist/                    Aplicação hospedável gerada, ignorada
 ├── backend/
 │   └── supabase/                Backend gerenciado do produto
@@ -32,7 +32,7 @@ GitHub Bookshelf/
 ├── tools/
 │   ├── catalog/                 Curadoria e coleta de metadados
 │   ├── tests/                   Integridade do catálogo
-│   └── research/                Cache local ignorado
+│   └── check-source-usage.mjs    Grafo de fontes sem arquivos ociosos
 ├── artifacts/                   HTML independente gerado, ignorado
 ├── .github/                     CI e publicação do frontend
 ├── AGENTS.md                    Regras obrigatórias de trabalho
@@ -107,7 +107,7 @@ Cada mudança deve preservar os dados, passar pelos testes apropriados e registr
 
 O login da conta do produto, a gravação de um projeto com nota e progresso, a persistência após recarregar e a remoção do registro temporário foram conferidos no Chrome. Há testes de isolamento no banco. Recuperação de senha, dois dispositivos e concorrência pela interface continuam pendentes.
 
-Português, inglês e espanhol estão em elaboração, sem seletor completo ativo. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://githubbokshelf.hubdetrabalho.com.br/`, com Supabase configurado para essa origem. O subdomínio próprio usa CNAME na Locaweb e produção na Vercel. SMTP de produção e validações adicionais de autenticação permanecem pendentes. O endereço antigo da conta pessoal foi preservado como publicação anterior.
+Português, inglês e espanhol continuam pendentes de integração, sem seletor ativo; rascunhos ociosos foram removidos na limpeza. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://githubbokshelf.hubdetrabalho.com.br/`, com Supabase configurado para essa origem. O subdomínio próprio usa CNAME na Locaweb e produção na Vercel. SMTP de produção e validações adicionais de autenticação permanecem pendentes. O endereço antigo da conta pessoal foi preservado como publicação anterior.
 
 [Regras obrigatórias](../AGENTS.md) · [Registro](REGISTRO-DE-EXECUCAO.md) · [Mapa geral](../README.md)
 
@@ -126,3 +126,5 @@ A área `security/` concentra modelo de ameaças, revisão, operação, prompt i
 O teste de build em `security/tools/check-build.mjs` rejeita scripts inline/externos, arquivos privados/sourcemaps e padrões administrativos examinados. Os testes em `security/tests/` verificam contrato de importação, tamanho, chaves hostis e configuração HTTP. O atualizador de catálogo valida slugs/URLs e não executa READMEs. As regras de agentes são obrigatórias, mas não representam sandbox técnico implementado.
 
 CI e workflows de segurança têm timeout e Actions por SHA; Dependabot propõe atualizações. O GitHub tem proteção de push/secret scanning e relatos privados. Continuam pendentes: quota de gravação na API, CAPTCHA, recuperação/SMTP, restauração comprovada, observabilidade com alertas e ensaio de capacidade autenticada em staging. Ver `security/REVISAO.md`.
+
+Após a limpeza de 17/10/2026, o build também confere o grafo de fontes a partir da entrada da aplicação e rejeita arquivos sem vínculo/imports ausentes. TypeScript rejeita declarações locais sem uso. Cache de READMEs e scaffolding sem consumidor foram removidos; o atualizador mantém somente o catálogo necessário. Não remover testes de regressão, migrações aplicadas ou evidências vigentes sob pretexto de limpeza.

@@ -13,13 +13,12 @@ import {
   projects,
   categories,
   score,
-  compact,
   date,
   fetchedAt,
   type Project,
 } from "./data";
-import { useLibrary, type Library } from "./hooks/use-library";
-import { guideList, type Guide } from "./data/guides";
+import { useLibrary } from "./hooks/use-library";
+import type { Guide } from "./data/guides";
 import Modal from "./components/ui/modal";
 import ProjectCard from "./components/project-card";
 import ProjectDetails from "./components/project-details";

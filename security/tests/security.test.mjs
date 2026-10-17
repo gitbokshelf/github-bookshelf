@@ -76,3 +76,12 @@ test('Componente 21st.dev usa CSS próprio compatível com a CSP', () => {
   assert.ok(component.includes('import "./glass-folder-cards.css"'));
   assert.ok(fs.readFileSync(new URL('../../frontend/src/components/ui/glass-folder-cards.css',import.meta.url),'utf8').includes('.gf-root'));
 });
+
+import { hostedScripts } from '../tools/inspect-html.mjs';
+test('Inspeção de scripts rejeita inline, origem externa e variações de caixa', () => {
+  const own = '<script src="./theme-init.js"></script><script type="module" src="./assets/index-app.js"></script>';
+  assert.deepEqual(hostedScripts(own), ['./theme-init.js', './assets/index-app.js']);
+  assert.deepEqual(hostedScripts(own.toUpperCase()), ['./THEME-INIT.JS', './ASSETS/INDEX-APP.JS']);
+  for (const injection of ['<SCRIPT>alert(1)</SCRIPT>', '<script src="https://evil.example/code.js"></script>', '<ScRiPt src="./ok.js">alert(1)</sCrIpT>', '<script src="./ok.js"/>', '<script data-src="./ok.js" src="https://evil.example/code.js"></script>', '<script src="./ok.js" src="./other.js"></script>'])
+    assert.throws(() => hostedScripts(own+injection));
+});

@@ -275,3 +275,27 @@ Riscos ainda abertos: SMTP/recuperação; CAPTCHA; quota de escrita por conta no
 Publicação: alterações locais preparadas; envio, CI/CodeQL e headers de produção serão registrados após conferência real.
 
 Conferência adicional antes do commit: coleções 21st.dev renderizadas e pasta Mac aberta no Safari sob CSP após extração do CSS. Bundle final com 251,8 KB gzip de JavaScript. Diff preparado examinado pelo Gitleaks (~120 KB) sem achados. Documentos e links relativos revisados sem destinos ausentes. Nenhuma credencial/arquivo local foi preparado para commit.
+
+## 17/10/2026: limpeza de conteúdo sem uso e fechamento da revisão defensiva
+
+Pedido: excluir arquivos, trechos de teste e dados sem uso ou validade, mantendo somente o necessário ao produto. Continuidade: corrigir os alertas encontrados pela primeira análise CodeQL e conferir a publicação.
+
+Responsável: Codex, executor e revisor, sem auditor independente. Estado: em execução.
+
+Escopo e cuidado: inventariar arquivos e referências; remover cache de pesquisa sem consumidor, fixtures sintéticas já usadas, snapshot inicial obsoleto, rascunhos de idioma sem importação e configuração de scaffolding sem uso. Preservar credenciais, dados de usuários, migração aplicada, histórico obrigatório e testes ativos de regressão. Os idiomas solicitados continuam pendentes de implementação; rascunhos removidos permanecem recuperáveis pelo Git, sem apresentá-los como recurso ativo.
+
+Diagnóstico inicial: TypeScript com noUnusedLocals/noUnusedParameters identificou três imports sem uso em App.tsx. Sete JSON de localização não são importados por nenhum módulo. Cache `tools/research/` (~3,9 MB) é somente escrito pelo atualizador, sem leitura no projeto. Configuração components.json aponta aliases de scaffolding para pasta inexistente e não é usada por build/scripts. Dependências/build atual permanecem necessários.
+
+Validação prevista: grafo de imports e TypeScript sem declarações/parâmetros locais ociosos, testes/build, referências/links, inspeção de segredos, nova execução CodeQL com consulta de alertas e conferência da publicação. Não excluir arquivo pessoal ou credencial por interpretação de nome.
+
+Execução e revisão antes do envio da limpeza:
+
+- Removidos 324 arquivos/~3,60 MB: 310 entradas de cache de pesquisa sem consumidor, sete rascunhos de idiomas não integrados, configuração de scaffolding/aliases sem uso, metadados locais de hospedagem anterior, dois backups sintéticos, dois snapshots iniciais superados e arquivo de metadados do Finder. Inventário sanitizado em `artifacts/security/cleanup.json`. A cópia temporária de diagnóstico desta sessão também foi removida.
+- Atualizador deixou de produzir cache de READMEs. Três imports ociosos removidos; TypeScript passou a rejeitar declarações/parâmetros locais sem uso. Build ganhou verificação do grafo de 30 fontes, sem módulo ocioso/import ausente. Dependências e saída atual de build continuam necessárias e foram preservadas.
+- Documentação corrente consolidada, removendo orientações de cache/scaffolding inexistentes e publicação antiga como estado atual. Histórico obrigatório permanece datado no registro; testes ativos, migração aplicada, dados privados e conexões foram preservados.
+- A primeira análise CodeQL terminou tecnicamente bem, mas a consulta de alertas encontrou três achados nas ferramentas. A inspeção HTML foi corrigida para caixa/atributos/origem e recebeu regressão. O teste anônimo deixou de ler arquivo de conexão: usa somente chave já pública na distribuição e destinos fixos. Nova execução do teste retornou 401 para leitura/RPC anônimos. Alertas não foram descartados manualmente; aguardam reteste automatizado.
+- Quinze testes passaram; TypeScript, grafo, build, HTML independente, orçamento (251,8 KB JS gzip) e inspeção da distribuição passaram. Mudança no build foi validada, sem alegar remoção de todo seletor CSS dinâmico por uma análise de imports.
+- Safari local validou importação de backup sintético e exibição de nota com HTML/instrução hostil como texto. Backup inválido foi recusado sem apagar o item válido. Item sintético removido, estante de visitante voltou a zero, fixtures excluídas. Nenhuma estante autenticada foi editada.
+- Safari de produção, após implantação `4b1dc9b`, manteve sessão e leitura da estante com CSP. HTTP 200, sete headers comparados e sete recursos próprios conferidos; cache imutável restrito a assets com hash. CI 39038873872 e workflow de segurança 39038873831 concluídos; os três alertas foram tratados como correção pendente, sem afirmar aprovação integral por job verde.
+
+Publicação desta continuidade: preparada para envio; nova análise de alertas e implantação serão registradas após resultado real.

@@ -23,7 +23,7 @@ integrations/         Serviços externos e seus arquivos locais
   outlook/            Contato do produto
 security/             Engenharia de segurança, testes, carga e modelos reutilizáveis
 docs/                 Arquitetura, decisões, curadoria e validação
-tools/                Manutenção, testes do catálogo e cache ignorado
+tools/                Manutenção e testes do catálogo
 artifacts/            Arquivos gerados para entrega
 .github/              Workflow do repositório
 ```
@@ -56,14 +56,14 @@ Para habilitar o Supabase, configure `backend/supabase/.env.local` a partir do e
 
 O portal está publicado na Vercel, com código aberto na conta `gitbokshelf`, temas claro/escuro, tipografia ampliada e integração de acesso e estante por conta com Supabase. O login e a estante foram conferidos no Safari de produção e no Chrome local, na mesma conta. Salvar projeto, nota e progresso, recarregar, receber a alteração no outro navegador e remover o registro de teste também foram conferidos. Recuperação de senha e uso em dois dispositivos ainda precisam de validação.
 
-Português, inglês e espanhol ainda estão em desenvolvimento, sem seletor ativo. O repositório exclusivo [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf) foi criado. O código foi enviado e a primeira implantação na Vercel respondeu HTTP 200 sem autenticação. O envio transacional de e-mails de produção continua pendente. Consulte os registros de cada integração antes da próxima publicação.
+Português, inglês e espanhol foram solicitados e continuam pendentes de integração e seletor. O código público está em [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf), com publicação na Vercel. O envio transacional de e-mails de produção continua pendente. Consulte os registros de cada integração antes da próxima publicação.
 
 ## Pendências para divulgação
 
 A infraestrutura está publicada e os fluxos principais foram conferidos. O produto ainda tem entregas pendentes:
 
 1. Configurar envio transacional e validar cadastro, confirmação e recuperação de senha para usuários externos. SMTP personalizado permanece desligado na conferência de 17/10/2026.
-2. Concluir português, inglês e espanhol, incluindo seletor, guias, ilustrações, mensagens e acessibilidade. Há dicionários parciais; a tradução ainda não está integrada à interface.
+2. Concluir português, inglês e espanhol, incluindo seletor, guias, ilustrações, mensagens e acessibilidade. Os rascunhos sem integração foram removidos na limpeza; a tradução continua como entrega pendente.
 3. Ampliar testes de autenticação, troca de contas, concorrência, uso offline e dois dispositivos físicos. A CI inclui testes de catálogo e segurança de entradas/configuração, sem suíte automática completa desses fluxos.
 4. Completar informações de privacidade e gestão de dados, incluindo exclusão de conta. A exportação de estante existe; a conta hoje oferece saída, sem fluxo próprio de exclusão. Definir e testar restauração operacional do backend.
 5. Medir desempenho e ampliar revisão de acessibilidade e aparelhos físicos. O orçamento de build passou, com ensaio local limitado, sem teste de carga autenticada ou medição completa de produção.

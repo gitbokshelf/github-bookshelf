@@ -8,7 +8,7 @@ Portal público principal: [githubbokshelf.hubdetrabalho.com.br](https://githubb
 
 Usar Root Directory na raiz do repositório, sem selecionar `frontend`. O arquivo [vercel.json](../../vercel.json) define framework Vite, instalação `npm --prefix frontend ci`, build `npm --prefix frontend run build` e saída `frontend/dist`. Usar Node.js 24.
 
-Essa decisão mantém disponíveis no build os diretórios irmãos `backend/supabase`, `tools` e `artifacts`. Não é necessário enviar arquivos privados nem habilitar acesso a arquivos externos a uma raiz de aplicação reduzida.
+Essa decisão mantém disponíveis no build os diretórios irmãos `backend/supabase`, `tools`, `security` e `artifacts`. Não é necessário enviar arquivos privados nem habilitar acesso a arquivos externos a uma raiz de aplicação reduzida.
 
 Configurar no painel as variáveis `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` com os valores da configuração local do backend. Apenas a chave publicável pode entrar no build do navegador. Nunca usar secret/service_role.
 
@@ -25,3 +25,5 @@ Credenciais e metadados locais devem usar `*.local.*` ou `private/`. O diretóri
 O subdomínio foi adicionado à produção deste projeto. A Vercel indicou CNAME `githubbokshelf` para `2bebc356914c41bf.vercel-dns-017.com`. Como o domínio já estava vinculado a outra conta, o proprietário autorizou o TXT de comprovação específico deste subdomínio na Locaweb. O painel passou a exibir Valid Configuration e o novo endereço respondeu HTTPS 200 com validação normal de certificado.
 
 A inclusão neste projeto ficou restrita ao subdomínio solicitado. Não foram mudados os nameservers nem contratado outro domínio. Os registros e a preservação da zona estão em [Locaweb](../locaweb/README.md).
+
+A política CSP e os headers são definidos na raiz em `vercel.json`. O build inclui inspeção de segurança da distribuição e do grafo das fontes. Ver [engenharia de segurança](../../security/README.md).

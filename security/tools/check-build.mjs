@@ -2,17 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
+import { hostedScripts } from './inspect-html.mjs';
 const dist = fileURLToPath(new URL('../../frontend/dist/', import.meta.url));
 const walk = (dir) => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(path.join(dir,e.name)) : [path.join(dir,e.name)]);
 const files = walk(dist);
 const html = fs.readFileSync(path.join(dist,'index.html'),'utf8');
-const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
-assert.ok(scripts.length >= 2, 'Aplicação e inicialização de tema precisam de scripts externos');
-for (const [,attrs,body] of scripts) {
-  const source = attrs.match(/\bsrc="([^"]+)"/);
-  assert.ok(source && !body.trim(), 'Script inline não é permitido na versão hospedada');
-  assert.ok(!/^(?:https?:)?\/\//.test(source[1]), 'Script de terceiro não é permitido');
-  assert.ok(fs.existsSync(path.resolve(dist, source[1].replace(/^\//,''))), 'Script ausente');
+for (const source of hostedScripts(html)) {
+  assert.ok(fs.existsSync(path.resolve(dist, source)), 'Script ausente');
 }
 for (const file of files) {
   assert.ok(!/\.map$|(?:^|\/)\.env|\.local\./.test(file), 'Arquivo privado ou sourcemap na distribuição');
@@ -25,5 +21,5 @@ for (const file of files) {
   }
 }
 const standalone = fs.readFileSync(new URL('../../artifacts/GitHub Bookshelf.html',import.meta.url),'utf8');
-assert.ok(!/<script[^>]*\bsrc=/.test(standalone), 'HTML independente ainda depende de script externo');
+assert.ok(!/<script[^>]*\bsrc=/i.test(standalone), 'HTML independente ainda depende de script externo');
 console.log(`Distribuição conferida: ${files.length} arquivos, scripts próprios e sem os padrões administrativos examinados.`);

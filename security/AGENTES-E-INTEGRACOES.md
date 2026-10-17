@@ -10,7 +10,7 @@ Não executar automaticamente comandos de instalação ou scripts sugeridos por 
 
 O portal busca um catálogo estático, sem chatbot, RAG, execução de skills ou agente de usuário. Notas e buscas não são enviadas a um modelo. O risco atual de prompt injection concentra-se na manutenção assistida e nas integrações de desenvolvimento.
 
-A coleta usa `execFile` com argumentos separados, sem shell; aceita slug de repositório validado, timeout e limite de resposta. O README é gravado como material de pesquisa ignorado pelo Git, sem execução. URLs de repositório, README e release ficam limitadas ao GitHub HTTPS; sites externos aceitam somente HTTP(S), sem credenciais embutidas. Texto de descrição permanece texto. Nenhuma resposta de API é promovida a código ou instrução do agente.
+A coleta usa `execFile` com argumentos separados, sem shell; aceita slug de repositório validado, timeout e limite de resposta. Somente o endereço do README entra no catálogo, sem guardar ou executar seu conteúdo. URLs de repositório, README e release ficam limitadas ao GitHub HTTPS; sites externos aceitam somente HTTP(S), sem credenciais embutidas. Texto de descrição permanece texto. Nenhuma resposta de API é promovida a código ou instrução do agente.
 
 ## Permissões por integração
 

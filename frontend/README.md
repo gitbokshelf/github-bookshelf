@@ -84,7 +84,7 @@ scripts/
 public/              Recursos públicos
 ```
 
-React 19, TypeScript, Vite, Tailwind CSS 4, Motion e Lucide. Supabase fornece autenticação e banco para a estante por conta. A versão hospedada separa aplicação, catálogo, Supabase e bibliotecas; esbuild os reúne novamente no HTML independente. O alias `@/` aponta para `src/`. Os componentes ficam em `src/components/ui`, conforme a configuração shadcn em `components.json`. Não há Redux: o estado atual usa hooks e contexto. Pastas são criadas quando têm uma função real.
+React 19, TypeScript, Vite, Tailwind CSS 4, Motion e Lucide. Supabase fornece autenticação e banco para a estante por conta. A versão hospedada separa aplicação, catálogo, Supabase e bibliotecas; esbuild os reúne novamente no HTML independente. Os componentes ficam em `src/components/ui`, com imports relativos. Não há Redux: o estado atual usa hooks e contexto. Pastas são criadas quando têm uma função real.
 
 ## Atualizar o catálogo
 
@@ -102,7 +102,7 @@ npm test
 npm run build
 ```
 
-O script consulta apenas endpoints públicos de repositórios, README e releases. Usa a autenticação já gerenciada pelo `gh`, sem copiar tokens para arquivos ou para o navegador. Se uma consulta falhar, preserva o catálogo anterior. A pasta `tools/research/`, na raiz do projeto, é um cache local ignorado pelo Git.
+O script consulta apenas endpoints públicos de repositórios, README e releases. Usa a autenticação já gerenciada pelo `gh`, sem copiar tokens para arquivos ou para o navegador. Se uma consulta falhar, preserva o catálogo anterior. O atualizador usa somente os metadados necessários, sem manter cópias dos READMEs ou cache de pesquisa.
 
 Depois de revisar os textos e resultados, faça commit e envie para `main`. O GitHub Actions valida a mudança; a integração da Vercel publica o frontend a partir de `main`. A atualização dos dados é manual nesta versão.
 
@@ -124,7 +124,7 @@ Leia a [metodologia](../docs/CURADORIA.md), o [registro de validação](../docs/
 - Adicionar comparações entre ferramentas para o mesmo objetivo.
 - Avaliar atualização periódica dos metadados sem perder revisão editorial.
 - Validar a sincronização entre dispositivos e configurar o envio de e-mail para produção.
-- Concluir português, inglês e espanhol. Os dicionários estão em elaboração, ainda sem seletor ativo.
+- Concluir português, inglês e espanhol. A implementação e o seletor continuam pendentes; os rascunhos sem uso foram removidos.
 
 ## Licença
 

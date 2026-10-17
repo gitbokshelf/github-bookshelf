@@ -1,11 +1,9 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import fs from "node:fs/promises";
-import path from "node:path";
 import { fileURLToPath } from "node:url";
 import curation from "./curation.mjs";
 import { repoSlug, publicUrl } from "./untrusted-metadata.mjs";
-const researchDir = fileURLToPath(new URL("../research/", import.meta.url));
 const catalogFile = fileURLToPath(
   new URL("../../frontend/src/data/catalog.json", import.meta.url),
 );
@@ -63,11 +61,6 @@ for (let n = 0; n < curation.length; n += 3) {
             : null,
           checkedAt: new Date().toISOString(),
         });
-        await fs.mkdir(researchDir, { recursive: true });
-        await fs.writeFile(
-          path.join(researchDir, `${p.repo.replace("/", "--")}.md`),
-          Buffer.from(readme.content, "base64"),
-        );
         console.log(
           `OK ${r.full_name} · ${r.stargazers_count} stars · ${release?.tag_name || "sem release"}`,
         );

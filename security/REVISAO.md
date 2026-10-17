@@ -14,7 +14,7 @@ Executor e revisor: Codex. Não houve auditor independente ou pentest completo. 
 
 | Verificação | Resultado | Limite |
 | --- | --- | --- |
-| Testes Node | 14 aprovados, catálogo e entradas/configuração defensivas | Não é suíte E2E completa de autenticação |
+| Testes Node | 15 aprovados, catálogo e entradas/configuração defensivas | Não é suíte E2E completa de autenticação |
 | TypeScript, Vite, HTML independente e orçamento | Aprovados, aproximadamente 251,8 KB gzip de JS | Não prova acessibilidade ou escala |
 | Distribuição | 9 arquivos conferidos, scripts próprios e padrões administrativos examinados ausentes | Scanner de padrões não detecta todo segredo possível |
 | npm audit completo | 0 vulnerabilidades conhecidas reportadas | Não cobre falha inédita ou regra de negócio |
@@ -39,3 +39,9 @@ Relatórios sanitizados ignorados: `artifacts/security/`; resultados públicos r
 | Antes de futura IA | Gateway de ferramentas com autorização fora do modelo, sandbox/egress e testes de prompt injection com dados fictícios | Não aplicável ao runtime atual, obrigatório antes de adicionar LLM |
 
 Conclusão: primeira rodada defensiva com correções concretas e evidência delimitada. O produto não deve ser anunciado como invulnerável, auditado integralmente ou capaz de atender um volume específico de produção. A operação contínua e os riscos abertos fazem parte da entrega profissional.
+
+## Análise, correção e limpeza na continuidade
+
+A primeira execução CodeQL concluiu com três alertas nas ferramentas: verificação de tags sem variação de caixa e dois fluxos de leitura de arquivo para HTTP no teste anônimo. A inspeção passou a conferir caixa, origem própria, atributos duplicados e scripts incompletos, com regressão. O teste de backend deixou de ler arquivo de conexão: obtém somente a chave já pública no módulo da publicação e acessa destinos fixos, sem ler .env ou sessão. Nova análise precisa confirmar o estado dos alertas.
+
+Safari de produção após implantação: sessão e leitura da estante mantidas. Safari local: backup sintético importado, nota hostil exibida como texto, backup inválido rejeitado preservando o item; item sintético removido ao terminar, voltando a zero. Fixtures temporárias removidas na limpeza solicitada.

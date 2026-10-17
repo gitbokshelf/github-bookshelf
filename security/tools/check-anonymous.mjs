@@ -2,15 +2,18 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 if (!process.argv.includes('--live')) throw new Error('Use --live para confirmar duas verificações no backend configurado.');
-const env = fs.readFileSync(new URL('../../backend/supabase/.env.local',import.meta.url),'utf8');
-const value = name => {
-  const line = env.split(/\r?\n/).find(line => line.startsWith(`${name}=`));
-  return line?.slice(name.length+1).trim().replace(/^(['"])(.*)\1$/, '$2');
-};
-const base = value('VITE_SUPABASE_URL');
-const key = value('VITE_SUPABASE_PUBLISHABLE_KEY');
-assert.equal(base, 'https://dxnfhzgxdkhdggqoogft.supabase.co');
-assert.ok(key?.startsWith('sb_publishable_'), 'Usar somente chave publicável');
+// Usa apenas a chave já pública no aplicativo publicado. Não lê .env nem sessão.
+const app = 'https://githubbokshelf.hubdetrabalho.com.br/';
+const page = await fetch(app, {signal:AbortSignal.timeout(10000)});
+assert.equal(page.status, 200);
+const assetName = (await page.text()).match(/src="\.\/assets\/(index-[A-Za-z0-9_-]+\.js)"/)?.[1];
+assert.ok(assetName, 'Módulo principal não encontrado');
+const asset = await fetch(`${app}assets/${assetName}`, {signal:AbortSignal.timeout(10000)});
+assert.equal(asset.status, 200);
+const keys = [...new Set((await asset.text()).match(/sb_publishable_[A-Za-z0-9_-]{20,}/g) ?? [])];
+assert.equal(keys.length, 1, 'Exige uma única chave publicável na distribuição');
+const key = keys[0];
+const base = 'https://dxnfhzgxdkhdggqoogft.supabase.co';
 const results = [];
 for (const [route, method, body] of [
   ['/rest/v1/user_shelves?select=revision&limit=1', 'GET', undefined],
