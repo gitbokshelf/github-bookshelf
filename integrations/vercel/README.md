@@ -24,4 +24,4 @@ Credenciais e metadados locais devem usar `*.local.*` ou `private/`. O diretóri
 
 O subdomínio foi adicionado à produção deste projeto. A Vercel indicou CNAME `githubbokshelf` para `2bebc356914c41bf.vercel-dns-017.com`. Como o domínio já estava vinculado a outra conta, o proprietário autorizou o TXT de comprovação específico deste subdomínio na Locaweb. O painel passou a exibir Valid Configuration e o novo endereço respondeu HTTPS 200 com validação normal de certificado.
 
-Não houve transferência do domínio raiz, mudança de nameservers ou contratação de domínio. Os registros e a preservação da zona estão em [Locaweb](../locaweb/README.md).
+A inclusão neste projeto ficou restrita ao subdomínio solicitado. Não foram mudados os nameservers nem contratado outro domínio. Os registros e a preservação da zona estão em [Locaweb](../locaweb/README.md).

@@ -27,3 +27,7 @@ Não foram coletadas credenciais da Locaweb. Arquivos locais futuros devem usar 
 ## Preservação da zona
 
 A zona tinha 18 registros. Após adicionar CNAME e TXT, passou a 20. Os 17 registros anteriores de serviços permaneceram iguais. O único registro existente com diferença foi o SOA, cujo serial passou de `2026073001` para `2026101702`, atualização automática esperada ao salvar a zona. Os demais campos do SOA permaneceram iguais. Não foram alterados manualmente registros do domínio raiz ou dos outros produtos.
+
+## Referência de manutenção
+
+[Configurar domínio próprio na Vercel](https://vercel.com/docs/domains/set-up-custom-domain). O valor do CNAME deve ser obtido no projeto vigente; não assumir que todos os projetos usam o mesmo destino.

@@ -145,7 +145,7 @@ Estado inicial: árvore de trabalho limpa; CLI autenticada como `gitbokshelf`. A
 
 Escopo e validação prevista: registrar a pendência na integração GitHub, conferir o destino exato e revisar o diff. Nenhuma exclusão, troca de conta ou alteração de acesso integra esta anotação.
 
-Estado: em execução.
+Estado: registro concluído; exclusão futura pendente.
 
 Execução: pendência registrada em `integrations/github/README.md`, com alvo limitado ao repositório antigo, preservação prévia de itens exclusivos, conferência de acesso e revisão das referências após a futura exclusão.
 
@@ -159,7 +159,7 @@ Pedido: criar e configurar o subdomínio do proprietário para o GitHub Bookshel
 
 Responsável: Codex, executor e revisor desta sessão.
 
-Estado: em execução.
+Estado: configuração do domínio concluída; login nessa nova origem pendente de entrada do proprietário.
 
 Estado inicial: Git limpo; portal ativo na Vercel; DNS autoritativo de hubdetrabalho.com.br na Locaweb. Consulta inicial não retornou registro A ou CNAME para o novo nome. Sessões da Locaweb, Vercel e Supabase disponíveis no Safari. O inventário genérico do OpenClaw não está no caminho indicado pela skill; o contexto foi obtido do README, arquitetura e registros locais deste projeto, sem varrer o disco.
 
@@ -186,3 +186,17 @@ Revisão antes do envio, pelo próprio Codex:
 - CNAME conferido nos três nameservers da Locaweb. HTTP redirecionou por 308 para HTTPS no mesmo hostname.
 - Verificação TLS independente com SNI e rejeição de certificado inválido aprovada: SAN corresponde exatamente ao subdomínio e cadeia emitida por Let's Encrypt. Evidência técnica sanitizada em `artifacts/validation/custom-domain-tls.json`, ignorada pelo Git.
 - Alterações de fonte limitadas a metadados e documentação do domínio. Login autenticado no novo domínio e publicação final continuam em conferência.
+
+Revisão final, pelo próprio Codex executor:
+
+- Commit de configuração `3ca7d5c` enviado à conta exclusiva. CI aprovada na execução 39036667674 e implantação Vercel aprovada.
+- Nova consulta à publicação confirmou HTTP 200, canonical/OG corretos e sete recursos com HTTP 200: quatro módulos JavaScript, CSS, favicon e imagem de compartilhamento. O alias Vercel permanece acessível com canonical do domínio próprio.
+- Homepage do repositório GitHub atualizada e conferida pela API.
+- A zona anterior, a identidade do projeto, a grafia solicitada, os sete retornos do Supabase e a exclusão dos metadados locais do Git foram revisados. A anotação anterior da exclusão futura teve seu estado ajustado para registro concluído, sem executar exclusão.
+- Relatórios sanitizados em `artifacts/validation/custom-domain-tls.json` e `custom-domain-http.json`, ignorados pelo Git. Documentação atualizada nas integrações Locaweb/Vercel, frontend, arquitetura e backend.
+
+Conclusão: DNS, verificação de posse autorizada, vínculo de produção, HTTPS, metadados, retorno de autenticação e publicação do domínio próprio concluídos. Nenhum registro anterior de serviço foi alterado.
+
+Limite da validação: login autenticado especificamente no novo domínio aguarda o proprietário, pois a sessão de vercel.app é separada por origem. O formulário está disponível. Não foi validado envio de confirmação/recuperação nem configurado SMTP nesta tarefa. A exclusão do repositório pessoal permanece futura.
+
+Publicação: https://githubbokshelf.hubdetrabalho.com.br/. Continuidade: https://github-bookshelf.vercel.app/ preservado como alias. O portal permanece aberto no Safari para a conferência do proprietário.
