@@ -159,7 +159,7 @@ Pedido: criar e configurar o subdomínio do proprietário para o GitHub Bookshel
 
 Responsável: Codex, executor e revisor desta sessão.
 
-Estado: configuração do domínio concluída; login nessa nova origem pendente de entrada do proprietário.
+Estado: configuração do domínio e conferência do login nessa origem concluídas.
 
 Estado inicial: Git limpo; portal ativo na Vercel; DNS autoritativo de hubdetrabalho.com.br na Locaweb. Consulta inicial não retornou registro A ou CNAME para o novo nome. Sessões da Locaweb, Vercel e Supabase disponíveis no Safari. O inventário genérico do OpenClaw não está no caminho indicado pela skill; o contexto foi obtido do README, arquitetura e registros locais deste projeto, sem varrer o disco.
 
@@ -197,6 +197,14 @@ Revisão final, pelo próprio Codex executor:
 
 Conclusão: DNS, verificação de posse autorizada, vínculo de produção, HTTPS, metadados, retorno de autenticação e publicação do domínio próprio concluídos. Nenhum registro anterior de serviço foi alterado.
 
-Limite da validação: login autenticado especificamente no novo domínio aguarda o proprietário, pois a sessão de vercel.app é separada por origem. O formulário está disponível. Não foi validado envio de confirmação/recuperação nem configurado SMTP nesta tarefa. A exclusão do repositório pessoal permanece futura.
+Limite registrado na primeira conferência: o login no novo domínio ainda aguardava o proprietário. Essa pendência foi resolvida na continuidade documentada abaixo. Não foi validado envio de confirmação/recuperação nem configurado SMTP nesta tarefa. A exclusão do repositório pessoal permanece futura.
 
 Publicação: https://githubbokshelf.hubdetrabalho.com.br/. Continuidade: https://github-bookshelf.vercel.app/ preservado como alias. O portal permanece aberto no Safari para a conferência do proprietário.
+
+Continuidade da validação após o retorno do proprietário, 17/10/2026:
+
+Pedido: conferir o acesso informado pelo proprietário no domínio próprio. Escopo previsto: observar a sessão, abrir a estante e recarregar para conferir sua continuidade; preservar projetos, notas e progresso. Estado inicial do Git limpo.
+
+Execução e revisão pelo próprio Codex: Safari mostrou Minha conta em `https://githubbokshelf.hubdetrabalho.com.br/`. A estante abriu com a indicação Estante salva na sua conta. Após recarregar, Minha conta permaneceu disponível e abrir a estante voltou a mostrar sincronização concluída. Nenhum projeto, nota ou progresso foi alterado nesta conferência; nenhuma senha foi recebida ou preenchida pelo agente.
+
+Conclusão: sessão e leitura da estante autenticada conferidas no domínio próprio, inclusive após recarregar. Atualizada a orientação do Supabase. Alteração somente documental; não há mudança de aplicação que exija repetir testes/build. Conferidos o diff e a ausência de dados privados na anotação. Recuperação por e-mail, SMTP e demais limites anteriores continuam pendentes. Documentação enviada ao repositório exclusivo nesta continuidade.
