@@ -1,31 +1,11 @@
 import { useEffect, useReducer, useRef } from "react";
 import { loadShelf, saveShelf } from "../services/shelf-service";
-export type Entry = {
-  status: "saved" | "using" | "done";
-  note: string;
-  savedAt: string;
-};
-export type Library = Record<string, Entry>;
+import { validLibrary, type Library, type Entry } from "../utils/library-validation";
+export { validLibrary };
+export type { Library, Entry };
 export const STORAGE = "github-bookshelf:v1";
 export type SyncStatus =
   "local" | "loading" | "saving" | "saved" | "offline" | "conflict";
-export function validLibrary(raw: unknown): Library {
-  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return {};
-  return Object.fromEntries(
-    Object.entries(raw).filter(([k, v]) => {
-      const x = v as Entry;
-      return (
-        /^[\w.-]+\/[\w.-]+$/.test(k) &&
-        x &&
-        ["saved", "using", "done"].includes(x.status) &&
-        typeof x.note === "string" &&
-        x.note.length <= 10000 &&
-        typeof x.savedAt === "string" &&
-        !isNaN(Date.parse(x.savedAt))
-      );
-    }),
-  );
-}
 export function readLibrary(): Library {
   try {
     return validLibrary(JSON.parse(localStorage.getItem(STORAGE) || "{}"));
@@ -169,7 +149,7 @@ export function useLibrary(userId?: string) {
   }, [owner, retryCount]);
   function update(fn: (old: Library) => Library) {
     const model = current.current;
-    if (model.owner !== owner || !model.ready) return;
+    if (model.owner !== owner || !model.ready) return false;
     model.entries = fn(model.entries);
     model.dirty = owner !== "guest";
     if (
@@ -184,6 +164,7 @@ export function useLibrary(userId?: string) {
     timer.current = setTimeout(() => {
       void flush(model);
     }, 500);
+    return true;
   }
   const toggle = (repo: string) =>
     update((old) => {

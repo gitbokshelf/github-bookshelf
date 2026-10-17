@@ -25,3 +25,7 @@ Antes de executar:
 5. Após excluir, revisar o remoto `legacy-personal`, os links e o retorno antigo do GitHub Pages no Supabase. Registrar o resultado real e a indisponibilidade esperada da publicação antiga.
 
 Nenhuma exclusão foi feita ao registrar este pedido.
+
+## Segurança, revisão de 17/10/2026
+
+API confirmou secret scanning e push protection ativos. Habilitados relatos privados de vulnerabilidade e correções automáticas de segurança do Dependabot. Workflows de detecção de segredos e CodeQL são versionados em `.github/workflows/security.yml`; propostas semanais em `.github/dependabot.yml`. Actions fixadas por SHA e permissão por job. Triar alertas além de conferir o resultado do workflow. Ver [engenharia de segurança](../../security/README.md).

@@ -21,6 +21,7 @@ integrations/         Serviços externos e seus arquivos locais
   vercel/             Hospedagem e domínio
   locaweb/            DNS do subdomínio
   outlook/            Contato do produto
+security/             Engenharia de segurança, testes, carga e modelos reutilizáveis
 docs/                 Arquitetura, decisões, curadoria e validação
 tools/                Manutenção, testes do catálogo e cache ignorado
 artifacts/            Arquivos gerados para entrega
@@ -63,12 +64,16 @@ A infraestrutura está publicada e os fluxos principais foram conferidos. O prod
 
 1. Configurar envio transacional e validar cadastro, confirmação e recuperação de senha para usuários externos. SMTP personalizado permanece desligado na conferência de 17/10/2026.
 2. Concluir português, inglês e espanhol, incluindo seletor, guias, ilustrações, mensagens e acessibilidade. Há dicionários parciais; a tradução ainda não está integrada à interface.
-3. Ampliar testes de autenticação, troca de contas, concorrência, uso offline e dois dispositivos físicos. A CI atual tem seis testes de catálogo/build, sem suíte automática desses fluxos.
+3. Ampliar testes de autenticação, troca de contas, concorrência, uso offline e dois dispositivos físicos. A CI inclui testes de catálogo e segurança de entradas/configuração, sem suíte automática completa desses fluxos.
 4. Completar informações de privacidade e gestão de dados, incluindo exclusão de conta. A exportação de estante existe; a conta hoje oferece saída, sem fluxo próprio de exclusão. Definir e testar restauração operacional do backend.
-5. Medir desempenho e ampliar revisão de acessibilidade e aparelhos físicos. O orçamento de build passou, sem teste de carga ou medição completa de produção.
+5. Medir desempenho e ampliar revisão de acessibilidade e aparelhos físicos. O orçamento de build passou, com ensaio local limitado, sem teste de carga autenticada ou medição completa de produção.
 
 A exclusão futura do repositório pessoal permanece [registrada na integração GitHub](integrations/github/README.md). Antes dela, conferir itens exclusivos e acesso à conta correta.
 
 ## Contribuir e licença
 
 [Como contribuir](CONTRIBUTING.md), [licença MIT](LICENSE) e [créditos](THIRD_PARTY_NOTICES.md). Projeto independente, sem afiliação oficial com o GitHub ou os projetos catalogados.
+
+## Segurança
+
+A [área de engenharia de segurança](security/README.md) reúne ameaças, regras para agentes e prompt injection, controles das integrações, testes, capacidade, operação e [modelos reutilizáveis](security/PORTABILIDADE.md). O build verifica a distribuição; a CI inclui auditoria de dependências, detecção de segredos e análise CodeQL. Consulte a [revisão e seus limites](security/REVISAO.md) antes de interpretar resultados como aprovação integral do produto. Relatos privados seguem [SECURITY.md](SECURITY.md).

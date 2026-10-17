@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import curation from "./curation.mjs";
+import { repoSlug, publicUrl } from "./untrusted-metadata.mjs";
 const researchDir = fileURLToPath(new URL("../research/", import.meta.url));
 const catalogFile = fileURLToPath(
   new URL("../../frontend/src/data/catalog.json", import.meta.url),
@@ -12,6 +13,7 @@ const exec = promisify(execFile);
 const api = async (path) => {
   const { stdout } = await exec("gh", ["api", path], {
     maxBuffer: 8 * 1024 * 1024,
+    timeout: 30000,
   });
   return JSON.parse(stdout);
 };
@@ -21,6 +23,7 @@ for (let n = 0; n < curation.length; n += 3) {
   await Promise.all(
     curation.slice(n, n + 3).map(async (p) => {
       try {
+        repoSlug(p.repo);
         const [r, readme, releases] = await Promise.all([
           api(`repos/${p.repo}`),
           api(`repos/${p.repo}/readme`),
@@ -33,12 +36,13 @@ for (let n = 0; n < curation.length; n += 3) {
             throw e;
           }));
         const homepage = p.website || r.homepage;
+        const slug = repoSlug(r.full_name);
+        const repositoryUrl = `https://github.com/${slug}`;
         projects.push({
           ...p,
-          repo: r.full_name,
-          url: r.html_url,
-          website:
-            homepage && /^https?:\/\//i.test(homepage) ? homepage : r.html_url,
+          repo: slug,
+          url: repositoryUrl,
+          website: publicUrl(homepage, repositoryUrl),
           stars: r.stargazers_count,
           forks: r.forks_count,
           language: r.language,
@@ -48,13 +52,13 @@ for (let n = 0; n < curation.length; n += 3) {
           pushedAt: r.pushed_at,
           avatar: r.owner.avatar_url,
           sourceDescription: r.description,
-          readmeUrl: readme.html_url,
+          readmeUrl: publicUrl(readme.html_url, `${repositoryUrl}#readme`, true),
           release: release
             ? {
                 name: release.name || release.tag_name,
                 tag: release.tag_name,
                 date: release.published_at,
-                url: release.html_url,
+                url: publicUrl(release.html_url, `${repositoryUrl}/releases`, true),
               }
             : null,
           checkedAt: new Date().toISOString(),

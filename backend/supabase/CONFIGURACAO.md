@@ -99,3 +99,9 @@ Em 17/10/2026, o proprietário entrou no portal de produção no Safari. Um proj
 ## Domínio próprio
 
 O domínio `githubbokshelf.hubdetrabalho.com.br` foi configurado na Vercel e na Locaweb em 17/10/2026. Site URL e retorno exato foram salvos e conferidos no painel. O alias Vercel e as origens locais continuam permitidos. Sessões de navegador são separadas por origem; entrar no novo endereço não reaproveita automaticamente o login de vercel.app. A conta usa a mesma estante no backend. Após o proprietário entrar, o Safari mostrou Minha conta e a estante com sincronização concluída. Recarregar preservou a sessão e a leitura da estante no domínio próprio. Nenhum projeto, nota ou progresso foi alterado nessa conferência. A gravação e a sincronização entre origens já verificadas no endereço Vercel permanecem como evidências da etapa anterior. Recuperação por e-mail e SMTP de produção continuam pendentes.
+
+## Revisão defensiva de 17/10/2026
+
+Duas verificações anônimas de baixo volume retornaram HTTP 401: leitura de `user_shelves` e tentativa de chamar `save_my_shelf`. Executadas por `security/tools/check-anonymous.mjs --live` com somente chave publicável; nenhum dado de estante retornado ou alterado. Não substituem teste entre duas contas. A migração aplicada não foi modificada nem reaplicada.
+
+Painel Auth, somente leitura: login/cadastro 30 requisições por 5 minutos/IP, verificação 30 por 5 minutos/IP, refresh 150 por 5 minutos/IP, e-mails 2/h; CAPTCHA desligado. Esses limites não cobrem RPC. Quota de gravação, automação, SMTP e recuperação precisam de implantação/teste próprios. Detalhes e limites em [segurança](../../security/README.md).

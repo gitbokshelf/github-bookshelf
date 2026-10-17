@@ -26,6 +26,7 @@ GitHub Bookshelf/
 │   ├── outlook/                 Contato do produto
 │   ├── vercel/                  Hospedagem e domínio
 │   └── locaweb/                 Zona DNS do subdomínio
+├── security/                    Engenharia, testes, carga e modelos de segurança
 ├── docs/                        Arquitetura, curadoria e validação
 │   └── REGISTRO-DE-EXECUCAO.md   Registro obrigatório de cada tarefa
 ├── tools/
@@ -98,7 +99,7 @@ O catálogo é um retrato estático, revisado e versionado. A API do GitHub é c
 
 O build confere um orçamento inicial de peso: até 500 KB sem compressão por módulo JavaScript e 350 KB gzip para a soma do JavaScript gerado. A checagem falha se houver excesso e grava `artifacts/build-report.json`. Esse total inclui todos os módulos gerados; não é uma medição do carregamento inicial. Alterar o orçamento exige registrar a razão e a revisão, em vez de apenas aumentar o limite para passar.
 
-A revisão atual mede integridade, execução, tamanhos de build e fluxos observados. Não há resultado de teste de carga, auditoria independente ou certificação de desempenho. Core Web Vitals em domínio de produção, comportamento sob concorrência e capacidade de tráfego ainda precisam de medição.
+A revisão atual mede integridade, execução, tamanhos de build e fluxos observados. Há ensaio limitado de HTTP local registrado em `security/CAPACIDADE.md`, sem auditoria independente ou certificação de desempenho. Core Web Vitals em domínio de produção, comportamento sob concorrência e capacidade de tráfego ainda precisam de medição.
 
 Cada mudança deve preservar os dados, passar pelos testes apropriados e registrar o que foi realmente conferido. Não declarar qualidade ou desempenho apenas pela organização das pastas.
 
@@ -115,3 +116,13 @@ Português, inglês e espanhol estão em elaboração, sem seletor completo ativ
 Endereço principal: `https://githubbokshelf.hubdetrabalho.com.br/`. O domínio raiz e o DNS dos outros serviços continuam na Locaweb. O CNAME do subdomínio aponta para o destino indicado pela Vercel; o certificado HTTPS é gerenciado pela hospedagem. A configuração está em [Locaweb](../integrations/locaweb/README.md) e [Vercel](../integrations/vercel/README.md).
 
 O endereço `https://github-bookshelf.vercel.app/` permanece como alias funcional, com canonical apontando para o domínio principal. Origens diferentes têm sessões e caches de navegador separados; contas usam a mesma estante no Supabase. Não migrar dados locais de visitante silenciosamente.
+
+## Engenharia de segurança
+
+A área `security/` concentra modelo de ameaças, revisão, operação, prompt injection/agentes/integrações, testes defensivos, ferramentas e ensaio k6. Os modelos em `security/templates/` podem iniciar outro projeto, com adaptação e nova validação. Os controles não são transferidos como certificação.
+
+`vercel.json` aplica CSP, anti-framing, nosniff, referrer restrito e permissões do navegador. A inicialização de tema é um script próprio externo para permitir bloquear JavaScript inline. O preview reproduz os headers, exceto HSTS/upgrade HTTPS no HTTP local. CSS de atributos continua permitido para React/Motion; fontes Google são os únicos recursos externos de estilo/fonte. As conexões da aplicação são limitadas à origem e ao projeto Supabase específico.
+
+O teste de build em `security/tools/check-build.mjs` rejeita scripts inline/externos, arquivos privados/sourcemaps e padrões administrativos examinados. Os testes em `security/tests/` verificam contrato de importação, tamanho, chaves hostis e configuração HTTP. O atualizador de catálogo valida slugs/URLs e não executa READMEs. As regras de agentes são obrigatórias, mas não representam sandbox técnico implementado.
+
+CI e workflows de segurança têm timeout e Actions por SHA; Dependabot propõe atualizações. O GitHub tem proteção de push/secret scanning e relatos privados. Continuam pendentes: quota de gravação na API, CAPTCHA, recuperação/SMTP, restauração comprovada, observabilidade com alertas e ensaio de capacidade autenticada em staging. Ver `security/REVISAO.md`.

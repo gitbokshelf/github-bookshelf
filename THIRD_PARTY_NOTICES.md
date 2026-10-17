@@ -12,7 +12,7 @@ Os componentes abaixo foram fornecidos como código pelo autor do projeto para i
 - Autor original: Kedhareswer Naidu.
 - Fonte: https://21st.dev/@kedhareswer/components/glass-folder-cards
 - Licença indicada na página original: MIT.
-- Adaptações: textos acessíveis em português e integração com as coleções.
+- Adaptações: textos acessíveis em português, integração com as coleções e extração do CSS para `frontend/src/components/ui/glass-folder-cards.css`, permitindo a política CSP sem estilos inline em elementos style.
 
 Copyright (c) 2026 Kedhareswer Naidu. O texto da licença MIT está reproduzido em [LICENSE](LICENSE); a atribuição original deste componente permanece com seu autor.
 

@@ -26,6 +26,7 @@ import ProjectDetails from "./components/project-details";
 import { useTheme, type ThemePreference } from "./hooks/use-theme";
 import { useAuth } from "./context/auth-context";
 import AccountPanel from "./components/account-panel";
+import { parseLibraryBackup, MAX_BACKUP_BYTES } from "./utils/library-validation";
 
 const platforms = [
   "Todos",
@@ -243,34 +244,20 @@ export default function App() {
       return;
     }
     try {
-      if (file.size > 2 * 1024 * 1024) throw new Error();
-      const v = JSON.parse(await file.text());
-      if (
-        v.version !== 1 ||
-        !v.library ||
-        typeof v.library !== "object" ||
-        Array.isArray(v.library)
-      )
-        throw new Error();
-      const entries = Object.entries(v.library);
-      if (
-        !entries.every(([k, val]) => {
-          const x = val as Library[string];
-          return (
-            projects.some((p) => p.repo === k) &&
-            x &&
-            ["saved", "using", "done"].includes(x.status) &&
-            typeof x.note === "string" &&
-            x.note.length <= 10000 &&
-            typeof x.savedAt === "string" &&
-            !isNaN(Date.parse(x.savedAt))
-          );
-        })
-      )
-        throw new Error();
-      update((old) => ({ ...old, ...v.library }));
+      if (file.size > MAX_BACKUP_BYTES) throw new Error();
+      const text = await file.text();
+      let importedCount = 0;
+      const accepted = update((current) => {
+        const merged = parseLibraryBackup(text, current, new Set(projects.map(p => p.repo)));
+        importedCount = Object.keys(merged).length;
+        return merged;
+      });
+      if (!accepted) {
+        setToast("A sessão mudou. Aguarde a estante carregar e importe novamente.");
+        return;
+      }
       setToast(
-        `${entries.length} ${entries.length === 1 ? "projeto importado" : "projetos importados"}. Notas dos mesmos projetos foram atualizadas.`,
+        `Estante importada: ${importedCount} ${importedCount === 1 ? "projeto" : "projetos"} no total. Notas dos mesmos projetos foram atualizadas.`,
       );
     } catch {
       setToast(

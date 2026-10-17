@@ -4,18 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#111311" />
-    <script>
-      (() => {
-        let preference;
-        try { preference = localStorage.getItem("bookshelf:theme"); } catch {}
-        const theme = preference === "light" || preference === "dark"
-          ? preference
-          : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.dataset.theme = theme;
-        document.documentElement.style.colorScheme = theme;
-        document.querySelector('meta[name="theme-color"]').content = theme === "light" ? "#f7f6f0" : "#111311";
-      })();
-    </script>
+    <script src="./theme-init.js"></script>
     <meta
       name="description"
       content="Menos abas abertas. Mais descobertas. Uma estante de projetos open source para criar, aprender e melhorar seu dia."

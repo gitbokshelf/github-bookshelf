@@ -7,7 +7,7 @@ const artifactsDir = fileURLToPath(
   new URL("../../artifacts/", import.meta.url),
 );
 let html = await fs.readFile(path.join(distDir, "index.html"), "utf8");
-const script = html.match(/<script[^>]+src="([^"]+)"[^>]*><\/script>/);
+const script = html.match(/<script\b(?=[^>]*\btype="module")[^>]*\bsrc="([^"]+)"[^>]*><\/script>/);
 const style = html.match(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"[^>]*>/);
 if (!script || !style)
   throw new Error("Build sem os assets esperados; HTML anterior preservado.");
@@ -38,6 +38,8 @@ if (
 )
   throw new Error("HTML independente contém um módulo externo.");
 const js = bundled.outputFiles[0].text;
+const theme = await fs.readFile(path.join(distDir, "theme-init.js"), "utf8");
+html = html.replace(/<script src="(?:\.\/|\/)?theme-init\.js"><\/script>/, () => `<script>${theme.replaceAll("</script", "<\\/script")}</script>`);
 html = html.replace(/<link\b(?=[^>]*\brel="modulepreload")[^>]*>/g, "");
 const css = await fs.readFile(path.join(distDir, style[1]), "utf8");
 html = html

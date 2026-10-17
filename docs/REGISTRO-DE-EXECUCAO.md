@@ -239,3 +239,39 @@ Execução documental: README passou a mostrar as quatro pastas de integração 
 Revisão: realizada pelo próprio Codex, confrontando evidências atuais, código e limites registrados. Conclusão: publicação e fluxos principais revisados; não declarar o produto integralmente revisado ou pronto para divulgar cadastros abertos.
 
 Próxima prioridade: SMTP e ciclo de cadastro/recuperação de usuários externos; em paralelo, concluir a localização dos três idiomas. Depois, ampliar testes de contas/sincronização, gestão de dados, desempenho e revisão em dispositivos. Excluir o repositório antigo somente na etapa futura registrada. Publicação da aplicação continua ativa; esta entrega altera documentação.
+
+## 17/10/2026: segurança e confiabilidade
+
+Pedido: criar área própria e revisar o projeto contra ataques e sobrecarga de acessos, com padrão profissional.
+
+Responsável: Codex, executor e revisor desta sessão, sem auditoria independente.
+
+Estado: em execução.
+
+Estado inicial: Git limpo, aplicação estática na Vercel com Supabase para contas/estantes. Há RLS e revisão otimista no backend, mas faltam política formal de segurança, controles HTTP próprios, testes automatizados de segurança e ensaio reprodutível de carga.
+
+Escopo: modelo de ameaças, inspeção de código/configuração, correções comprovadas, testes defensivos, critérios de capacidade e resposta a incidentes. Criar área visível de segurança com responsabilidades e evidências. Preservar dados e configurações existentes.
+
+Validação prevista: testes de entradas hostis, isolamento/autorização e controles configurados; dependências/segredos; build e navegador após alterações; carga controlada local. Na produção, somente verificações de baixo volume, sem força bruta, exaustão de banco ou teste destrutivo. Registrar volume, duração, ambiente e limites das conclusões.
+
+Continuidade do pedido: incluir riscos de prompt injection nas integrações e reunir a engenharia completa numa pasta própria, reutilizável em projetos futuros.
+
+Execução e revisão antes do envio, pelo próprio Codex:
+
+- Criada `security/` com engenharia de ameaças, agentes/integrações, operação, capacidade, fontes, revisão e modelos portáveis; testes, inspeção do build e cenário k6 ficam nessa área. Arquitetura, regras e README atualizados.
+- CSP e headers preparados na Vercel. Tema foi extraído para script próprio, preservando HTML independente. Revisão encontrou CSS inline no componente 21st.dev incompatível com a política; extraído para folha própria, com atribuição preservada e teste de regressão.
+- Importação usa validador central, valida bytes e mescla sem sobrescrever mudanças feitas enquanto o arquivo é lido; rejeita entrada inválida integralmente. Testes de entrada hostil, origem de URL e headers adicionados.
+- Atualizador de catálogo valida slug e URLs e tem timeout. Nenhum README é executado. Regras de prompt injection e permissões registradas, distinguindo processo obrigatório de sandbox técnico ainda não implementado.
+- GitHub API confirmou secret scanning e push protection ativos; relatos privados, alertas de dependências e correções automáticas habilitados. CI/segurança com timeouts, Actions por SHA, Gitleaks com pacote/SHA-256 fixados, CodeQL e Dependabot semanal. Nenhum auto-merge.
+- Gitleaks 8.30.1 e k6 2.3.0 instalados pelo Homebrew. Gitleaks examinou 14 commits/~1,07 MB sem achados. `npm audit --audit-level=high`: zero vulnerabilidades conhecidas reportadas.
+- Quatorze testes aprovados; TypeScript, Vite, HTML independente, orçamento e inspeção da distribuição aprovados. O Vite informa que o script clássico de tema é copiado sem bundle, conforme planejado; o verificador confirmou sua presença na distribuição e incorporação no HTML independente.
+- Safari local com CSP mostrou catálogo, busca por Maccy, detalhes e tema claro preservado ao recarregar. Nenhum dado da conta foi alterado. Coleções/CSS final e publicação ainda em conferência nesta anotação.
+- k6 local: 10 usuários virtuais por 30s, 300 iterações/1.800 requisições, zero falhas, 2.100 checks aprovados, p95 10,78 ms, ~293 MB locais. Não testa capacidade Vercel/Supabase, renderização ou carga autenticada. Guarda de alvo recusou domínio de produção antes de requisições.
+- Duas requisições anônimas no Supabase, somente chave publicável: leitura e RPC negados com HTTP 401. Sem retorno de dados ou gravação. Migração aplicada não foi alterada/reaplicada; teste SQL anterior entre contas não foi repetido.
+- Painel Auth conferido em leitura: login/cadastro 30/5min/IP, verificação 30/5min/IP, refresh 150/5min/IP, e-mails 2/h; CAPTCHA off, IP forwarding off. Não foram alterados limites. Quotas Auth não limitam RPC.
+
+Riscos ainda abertos: SMTP/recuperação; CAPTCHA; quota de escrita por conta no servidor; monitoramento e alertas operacionais; revisão completa de MFA/escopos administrativos; backup/restauração; teste automatizado de isolamento e ensaio autenticado em staging. A sessão não instalou monitoramento de dark web nem certificou o produto como invulnerável. Segredos locais preservados e fora da documentação. Modelos portáveis exigem adaptação e nova execução em outro produto.
+
+Publicação: alterações locais preparadas; envio, CI/CodeQL e headers de produção serão registrados após conferência real.
+
+Conferência adicional antes do commit: coleções 21st.dev renderizadas e pasta Mac aberta no Safari sob CSP após extração do CSS. Bundle final com 251,8 KB gzip de JavaScript. Diff preparado examinado pelo Gitleaks (~120 KB) sem achados. Documentos e links relativos revisados sem destinos ausentes. Nenhuma credencial/arquivo local foi preparado para commit.
