@@ -5,6 +5,7 @@
 | [github](github/README.md)   | Repositório, autoria e automação de publicação |
 | [outlook](outlook/README.md) | Endereço de contato do produto                 |
 | [locaweb](locaweb/README.md) | DNS e subdomínio do produto |
+| [cloudflare](cloudflare/README.md) | Verificação contra bots nos formulários Auth |
 | [resend](resend/README.md) | SMTP e alertas transacionais |
 | [vercel](vercel/README.md)   | Hospedagem, publicação e domínio  |
 

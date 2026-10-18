@@ -52,3 +52,13 @@ Removidos 324 arquivos/~3,60 MB sem uso, incluindo cache, rascunhos não integra
 Safari local: backup sintético importado, nota hostil exibida como texto, backup inválido rejeitado preservando o item. Item sintético removido, estante local voltou a zero e fixtures foram excluídas. Safari de produção: sessão e leitura da estante preservadas após publicação, sem alteração de dados da conta. Sete headers e sete recursos próprios conferidos por HTTP. Servidor de preview e abas temporárias desta rodada encerrados.
 
 Evidências e limites desta revisão estão no registro obrigatório. As pendências da tabela anterior permanecem abertas; a limpeza e as análises não representam monitoramento operacional, capacidade de produção medida ou proteção absoluta.
+
+## Continuidade de 18/10/2026
+
+Quota por conta aplicada na RPC, com tabela privada/RLS e bloqueio de escrita direta conferidos no Supabase. Isolamento, quota e restauração lógica passaram localmente e no job database da CI 39042377275. O restore usa dados sintéticos e contrato Auth emulado; backup de produção e recuperação de Auth real continuam pendentes.
+
+SMTP Resend ativo. Monitor publicado em 0be23c2, execução 39042382783: nove controles passaram, API de envio aceitou o teste e painel Resend confirmou Delivered para o e-mail técnico autorizado. Recuperação completa depende da ação do proprietário. Cron nominal de 15 minutos não tem SLA e não cobre consumo/abuso interno.
+
+CodeQL da entrega anterior apontou dois alertas novos no monitor, apesar dos jobs verdes. Origem CSP passou a ser comparada por tokens exatos, com regressão de domínio embutido/malicioso. Valores de relatório são convertidos em constantes booleanas por condição, sem copiar conteúdo de resposta de rede. Correções aguardam reanálise, sem supressão manual.
+
+Turnstile: widget Managed criado, dois hostnames publicados, pre-clearance off, secret destinado somente ao Supabase e sitekey público salvo na Vercel Production. Componente preparado para ciclo de token, expiração/erro/repetição, bloqueio do submit sem token e remoção ao fechar formulário. CSP autoriza apenas origem oficial de scripts/frames necessária ao serviço. Backend ainda não ativado nesta etapa, para evitar bloquear formulários antes de publicar e conferir o cliente.

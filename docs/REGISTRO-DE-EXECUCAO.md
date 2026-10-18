@@ -345,3 +345,13 @@ Continuidade confirmada:
 - Dezenove testes Node e build passaram; grafo 31 fontes, ~251,9 KB JS gzip. Revisão do diff e permissões SQL feita pelo executor. Solicitada conta Cloudflare para viabilizar Turnstile sem aceitar termos pelo proprietário.
 
 Esta é uma entrega intermediária de infraestrutura. Idiomas, CAPTCHA, teste completo de recuperação e backup real permanecem em execução/pendência, não concluídos.
+
+Continuidade em 18/10/2026, solicitada pelo proprietário:
+
+- Preservadas alterações locais de Turnstile e correções do monitor. Retomada a configuração previamente autorizada do widget nos dois hostnames publicados, com secret apenas no Supabase e sitekey público na Vercel; backend será ativado após conferir o formulário publicado.
+- Execução 39042382783 do monitor passou e o painel Resend mostrou Delivered para o teste enviado ao e-mail técnico. CI 39042377275 passou nos jobs build e database; segurança 39042377297 passou, mas CodeQL apontou dois novos alertas no monitor. Correções preparadas, sem descartar alertas; exigem nova análise.
+- A conta Cloudflare foi criada pelo proprietário. Janela privada de recuperação está bloqueada pelo Safari; não será desbloqueada pelo agente. O proprietário informou githubbokshelf@mail.com como conta do portal; isso não altera a conta técnica Gmail das integrações. Recuperação completa não foi confirmada.
+
+- Widget Cloudflare criado após confirmação expressa, conta técnica correta, dois hostnames exatos, Managed e pre-clearance off. Sitekey público salvo como Config em Production na Vercel; valor local apenas no ambiente ignorado. Secret ainda não transferido/ativado no backend.
+- Cliente Turnstile implementado com script oficial sob demanda, token efêmero sem logs, controle de expiração/erro, nova verificação após cada submissão e submit bloqueado sem token. Texto explicativo de recuperação corrigido. CSP libera somente scripts/frames da origem oficial necessária. O rollout publica e confere cliente antes de exigir token no backend.
+- Vercel exibiu recomendação de autenticador e uso atual de um fator. O aviso foi dispensado para continuar sem alterar credenciais; MFA segue pendente de configuração pelo proprietário.

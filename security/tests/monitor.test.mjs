@@ -19,3 +19,9 @@ test('teste de entrega não consome o aviso de um incidente real', () => {
   assert.deepEqual(stateAfterNotification(state,'test',now+1000),state);
   assert.deepEqual(readState({incident:'true',notifiedAt:'secret',extra:'discard'}),{incident:false,notifiedAt:0});
 });
+test('CSP exige origem exata, sem aceitar domínio embutido ou código inline', async () => {
+  const {safeContentPolicy}=await import('../tools/monitor-policy.mjs');
+  const policy="object-src 'none'; frame-ancestors 'none'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://dxnfhzgxdkhdggqoogft.supabase.co";
+  assert.equal(safeContentPolicy(policy),true);
+  for (const hostile of [policy.replace('.supabase.co','.supabase.co.attacker.example'),policy.replace('https://dxn','https://attacker.example/https://dxn'),policy.replace("script-src 'self'","script-src 'self' 'unsafe-inline'"),policy+'; connect-src *']) assert.equal(safeContentPolicy(hostile),false);
+});

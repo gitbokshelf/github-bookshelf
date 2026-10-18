@@ -3,6 +3,7 @@ import { supabase, authRedirect } from "../api/supabase";
 import { useAuth } from "../context/auth-context";
 import Modal from "./ui/modal";
 import Icon from "./ui/icon";
+import Turnstile, { captchaSiteKey } from "./turnstile";
 
 export default function AccountPanel({ onClose }: { onClose: () => void }) {
   const { user, recovery, dismissRecovery } = useAuth();
@@ -11,18 +12,26 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
   );
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [challengeRound, setChallengeRound] = useState(0);
+  const needsCaptcha = Boolean(captchaSiteKey && mode !== "reset");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const changeMode = (next: typeof mode) => {
     setMode(next);
     setPassword("");
+    setCaptchaToken("");
     setMessage("");
     setError("");
   };
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     if (!supabase || busy) return;
+    if (needsCaptcha && !captchaToken) {
+      setError("Conclua a verificação de segurança antes de continuar.");
+      return;
+    }
     setBusy(true);
     setError("");
     setMessage("");
@@ -30,6 +39,7 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
       if (mode === "forgot") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: authRedirect(),
+          captchaToken: captchaToken || undefined,
         });
         if (error) throw error;
         setMessage(
@@ -46,7 +56,7 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: authRedirect() },
+          options: { emailRedirectTo: authRedirect(), captchaToken: captchaToken || undefined },
         });
         if (error) throw error;
         setPassword("");
@@ -59,6 +69,7 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
+          options: { captchaToken: captchaToken || undefined },
         });
         if (error) throw error;
         setPassword("");
@@ -67,7 +78,9 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
     } catch (caught) {
       const code = (caught as { code?: string }).code;
       setError(
-        code === "invalid_credentials"
+        code === "captcha_failed"
+          ? "A verificação de segurança falhou. Repita a verificação e tente novamente."
+          : code === "invalid_credentials"
           ? "E-mail ou senha inválidos."
           : code === "email_not_confirmed"
             ? "Confirme seu e-mail antes de entrar."
@@ -76,6 +89,8 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
               : "Não foi possível concluir. Confira os dados e tente novamente.",
       );
     } finally {
+      setCaptchaToken("");
+      setChallengeRound(value => value + 1);
       setBusy(false);
     }
   };
@@ -124,7 +139,7 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
       ) : (
         <>
           <p>
-            Entre para guardar seus projetos, notas e progresso na sua conta.
+            {mode === "forgot" ? "Informe o e-mail da sua conta para receber o link de recuperação." : mode === "reset" ? "Defina uma nova senha para recuperar o acesso à sua estante." : "Entre para guardar seus projetos, notas e progresso na sua conta."}
           </p>
           <form onSubmit={submit}>
             {mode !== "reset" && (
@@ -159,7 +174,8 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
                 )}
               </label>
             )}
-            <button className="primary-button" type="submit" disabled={busy}>
+            {needsCaptcha && <Turnstile key={`${mode}-${challengeRound}`} action={mode} onToken={setCaptchaToken} />}
+            <button className="primary-button" type="submit" disabled={busy || (needsCaptcha && !captchaToken)}>
               {busy
                 ? "Aguarde..."
                 : mode === "signup"

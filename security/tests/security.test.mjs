@@ -51,7 +51,8 @@ test('Política HTTP restringe scripts, conexões, frames e recursos de alto ris
   const config = JSON.parse(fs.readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
   const headers = Object.fromEntries(config.headers.find(h => h.source === '/(.*)').headers.map(h => [h.key.toLowerCase(), h.value]));
   const directives = Object.fromEntries(headers['content-security-policy'].split(';').map(v => {const [k,...values] = v.trim().split(/\s+/);return [k, values]}));
-  assert.deepEqual(directives['script-src'], ["'self'"]);
+  assert.deepEqual(directives['script-src'], ["'self'", "https://challenges.cloudflare.com"]);
+  assert.deepEqual(directives['frame-src'], ["https://challenges.cloudflare.com"]);
   for (const key of ['script-src-attr', 'object-src', 'base-uri', 'frame-ancestors']) assert.deepEqual(directives[key], ["'none'"]);
   assert.deepEqual(directives['connect-src'], ["'self'", 'https://dxnfhzgxdkhdggqoogft.supabase.co']);
   assert.equal(headers['x-content-type-options'], 'nosniff');

@@ -1,11 +1,11 @@
 import fs from 'node:fs';
-import {notificationKind, readState, stateAfterNotification} from './monitor-policy.mjs';
+import {notificationKind, readState, stateAfterNotification, safeContentPolicy} from './monitor-policy.mjs';
 
 const app = 'https://githubbokshelf.hubdetrabalho.com.br/';
 const backend = 'https://dxnfhzgxdkhdggqoogft.supabase.co';
 const stateFile = new URL('../../artifacts/security/monitor-state.json', import.meta.url);
 const results = [];
-const check = (name, passed) => results.push({name, passed: Boolean(passed)});
+const check = (name, passed) => results.push({name, passed: passed ? true : false});
 async function response(url, options = {}) {
   return fetch(url, {...options, redirect:'error', signal:AbortSignal.timeout(12000)});
 }
@@ -24,7 +24,7 @@ try {
   check('hsts', Number((page.headers.get('strict-transport-security') ?? '').match(/max-age=(\d+)/)?.[1] ?? 0) >= 31536000);
   check('nosniff', page.headers.get('x-content-type-options') === 'nosniff');
   const csp = page.headers.get('content-security-policy') ?? '';
-  check('csp', csp.includes("object-src 'none'") && csp.includes("frame-ancestors 'none'") && csp.includes(backend) && !/script-src[^;]*(?:unsafe-inline|unsafe-eval|\*)/.test(csp));
+  check('csp', safeContentPolicy(csp));
   const html = await boundedText(page, 128000);
   const asset = html.match(/src="\.\/assets\/(index-[A-Za-z0-9_-]+\.js)"/)?.[1];
   check('application-module', asset);
@@ -64,8 +64,8 @@ if (kind && !process.argv.includes('--dry-run')) {
     const text = `GitHub Bookshelf\n${titles[kind]}\nData UTC: ${new Date(now).toISOString()}\nPortal: ${app}\n${results.map(r => `${r.passed ? 'OK' : 'FALHA'}: ${r.name}`).join('\n')}\n\nVerifique o workflow Monitorar produção no GitHub. Este aviso não contém dados de usuários. A execução agendada pode sofrer atraso no GitHub Actions.`;
     try {
       const sent = await response('https://api.resend.com/emails', {method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json','Idempotency-Key':`bookshelf-${process.env.GITHUB_RUN_ID || now}-${kind}`},body:JSON.stringify({from:'GitHub Bookshelf <alertas@auth.githubbokshelf.hubdetrabalho.com.br>',to:['githubbokshelf@gmail.com'],subject:`[GitHub Bookshelf] ${titles[kind]}`,text})});
-      notified = sent.ok;
-      notificationError = !sent.ok;
+      notified = sent.status >= 200 && sent.status < 300;
+      notificationError = !notified;
       await sent.body?.cancel();
     } catch {notificationError = true;}
     if (notified) state = stateAfterNotification(state, kind, now);

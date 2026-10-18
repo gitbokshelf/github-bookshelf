@@ -27,10 +27,12 @@ Esse resultado não mede capacidade de usuários reais da Vercel/Supabase. Não 
 
 17/10/2026, leitura sem mudanças: cadastro/login 30 requisições por 5 minutos/IP; verificação de token 30 por 5 minutos/IP; refresh 150 por 5 minutos/IP. E-mails: 2/h com SMTP próprio ainda desligado. Encaminhamento de IP via secret key desligado. Conferir a [documentação de rate limits](https://supabase.com/docs/guides/auth/rate-limits) antes de qualquer alteração.
 
-Esses limites são de Auth. Ainda falta quota de gravação por conta no servidor e proteção de automação integrada ao fluxo de cadastro. Não aumentar quotas simplesmente para ocultar falhas ou sem avaliar abuso/custos.
+Esses limites são de Auth. A migração 002 agora impõe quota por conta na RPC: rajada de 10 escritas aceitas e reposição de um crédito/2s, sem acesso direto às tabelas. Escritas inválidas/conflitantes não consomem crédito, então não é um limite global de requisições. A proteção de automação no Auth está em implantação com Turnstile. Não aumentar quotas simplesmente para ocultar falhas ou sem avaliar abuso/custos.
 
 ## Plano para ensaio de escala
 
 Usar projeto Supabase e implantação Vercel separados, dados sintéticos, limites/custos conhecidos e backup do ambiente. Começar com poucos usuários autenticados e aumentar gradualmente; separar leituras, gravações e login. Observar p95/p99, erros, revisões conflitantes, conexões, CPU/I/O/locks, quotas e custos. Parar diante de saturação, custo excedido, dados cruzados ou falha persistente. Não ensaiar SMTP real em volume.
 
 Definir cenário de pico esperado, duração, número de contas, orçamento e margem antes do teste. Negociar testes maiores com os provedores conforme plano/documentação. Somente o ensaio poderá justificar capacidade ou mudança de plano.
+
+Atualização: SMTP Resend ativo com limite inicial de 30 e-mails/h; o valor 2/h acima registra a conferência histórica anterior. Não elevar sem medir abuso e orçamento. Monitor ativo para disponibilidade/controles públicos, sem medição de carga autenticada.
