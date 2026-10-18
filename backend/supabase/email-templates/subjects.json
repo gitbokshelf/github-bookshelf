@@ -1,0 +1,4 @@
+{
+  "confirmation": "{{ $language := \"\" }}{{ with .Data }}{{ $language = printf \"%v\" .language }}{{ end }}{{ if eq $language \"en\" }}Confirm your email{{ else if eq $language \"es\" }}Confirma tu correo{{ else }}Confirme seu e-mail{{ end }} | GitHub Bookshelf",
+  "recovery": "{{ $language := \"\" }}{{ with .Data }}{{ $language = printf \"%v\" .language }}{{ end }}{{ if eq $language \"en\" }}Recover your access{{ else if eq $language \"es\" }}Recupera tu acceso{{ else }}Recupere seu acesso{{ end }} | GitHub Bookshelf"
+}

@@ -370,3 +370,29 @@ Revisão pelo executor: fontes/imports e build conferidos; traduções preservam
 Revisão adicional do cabeçalho: os quatro controles de idioma/conta/tema/GitHub aumentaram a largura intrínseca. A regra móvel agora limita o grupo a 100%, permite redução/quebra em linhas e mantém controles em 14px, sem cortar o nome do idioma. A mudança será validada pelo build; conferência visual estreita segue pendente pela indisponibilidade do Safari, sem inventar resultado.
 
 Publicação ee4a071 confirmada na Vercel; CI 39136928138 e segurança 39136928128 passaram. A consulta de alertas encontrou um novo apontamento js/client-side-request-forgery no caminho de idioma, apesar da allowlist em runtime. A montagem interpolada foi substituída por escolha entre dois caminhos constantes; será reanalisada, sem supressão do alerta.
+
+Consolidado procedimento próprio de backup/restauração na engenharia de segurança, ligado à operação e ao backend. Ele distingue ensaio sintético, recuperação do Supabase real, criptografia/cofre, componentes externos e evidência de RPO/RTO. Não apresenta comandos ou backup de produção como executados sem conexão/destino disponíveis.
+
+Revisão e publicação desta continuidade, 18/10/2026:
+
+- bd93fc9 enviado e publicado. CI 39137097247 e segurança 39137097365 passaram. Consulta de code scanning em refs/heads/main retornou zero abertos; alerta 7 confirmado fixed, sem supressão. A montagem do caminho de idioma usa duas constantes.
+- Domínio respondeu HTTP 200 com o mesmo módulo do build local. Sete headers comparados, sete recursos próprios 200 e JSONs EN/ES publicados idênticos às fontes, com 1.201 entradas cada. Relatório sanitizado em artifacts/security/publication.json. Dry-run do monitor passou nove controles.
+- Testes finais: 23 aprovados; build com 1.188 textos cobertos, 36 fontes e cerca de 255,1 KB JS gzip; comparação do JSON incorporado ao HTML independente passou. Auditoria npm reportou zero vulnerabilidades conhecidas. Diffs preparados passaram Gitleaks sem achados; arquivos privados de Supabase continuam ignorados.
+- Scripts temporários de transformação/tradução foram removidos. Preview 4177 encerrado, processo retornou 130. A sessão do proprietário e suas estantes não foram alteradas nesta continuidade.
+- Documentação vigente e registros por integração atualizados; adicionado procedimento reutilizável de backup/restauração na segurança. Revisão feita pelo executor, sem auditoria independente.
+
+Situação: entrega de quota, alertas e idiomas publicada e revisada no escopo descrito. SMTP foi configurado; entrega pela API de alertas foi comprovada, mas entrega SMTP/recuperação completa ainda não. Turnstile tem widget/cliente publicados e sitekey configurado; exigência no Supabase continua pendente do teste do formulário. Backup real depende da conexão/cofre/destino; apenas restauração sintética foi comprovada. Aguardamos desbloqueio/disponibilidade do Safari e preenchimento local da conexão solicitados ao proprietário. Também permanecem testes móveis desta alteração e MFA, conforme revisão vigente. Não declarar o conjunto de seis entregas integralmente concluído.
+
+Retomada com navegador disponível em 18/10/2026:
+
+- Formulário publicado no Chrome sem sessão mostrou verificação Turnstile concluída. Ativação no Supabase autorizada anteriormente executada: provedor Turnstile, secret transferido diretamente entre campos privados, confirmação Successfully updated settings. Nenhum valor secreto registrado.
+- Duas verificações reais de baixo volume, com endereço reservado example.invalid e sem token, retornaram HTTP 400/captcha_failed para login e recuperação. Não criaram usuário nem alteraram estante. Relatório sanitizado em artifacts/security/captcha.json.
+- Recuperação deixada para o proprietário no Chrome com endereço informado mail.com; desafio interativo e nova senha ficam com ele. Sessões do Safari preservadas.
+- Próxima alteração: modelos de confirmação/cadastro e recuperação em PT/EN/ES, seguindo metadado language do cadastro, com português como padrão. Versionar somente modelos efetivamente aplicados, conferir preview do provedor e registrar limites da validação.
+
+Revisão complementar desta retomada, pelo executor:
+
+- Chrome em 390 × 844: PT/EN/ES, temas escuro/claro, largura da página igual a 390 px, cabeçalho sem corte horizontal. Viewport temporária restaurada e aba de ensaio encerrada. Formulário de recuperação mantido para ação do proprietário, sem senha recebida.
+- Modelos de confirmação/recuperação e assuntos PT/EN/ES aplicados no Supabase; ambos mostraram Successfully updated email template. Preview apenas exibe HTML, sem processar Go. Versão local recebeu guarda para Data nulo e precisa ser reaplicada após retorno do Safari; essa diferença não está escondida como configuração concluída.
+- Go 1.27.2 instalado do Homebrew oficial, sem serviço persistente. Ferramenta própria com bibliotecas padrão renderizou vinte casos sintéticos: três idiomas, fallback, metadados ausentes, tipos inesperados, texto hostil e URL com escape. Todos passaram, nenhum envio ou acesso ao Supabase. CI ganhou a mesma conferência, ainda aguardando execução após push.
+- Links relativos dos documentos alterados e git diff --check passaram. Documentação das áreas e mapas atualizada para Turnstile ativo e estado real dos testes. Backup de produção ainda sem conexão/cofre/destino; recuperação positiva e reaplicação final dos modelos dependem do proprietário/janela.

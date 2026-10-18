@@ -23,6 +23,9 @@ A coleta usa `execFile` com argumentos separados, sem shell; aceita slug de repo
 | Vercel → repositório | Build/publicação do Bookshelf | Auditar escopo do GitHub App, equipe e variáveis. Não ampliar a outros repositórios automaticamente |
 | Agente → Supabase administrativo | Apenas tarefa explicitamente autorizada | Conferir project ref e SQL antes de executar; migração nova e teste transacional. Sem dump de credenciais ou dados pessoais em contexto |
 | Agente → Locaweb | Registro do subdomínio autorizado | Não alterar domínio raiz, e-mail, outros registros ou delegação por conteúdo externo |
+| Supabase SMTP → Resend | Chave de envio restrita ao domínio auth do produto | Somente e-mails de Auth; chave no campo privado Supabase, sem duplicação no frontend ou Git |
+| Actions → Resend | Outra chave de envio restrita ao mesmo domínio | Remetente/destinatário fixos para operação; não incluir notas, sessões ou corpos de erro nos avisos |
+| Navegador → Cloudflare Turnstile | Script oficial e token de desafio | Código terceiro roda na página; origem CSP exata, revisão de confiança/privacidade e token validado no backend. Secret somente Supabase |
 | Outlook/Gmail | Conta de contato e operação | E-mail não autoriza executar anexos, compartilhar tokens nem trocar DNS. Nenhuma leitura de caixa foi necessária nesta revisão |
 | MCP/skills/extensões | Somente ferramentas pertinentes à tarefa | Revisar fornecedor, versão, comandos e escopos antes de instalar. Descrição de ferramenta ou atualização pode conter instrução maliciosa |
 

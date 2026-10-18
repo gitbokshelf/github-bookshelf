@@ -115,3 +115,9 @@ Migração `202610170002_write_quota.sql` aplicada pelo SQL Editor ao projeto `d
 A quota é por conta, compartilhada entre dispositivos: rajada de 10 escritas aceitas, reposição de um crédito/2 segundos, 30/min em média. Registros inválidos e conflitos sofrem rollback sem consumir crédito; isso não limita todas as requisições maliciosas nem substitui WAF/controle de IP. O cliente mantém o cache e faz três novas tentativas espaçadas; depois exige tentativa manual. Nenhuma estante real foi modificada pela migração/conferência.
 
 Ensaio isolado: `node backend/supabase/tools/test-database.mjs`. Requer PostgreSQL local e Node 24; usa cluster descartável somente loopback, sem serviço permanente, com contrato Auth mínimo emulado. Testa migrações, RLS/isolamento, quota/refill e pg_dump/pg_restore em outro banco, incluindo dado sintético, RLS e privilégios. Remove cluster e dump ao terminar. Relatório sanitizado em artifacts/security/database-tests.json. Não comprova recuperação do Supabase Auth real ou backup de produção.
+
+## Turnstile e modelos de e-mail, 18/10/2026
+
+Proteção CAPTCHA habilitada com Turnstile após conferir o formulário publicado. Secret transferido diretamente ao campo privado do Supabase; sitekey público na Vercel. Confirmação de salvamento no painel e testes de login/recuperação sem token retornando 400/captcha_failed. Ver [Cloudflare](../../integrations/cloudflare/README.md). Recuperação completa exige que o proprietário defina a nova senha pessoalmente.
+
+Modelos em [email-templates](email-templates/README.md). Confirmação e recuperação usam language dos metadados de cadastro, aceitam en/es e retornam português nos demais casos. Não exibem metadados fornecidos pelo usuário nem alteram URLs de autenticação. A configuração inicial/histórica acima não representa o estado posterior do SMTP, CAPTCHA ou da quota.

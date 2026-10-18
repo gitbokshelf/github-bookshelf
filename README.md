@@ -22,6 +22,7 @@ integrations/         Serviços externos e seus arquivos locais
   locaweb/            DNS do subdomínio
   outlook/            Contato do produto
   resend/             SMTP e alertas transacionais
+  cloudflare/         Turnstile dos formulários de acesso
 security/             Engenharia de segurança, testes, carga e modelos reutilizáveis
 docs/                 Arquitetura, decisões, curadoria e validação
 tools/                Manutenção e testes do catálogo
@@ -63,8 +64,8 @@ Português, inglês e espanhol estão integrados com seletor, preferência persi
 
 A infraestrutura está publicada e os fluxos principais foram conferidos. O produto ainda tem entregas pendentes:
 
-1. Validar cadastro, confirmação e recuperação de senha para usuários externos e concluir a ativação do Turnstile no backend após conferir o formulário publicado. SMTP personalizado foi ativado em 17/10/2026; a recuperação completa ainda precisa da conferência do proprietário.
-2. Ampliar revisão dos três idiomas em telas estreitas e aparelhos físicos. Interface, guias, conteúdo editorial dos 150 projetos, ilustrações e rótulos acessíveis já estão integrados; mensagens de e-mail do provedor ainda precisam de configuração própria.
+1. Validar cadastro, confirmação e recuperação de senha para usuários externos, incluindo passagem completa pelo Turnstile já exigido no backend. SMTP personalizado foi ativado em 17/10/2026; a recuperação completa ainda precisa da conferência do proprietário.
+2. Ampliar revisão dos três idiomas em telas estreitas e aparelhos físicos. Interface, guias, conteúdo editorial dos 150 projetos, ilustrações e rótulos acessíveis já estão integrados; modelos de confirmação e recuperação do provedor receberam configuração própria e estão em validação.
 3. Ampliar testes de autenticação, troca de contas, concorrência, uso offline e dois dispositivos físicos. A CI inclui testes de catálogo, idiomas, segurança e banco descartável com quota/isolamento/restore, sem suíte automática completa desses fluxos.
 4. Completar informações de privacidade e gestão de dados, incluindo exclusão de conta. A exportação de estante existe; a conta hoje oferece saída, sem fluxo próprio de exclusão. Definir e testar restauração operacional do backend.
 5. Medir desempenho e ampliar revisão de acessibilidade e aparelhos físicos. O orçamento de build passou, com ensaio local limitado, sem teste de carga autenticada ou medição completa de produção.

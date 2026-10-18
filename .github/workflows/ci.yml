@@ -26,6 +26,9 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
       - run: npm ci
       - run: npm test
+      - name: Renderizar modelos de e-mail com Go e dados sintéticos
+        working-directory: .
+        run: go run backend/supabase/tools/check-email-templates.go
       - run: npm audit --audit-level=high
       - run: npm run build
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

@@ -8,6 +8,7 @@
 | --- | --- |
 | [MODELO-DE-AMEACAS.md](MODELO-DE-AMEACAS.md) | Ativos, fronteiras de confiança, ataques e controles |
 | [AGENTES-E-INTEGRACOES.md](AGENTES-E-INTEGRACOES.md) | Prompt injection, MCP, ferramentas e permissões |
+| [BACKUP-E-RESTAURACAO.md](BACKUP-E-RESTAURACAO.md) | Recuperação, critérios de conclusão e limites do ensaio |
 | [OPERACAO.md](OPERACAO.md) | Manutenção, alertas, incidentes e recuperação |
 | [CAPACIDADE.md](CAPACIDADE.md) | Sobrecarga, limites, ensaio e critérios de expansão |
 | [FERRAMENTAS.md](FERRAMENTAS.md) | Fontes oficiais e ferramentas adotadas ou candidatas |

@@ -1,6 +1,6 @@
 # Arquitetura do GitHub Bookshelf
 
-Estrutura vigente em 17/10/2026. Este documento define responsabilidades; o histórico de tarefas fica no [registro de execução e revisão](REGISTRO-DE-EXECUCAO.md).
+Estrutura vigente em 18/10/2026. Este documento define responsabilidades; o histórico de tarefas fica no [registro de execução e revisão](REGISTRO-DE-EXECUCAO.md).
 
 ## Organização do produto
 
@@ -25,7 +25,9 @@ GitHub Bookshelf/
 │   ├── github/                  Repositório e autoria
 │   ├── outlook/                 Contato do produto
 │   ├── vercel/                  Hospedagem e domínio
-│   └── locaweb/                 Zona DNS do subdomínio
+│   ├── locaweb/                 Zona DNS do subdomínio
+│   ├── resend/                  SMTP e alertas transacionais
+│   └── cloudflare/              Turnstile dos formulários Auth
 ├── security/                    Engenharia, testes, carga e modelos de segurança
 ├── docs/                        Arquitetura, curadoria e validação
 │   └── REGISTRO-DE-EXECUCAO.md   Registro obrigatório de cada tarefa
@@ -125,7 +127,7 @@ A área `security/` concentra modelo de ameaças, revisão, operação, prompt i
 
 O teste de build em `security/tools/check-build.mjs` rejeita scripts inline/externos, arquivos privados/sourcemaps e padrões administrativos examinados. Os testes em `security/tests/` verificam contrato de importação, tamanho, chaves hostis e configuração HTTP. O atualizador de catálogo valida slugs/URLs e não executa READMEs. As regras de agentes são obrigatórias, mas não representam sandbox técnico implementado.
 
-CI e workflows de segurança têm timeout e Actions por SHA; Dependabot propõe atualizações. O GitHub tem proteção de push/secret scanning e relatos privados. Quota por conta aplicada na RPC com tabela privada e tratamento de PT429 no cliente. SMTP Resend ativo com chave restrita. Monitoramento agendado está em validação. Continuam pendentes CAPTCHA, recuperação completa, backup de produção com restauração comprovada e ensaio de capacidade autenticada em staging. Ver `security/REVISAO.md`.
+CI e workflows de segurança têm timeout e Actions por SHA; Dependabot propõe atualizações. O GitHub tem proteção de push/secret scanning e relatos privados. Quota por conta aplicada na RPC com tabela privada e tratamento de PT429 no cliente. SMTP Resend ativo com chave restrita. Monitoramento agendado e e-mail de teste tiveram entrega comprovada. Turnstile é exigido no Supabase após conferência do cliente e negação sem token. Continuam pendentes recuperação completa, backup de produção com restauração comprovada e ensaio de capacidade autenticada em staging. Ver `security/REVISAO.md`.
 
 Após a limpeza de 17/10/2026, o build também confere o grafo de fontes a partir da entrada da aplicação e rejeita arquivos sem vínculo/imports ausentes. TypeScript rejeita declarações locais sem uso. Cache de READMEs e scaffolding sem consumidor foram removidos; o atualizador mantém somente o catálogo necessário. Não remover testes de regressão, migrações aplicadas ou evidências vigentes sob pretexto de limpeza.
 

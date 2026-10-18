@@ -25,6 +25,8 @@ Revisar superfícies alteradas e permissões; testes negativos, build e inspeç�
 
 ## Backup, restauração e continuidade
 
+Procedimento e critérios em [BACKUP-E-RESTAURACAO.md](BACKUP-E-RESTAURACAO.md).
+
 Hoje há exportação individual de estante. Isso não substitui backup do backend nem recuperação de contas. Não foi comprovado restore de produção nesta revisão.
 
 Próxima implantação operacional: definir RPO/RTO e retenção; verificar recursos disponíveis no plano Supabase; gerar backup criptografado com acesso restrito fora do repositório/OneDrive compartilhado; restaurar em projeto separado; testar autenticação, RLS, funções e consistência sem disparar e-mails reais. Registrar duração, contagens sanitizadas e responsável. Só então afirmar capacidade de recuperação.

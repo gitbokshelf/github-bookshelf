@@ -27,3 +27,9 @@ O subdomínio foi adicionado à produção deste projeto. A Vercel indicou CNAME
 A inclusão neste projeto ficou restrita ao subdomínio solicitado. Não foram mudados os nameservers nem contratado outro domínio. Os registros e a preservação da zona estão em [Locaweb](../locaweb/README.md).
 
 A política CSP e os headers são definidos na raiz em `vercel.json`. O build inclui inspeção de segurança da distribuição e do grafo das fontes. Ver [engenharia de segurança](../../security/README.md).
+
+## Turnstile e idiomas, 18/10/2026
+
+VITE_TURNSTILE_SITE_KEY salvo como Config, escopo Production, para o widget autorizado dos dois endereços publicados. É sitekey público; o secret não foi colocado na Vercel. A configuração entrou no build publicado. CSP permite script/frame somente da origem oficial challenges.cloudflare.com necessária ao serviço.
+
+bd93fc9 publicado: PT/EN/ES integrados, JSONs por idioma próprios e controle de cabeçalho com quebra em telas estreitas. Conferência HTTP encontrou o mesmo módulo do build local, sete headers e sete recursos próprios 200; os dois JSONs publicados coincidem com as fontes. Conferência visual estreita desta alteração permanece pendente.

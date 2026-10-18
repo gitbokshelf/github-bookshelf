@@ -19,9 +19,9 @@ Executor e revisor: Codex. Não houve auditor independente ou pentest completo. 
 | Distribuição | 11 arquivos conferidos; bootstrap próprio, Turnstile sob demanda na origem oficial autorizada | Scanner de padrões não detecta todo segredo possível |
 | npm audit completo | 0 vulnerabilidades conhecidas reportadas | Não cobre falha inédita ou regra de negócio |
 | Gitleaks 8.30.1, histórico | 17 commits, aproximadamente 1,18 MB, nenhum achado | Histórico até ee6902e e diffs preparados conferidos; não detecta todo tipo de segredo |
-| CodeQL security-extended | Seis alertas corrigidos, zero abertos após análise 39134719583 de bbf7b91 | Escopo da análise estática, sem certificação/pentest completo |
+| CodeQL security-extended | Sete alertas corrigidos, zero abertos após análise 39137097365 de bd93fc9 | Escopo da análise estática, sem certificação/pentest completo |
 | Supabase anônimo | Leitura e RPC negados com HTTP 401 | Duas requisições, sem JWT de usuário; não prova isolamento entre contas |
-| Auth no painel | SMTP configurado, quota RPC aplicada; CAPTCHA backend ainda off | Sem mudança de limite e sem ataque simulado |
+| Auth no painel | SMTP configurado, quota RPC aplicada; CAPTCHA Turnstile exigido | Sem mudança de limite e sem ataque simulado |
 | Safari local com CSP | Catálogo, busca Maccy, detalhes e tema claro após recarregar e coleções 21st.dev com abertura da pasta conferidos | Sem novo cadastro/recuperação ou edição de conta |
 | k6 2.3.0 local | 10 VUs/30s, 1.800 requisições, 0 falhas, p95 10,78 ms | Somente entrega HTTP estática local, sem banco |
 
@@ -31,7 +31,7 @@ Relatórios sanitizados ignorados: `artifacts/security/`; resultados públicos r
 
 | Prioridade | Entrega necessária | Estado |
 | --- | --- | --- |
-| Alta, antes de divulgar cadastro | Entrega SMTP e confirmação/recuperação; exigência CAPTCHA no backend | SMTP salvo, cliente/widget publicado; testes e ativação final pendentes |
+| Alta, antes de divulgar cadastro | Entrega SMTP e confirmação/recuperação; exigência CAPTCHA no backend | SMTP salvo, cliente/widget publicado e exigência ativa; testes positivos de cadastro/recuperação pendentes |
 | Alta, antes de escala | Quota e monitoramento de abuso/consumo | Quota RPC aplicada e monitor público com e-mail ativo; métricas internas/consumo pendentes |
 | Alta, continuidade | Backup criptografado e restauração no ambiente separado; definir RPO/RTO | Pendente |
 | Alta, administrativo | Conferir MFA, recuperação, sessões, escopos de Apps/GitHub CLI e privilégios nos provedores com o proprietário | Não auditado integralmente |
@@ -61,6 +61,6 @@ SMTP Resend ativo. Monitor publicado em 0be23c2, execução 39042382783: nove co
 
 CodeQL da entrega anterior apontou dois alertas novos no monitor, apesar dos jobs verdes. Origem CSP passou a ser comparada por tokens exatos, com regressão de domínio embutido/malicioso. Valores de relatório são convertidos em constantes booleanas por condição, sem copiar conteúdo de resposta de rede. Reanálise 39134719583 concluída; consulta retornou zero alertas abertos, sem supressão manual.
 
-Turnstile: widget Managed criado, dois hostnames publicados, pre-clearance off, secret destinado somente ao Supabase e sitekey público salvo na Vercel Production. Componente preparado para ciclo de token, expiração/erro/repetição, bloqueio do submit sem token e remoção ao fechar formulário. CSP autoriza apenas origem oficial de scripts/frames necessária ao serviço. Backend ainda não ativado nesta etapa, para evitar bloquear formulários antes de publicar e conferir o cliente.
+Turnstile: widget Managed criado, dois hostnames publicados, pre-clearance off, secret destinado somente ao Supabase e sitekey público salvo na Vercel Production. Componente preparado para ciclo de token, expiração/erro/repetição, bloqueio do submit sem token e remoção ao fechar formulário. CSP autoriza apenas origem oficial de scripts/frames necessária ao serviço. Após conferir o cliente publicado, exigência ativada no Supabase em 18/10/2026. Testes sem token negaram login e recuperação com HTTP 400/captcha_failed. A definição de senha e o teste positivo completo continuam com o proprietário.
 
-Internacionalização: cobertura estática de 1.188 textos examinados, incluindo dados editoriais e guias; regressões de formato/protótipos, preservação de nomes/busca e limites de processamento. Idioma e traduções não alteram IDs, autorização ou notas. HTML independente compara JSON decodificado às fontes após escape. Revisão visual desktop no Safari foi feita em PT/EN/ES; a revisão estreita desta alteração foi interrompida pela indisponibilidade do acesso às janelas.
+Internacionalização: cobertura estática de 1.188 textos examinados, incluindo dados editoriais e guias; regressões de formato/protótipos, preservação de nomes/busca e limites de processamento. Idioma e traduções não alteram IDs, autorização ou notas. HTML independente compara JSON decodificado às fontes após escape. Revisão visual desktop no Safari foi feita em PT/EN/ES; revisão complementar no Chrome em 390 × 844 confirmou largura de conteúdo igual à viewport, cabeçalho sem corte horizontal e apresentação de PT/EN/ES, com temas claro e escuro. Não substitui aparelhos físicos.
