@@ -1,6 +1,6 @@
 # Resend
 
-Conta técnica: githubbokshelf@gmail.com. Finalidade: e-mails transacionais do Supabase Auth e alertas operacionais autorizados para o mesmo endereço técnico. Domínio verificado em 17/10/2026 às 11:39, conforme painel. SMTP ativo; teste de entrega e monitoramento em validação.
+Conta técnica: githubbokshelf@gmail.com. Finalidade: e-mails transacionais do Supabase Auth e alertas operacionais autorizados para o mesmo endereço técnico. Domínio verificado em 17/10/2026 às 11:39, conforme painel. SMTP configurado no Supabase; monitor ativo, com teste pela API entregue. Entrega via SMTP e recuperação completa ainda precisam de teste.
 
 Domínio exclusivo: `auth.githubbokshelf.hubdetrabalho.com.br`, região São Paulo. Recebimento de e-mails permanece desligado; apenas envio. O domínio raiz e seus serviços de e-mail não devem ser substituídos.
 
@@ -10,7 +10,7 @@ As chaves devem ter somente permissão de envio, limitada a este domínio. Usar 
 
 Remetente configurado: `acesso@auth.githubbokshelf.hubdetrabalho.com.br`, nome GitHub Bookshelf. Remetente de alertas: `alertas@auth.githubbokshelf.hubdetrabalho.com.br`. O destinatário técnico foi confirmado pelo proprietário.
 
-Validação necessária: domínio verificado; SMTP salvo no Supabase; teste controlado de entrega; cadastro/confirmação/recuperação pela interface com o proprietário definindo sua senha; alertas por chave independente. Não declarar concluída apenas pela adição dos registros DNS.
+Validação confirmada: domínio verificado, SMTP persistido no Supabase, chave independente de alertas no Actions e e-mail de teste entregue pela API, conforme painel Resend e execução 39042382783. Pendente: entrega por SMTP e cadastro/confirmação/recuperação pela interface com o proprietário definindo sua senha. Não declarar concluída apenas pela adição dos registros DNS.
 
 [Mapa de integrações](../README.md) · [Operação](../../security/OPERACAO.md)
 

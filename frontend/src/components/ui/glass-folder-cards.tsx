@@ -1,4 +1,5 @@
-"use client";
+import { translate, useLanguage } from "../../i18n";
+("use client");
 
 /** Original: Kedhareswer Naidu, MIT. https://21st.dev/@kedhareswer/components/glass-folder-cards */
 
@@ -545,6 +546,7 @@ function ArtCanvas({
   priority: number;
   className?: string;
 }) {
+  useLanguage();
   const ref = React.useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = React.useState(false);
   const recipe = recipeOf(art);
@@ -629,6 +631,7 @@ export default function GlassFolder({
   className,
   style,
 }: GlassFolderProps) {
+  useLanguage();
   const uid = React.useId().replace(/:/g, "");
   const rootRef = React.useRef<HTMLDivElement>(null);
   const filesRef = React.useRef<HTMLDivElement>(null);
@@ -838,7 +841,7 @@ export default function GlassFolder({
               <img
                 className="gf-art"
                 src={image}
-                alt=""
+                alt={""}
                 width={W + 24}
                 height={H + 24}
                 draggable={false}
@@ -897,22 +900,22 @@ export default function GlassFolder({
               type="button"
               className="gf-hit"
               aria-expanded={open}
-              aria-label={
+              aria-label={translate(
                 (open ? "Fechar " : "Abrir ") +
-                label +
-                ", " +
-                count +
-                (count === 1 ? " item" : " itens")
-              }
+                  label +
+                  ", " +
+                  count +
+                  (count === 1 ? " item" : " itens"),
+              )}
               onClick={() => {
                 setMenuOpen(false);
                 setOpen(!open);
               }}
             />
             <div className="gf-label">
-              <span className="gf-title">{label}</span>
+              <span className="gf-title">{translate(label)}</span>
               <span className="gf-meta" key={metaLine}>
-                {metaLine}
+                {translate(metaLine)}
               </span>
             </div>
           </div>
@@ -922,7 +925,7 @@ export default function GlassFolder({
             ref={filesRef}
             className="gf-files"
             role="list"
-            aria-label={label + " conteúdo"}
+            aria-label={translate(label + " conteúdo")}
           >
             {visible.map((file, v) => {
               const id = ids.current[start + v];
@@ -936,7 +939,7 @@ export default function GlassFolder({
                       <img
                         className="gf-sheet-art"
                         src={file.image}
-                        alt=""
+                        alt={""}
                         width={SHEET_W}
                         height={SHEET_H}
                         draggable={false}
@@ -962,9 +965,13 @@ export default function GlassFolder({
                     </span>
                   )}
                   <span className="gf-sheet-head">
-                    <span className="gf-sheet-name">{file.name}</span>
+                    <span className="gf-sheet-name">
+                      {translate(file.name)}
+                    </span>
                     {file.meta ? (
-                      <span className="gf-sheet-meta">{file.meta}</span>
+                      <span className="gf-sheet-meta">
+                        {translate(file.meta)}
+                      </span>
                     ) : null}
                   </span>
                 </>
@@ -1013,11 +1020,11 @@ export default function GlassFolder({
               ref={keyRef}
               type="button"
               className={"gf-key gf-key--" + action}
-              aria-label={
+              aria-label={translate(
                 action === "add"
                   ? "Adicionar arquivo a " + label
-                  : "Mais opções de " + label
-              }
+                  : "Mais opções de " + label,
+              )}
               aria-haspopup={action === "more" ? "menu" : undefined}
               aria-expanded={action === "more" ? menuOpen : undefined}
               aria-controls={action === "more" ? "gf-menu-" + uid : undefined}
@@ -1053,7 +1060,7 @@ export default function GlassFolder({
               ref={menuRef}
               id={"gf-menu-" + uid}
               role="menu"
-              aria-label={label + " opções"}
+              aria-label={translate(label + " opções")}
               className="gf-menu"
               data-open={menuOpen || undefined}
               onKeyDown={onMenuKey}
@@ -1075,7 +1082,7 @@ export default function GlassFolder({
                     item.onSelect?.();
                   }}
                 >
-                  {item.label}
+                  {translate(item.label)}
                 </button>
               ))}
             </div>

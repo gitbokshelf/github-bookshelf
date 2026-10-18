@@ -69,7 +69,39 @@
   }
 }
 
-.challenge-field { margin-top: 20px; min-width: 0; }
-.challenge-field > div { max-width: 100%; }
-.challenge-field .field-hint { margin-top: 10px; }
-.challenge-field a { text-decoration: underline; }
+.challenge-field {
+  margin-top: 20px;
+  min-width: 0;
+}
+.challenge-field > div {
+  max-width: 100%;
+}
+.challenge-field .field-hint {
+  margin-top: 10px;
+}
+.challenge-field a {
+  text-decoration: underline;
+}
+
+.language-control {
+  position: relative;
+}
+.language-message {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 10;
+  width: max-content;
+  max-width: 260px;
+  background: var(--surface, #242b20);
+  border-radius: 6px;
+  font-size: 14px;
+}
+.language-message:not(:empty) {
+  padding: 8px 10px;
+  border: 1px solid currentColor;
+}
+[data-theme="light"] .language-message {
+  background: #fff;
+  color: #263d20;
+}

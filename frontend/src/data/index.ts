@@ -1,3 +1,4 @@
+import { getLanguage } from "../i18n";
 import catalog from "./catalog.json";
 export const projects = catalog.projects;
 export type Project = (typeof projects)[number];
@@ -61,12 +62,12 @@ export const categories = [
 export const score = (p: Project) =>
   p.scores.reduce((a, b) => a + b, 0) / p.scores.length;
 export const compact = (n: number) =>
-  new Intl.NumberFormat("pt-BR", {
+  new Intl.NumberFormat(getLanguage(), {
     notation: "compact",
     maximumFractionDigits: 1,
   }).format(n);
 export const date = (s: string) =>
-  new Date(s).toLocaleDateString("pt-BR", {
+  new Date(s).toLocaleDateString(getLanguage(), {
     timeZone: "America/Sao_Paulo",
     day: "2-digit",
     month: "short",

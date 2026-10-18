@@ -13,7 +13,13 @@ export function stateAfterNotification(state, kind, now) {
   return { incident: kind !== 'recovery', notifiedAt: now };
 }
 export function safeContentPolicy(value) {
-  const directives=new Map(value.split(';').map(part=>{const [name,...sources]=part.trim().split(/\s+/);return [name,sources];}));
+  const directives=new Map();
+  for(const part of value.split(';')) {
+    const [name,...sources]=part.trim().split(/\s+/);
+    if(!name) continue;
+    if(directives.has(name)) return false;
+    directives.set(name,sources);
+  }
   const only=(name, expected)=>{
     const sources=directives.get(name);
     return Array.isArray(sources) && sources.length===expected.length && expected.every(source=>sources.some(actual=>actual===source));

@@ -1,3 +1,4 @@
+import { translate, useLanguage } from "../i18n";
 import { categories, projects, type Project } from "../data";
 import GlassFolder from "../components/ui/glass-folder-cards";
 import Icon from "../components/ui/icon";
@@ -12,14 +13,20 @@ export default function Collections({
   reset: () => void;
   chooseCategory: (id: string) => void;
 }) {
+  useLanguage();
   return (
     <>
       <div className="page-heading">
-        <div className="eyebrow">CONEXÕES QUE FAZEM SENTIDO</div>
+        <div className="eyebrow">{translate("CONEXÕES QUE FAZEM SENTIDO")}</div>
         <h1>
-          Uma coleção para <em>cada ideia.</em>
+          {translate("Uma coleção para ")}
+          <em>{translate("cada ideia.")}</em>
         </h1>
-        <p>Projetos que funcionam melhor quando você sabe por onde começar.</p>
+        <p>
+          {translate(
+            "Projetos que funcionam melhor quando você sabe por onde começar.",
+          )}
+        </p>
       </div>
       <div className="collections-grid">
         {categories.slice(1).map((c, i) => {
@@ -36,7 +43,7 @@ export default function Collections({
                     )[i % 5]
                   }
                   seed={i + 5}
-                  label={c.label}
+                  label={translate(c.label)}
                   meta={`${members.length} projetos · prévia de 4`}
                   action="none"
                   files={members.slice(0, 4).map((p) => ({
@@ -47,8 +54,8 @@ export default function Collections({
                 />
               </div>
               <div className="collection-description">
-                <h2>{c.label}</h2>
-                <p>{c.hint}</p>
+                <h2>{translate(c.label)}</h2>
+                <p>{translate(c.hint)}</p>
                 <button
                   className="text-button"
                   onClick={() => {
@@ -56,7 +63,7 @@ export default function Collections({
                     chooseCategory(c.id);
                   }}
                 >
-                  Explorar coleção
+                  {translate("Explorar coleção")}
                   <Icon name="arrow" size={15} />
                 </button>
               </div>
@@ -65,15 +72,16 @@ export default function Collections({
         })}
       </div>
       <p className="component-credit">
-        Pastas por{" "}
+        {translate("Pastas por")}
+        {translate(" ")}
         <a
           href="https://21st.dev/@kedhareswer/components/glass-folder-cards"
           target="_blank"
           rel="noreferrer"
         >
-          Kedhareswer Naidu / 21st.dev
+          {translate("Kedhareswer Naidu / 21st.dev")}
         </a>
-        . Clique para abrir e escolher um projeto.
+        {translate(". Clique para abrir e escolher um projeto.")}
       </p>
     </>
   );

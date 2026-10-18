@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { parse } from '../../frontend/node_modules/parse5/dist/index.js';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
@@ -23,3 +24,15 @@ for (const file of files) {
 const standalone = fs.readFileSync(new URL('../../artifacts/GitHub Bookshelf.html',import.meta.url),'utf8');
 assert.equal(externalScriptSources(standalone).length, 0, 'HTML independente ainda depende de script externo');
 console.log(`Distribuição conferida: ${files.length} arquivos, scripts próprios e sem os padrões administrativos examinados.`);
+
+const jsonBlocks=[];
+function inspectEmbedded(node) {
+  if (node.nodeName === 'script' && node.attrs?.some(attr=>attr.name==='id' && attr.value==='bookshelf-locales')) jsonBlocks.push(node);
+  for (const child of node.childNodes ?? []) inspectEmbedded(child);
+}
+inspectEmbedded(parse(standalone));
+assert.equal(jsonBlocks.length,1,'HTML independente exige um bloco de traduções');
+assert.ok(jsonBlocks[0].attrs.some(attr=>attr.name==='type'&&attr.value==='application/json'));
+const embedded=JSON.parse(jsonBlocks[0].childNodes.map(node=>node.value??'').join(''));
+for (const language of ['en','es']) assert.deepEqual(embedded[language],JSON.parse(fs.readFileSync(path.join(dist,'locales',`${language}.json`),'utf8')),'Tradução mudou ao embutir no HTML');
+console.log('Traduções do HTML independente conferidas por round-trip JSON, incluindo textos com caracteres HTML.');

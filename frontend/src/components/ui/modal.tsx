@@ -1,3 +1,4 @@
+import { translate, useLanguage } from "../../i18n";
 import { useEffect, useRef, type ReactNode } from "react";
 import Icon from "./icon";
 export default function Modal({
@@ -11,6 +12,7 @@ export default function Modal({
   label: string;
   className?: string;
 }) {
+  useLanguage();
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -25,7 +27,7 @@ export default function Modal({
   return (
     <dialog
       ref={ref}
-      aria-label={label}
+      aria-label={translate(label)}
       className={`modal ${className}`}
       onCancel={onClose}
       onClick={(e) => {
@@ -36,11 +38,11 @@ export default function Modal({
         <button
           className="icon-button close"
           onClick={onClose}
-          aria-label="Fechar janela"
+          aria-label={translate("Fechar janela")}
         >
           <Icon name="x" />
         </button>
-        {children}
+        {translate(children)}
       </div>
     </dialog>
   );

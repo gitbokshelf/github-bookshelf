@@ -1,3 +1,4 @@
+import { translate, useLanguage, formatNumber } from "../i18n";
 import { categories, compact, score, type Project } from "../data";
 import Icon from "./ui/icon";
 import Cover from "./project-cover";
@@ -14,25 +15,28 @@ export default function ProjectCard({
   onOpen: () => void;
   list: boolean;
 }) {
+  useLanguage();
   return (
     <article className={`project-card ${list ? "list-card" : ""}`}>
       <button
         className="cover-button"
         onClick={onOpen}
-        aria-label={`Conhecer ${p.name}`}
+        aria-label={translate(`Conhecer ${p.name}`)}
       >
         <Cover project={p} />
       </button>
       <div className="card-content">
         <div className="card-eyebrow">
-          <span>{categories.find((c) => c.id === p.category)?.label}</span>
+          <span>
+            {translate(categories.find((c) => c.id === p.category)?.label)}
+          </span>
           <button
             className={`save-button ${saved ? "is-saved" : ""}`}
-            aria-label={
+            aria-label={translate(
               saved
                 ? `Remover ${p.name} da estante`
-                : `Salvar ${p.name} na estante`
-            }
+                : `Salvar ${p.name} na estante`,
+            )}
             aria-pressed={saved}
             onClick={onSave}
           >
@@ -40,10 +44,10 @@ export default function ProjectCard({
           </button>
         </div>
         <button className="card-title" onClick={onOpen}>
-          {p.name}
+          {translate(p.name)}
           <Icon name="external" size={15} />
         </button>
-        <p>{p.description}</p>
+        <p>{translate(p.description)}</p>
         <div className="card-tags">
           {p.platforms.slice(0, 2).map((x) => (
             <span key={x}>
@@ -53,28 +57,36 @@ export default function ProjectCard({
                 }
                 size={11}
               />
-              {x}
+              {translate(x)}
             </span>
           ))}
           {p.platforms.length > 2 && (
-            <span title={p.platforms.join(", ")}>
-              +{p.platforms.length - 2}
+            <span title={translate(p.platforms.join(", "))}>
+              {translate("+")}
+              {p.platforms.length - 2}
             </span>
           )}
-          <span>{p.level}</span>
+          <span>{translate(p.level)}</span>
         </div>
         <div className="card-foot">
-          <span title="Estrelas no GitHub na data da coleta">
+          <span title={translate("Estrelas no GitHub na data da coleta")}>
             <Icon name="star" size={13} />
-            {compact(p.stars)}
+            {translate(compact(p.stars))}
           </span>
           <span
             className="editorial-score"
-            title="Média editorial de utilidade, clareza e facilidade. Não é avaliação de usuários."
+            title={translate(
+              "Média editorial de utilidade, clareza e facilidade. Não é avaliação de usuários.",
+            )}
           >
             <span className="score-dot" />
-            {score(p).toFixed(1).replace(".", ",")}
-            <span>editorial</span>
+            {translate(
+              formatNumber(score(p), {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1,
+              }),
+            )}
+            <span>{translate("editorial")}</span>
           </span>
         </div>
       </div>

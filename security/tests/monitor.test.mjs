@@ -23,5 +23,5 @@ test('CSP exige origem exata, sem aceitar domínio embutido ou código inline', 
   const {safeContentPolicy}=await import('../tools/monitor-policy.mjs');
   const policy="object-src 'none'; frame-ancestors 'none'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; connect-src 'self' https://dxnfhzgxdkhdggqoogft.supabase.co";
   assert.equal(safeContentPolicy(policy),true);
-  for (const hostile of [policy.replace('.supabase.co','.supabase.co.attacker.example'),policy.replace('https://dxn','https://attacker.example/https://dxn'),policy.replace("script-src 'self'","script-src 'self' 'unsafe-inline'"),policy+'; connect-src *']) assert.equal(safeContentPolicy(hostile),false);
+  for (const hostile of [policy.replace('.supabase.co','.supabase.co.attacker.example'),policy.replace('https://dxn','https://attacker.example/https://dxn'),policy.replace("script-src 'self'","script-src 'self' 'unsafe-inline'"),policy+'; connect-src *','connect-src *; '+policy]) assert.equal(safeContentPolicy(hostile),false);
 });

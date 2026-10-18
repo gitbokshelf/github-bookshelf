@@ -107,7 +107,7 @@ Cada mudança deve preservar os dados, passar pelos testes apropriados e registr
 
 O login da conta do produto, a gravação de um projeto com nota e progresso, a persistência após recarregar e a remoção do registro temporário foram conferidos no Chrome. Há testes de isolamento no banco. Recuperação de senha, dois dispositivos e concorrência pela interface continuam pendentes.
 
-Português, inglês e espanhol continuam pendentes de integração, sem seletor ativo; rascunhos ociosos foram removidos na limpeza. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://githubbokshelf.hubdetrabalho.com.br/`, com Supabase configurado para essa origem. O subdomínio próprio usa CNAME na Locaweb e produção na Vercel. SMTP Resend está ativo; entrega e validações adicionais de autenticação seguem em conferência. O endereço antigo da conta pessoal foi preservado como publicação anterior.
+Português, inglês e espanhol estão integrados ao seletor e aos renderizadores. As traduções em uso cobrem interface, conteúdo editorial dos 150 projetos, guias, ilustrações e rótulos acessíveis. O repositório público exclusivo foi criado em `gitbokshelf/github-bookshelf`. O código foi enviado e o portal está em `https://githubbokshelf.hubdetrabalho.com.br/`, com Supabase configurado para essa origem. O subdomínio próprio usa CNAME na Locaweb e produção na Vercel. SMTP Resend configurado no Supabase; alertas pela API tiveram entrega confirmada, enquanto SMTP/recuperação completa ainda precisam de teste. O endereço antigo da conta pessoal foi preservado como publicação anterior.
 
 [Regras obrigatórias](../AGENTS.md) · [Registro](REGISTRO-DE-EXECUCAO.md) · [Mapa geral](../README.md)
 
@@ -130,3 +130,9 @@ CI e workflows de segurança têm timeout e Actions por SHA; Dependabot propõe 
 Após a limpeza de 17/10/2026, o build também confere o grafo de fontes a partir da entrada da aplicação e rejeita arquivos sem vínculo/imports ausentes. TypeScript rejeita declarações locais sem uso. Cache de READMEs e scaffolding sem consumidor foram removidos; o atualizador mantém somente o catálogo necessário. Não remover testes de regressão, migrações aplicadas ou evidências vigentes sob pretexto de limpeza.
 
 A CI executa ensaio SQL/restore em cluster descartável com contrato Auth mínimo, sem credenciais de produção. O monitor de produção usa apenas recursos públicos e duas verificações anônimas negativas, com limites de tempo/resposta. Envia avisos de falha/recuperação e teste somente ao e-mail técnico autorizado, via chave Resend privada no Actions; estado de supressão de repetição em cache, sem dados de usuários. Cron nominal de 15 minutos pode atrasar; não é SLA nem detecção completa de abuso.
+
+## Internacionalização
+
+Canonical de dados e IDs em português/valores estáveis; somente apresentação é traduzida. Store com useSyncExternalStore, dicionários públicos en/es carregados sob demanda, validação de formato/tamanho e troca de idioma após carga concluída. A preferência fica no navegador. Respostas fora de ordem são descartadas; falha preserva a apresentação anterior. Ilustrações de livros usam texto React traduzido também no português padrão. Intl usa o idioma selecionado para datas e números. Busca considera o conteúdo original e traduzido.
+
+Dicionários renderizam como texto, sem interpretação HTML ou execução de conteúdo. Notas, e-mail, nomes de repositório/projeto e chaves de backup não são traduzidos. O HTML independente incorpora dicionários em JSON não executável com escape de caracteres HTML, e o build compara o resultado decodificado aos arquivos de origem. Novas traduções exigem check:locales, testes e conferência visual.

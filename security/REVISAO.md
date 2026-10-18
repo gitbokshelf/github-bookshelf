@@ -1,4 +1,4 @@
-# Revisão de segurança de 17/10/2026
+# Revisão de segurança, atualização de 18/10/2026
 
 Executor e revisor: Codex. Não houve auditor independente ou pentest completo. Escopo: código/configuração do Bookshelf, histórico Git, dependências, build, verificações anônimas de baixo volume e ensaio HTTP local. Sem exaustão, força bruta ou alteração de dados de usuários.
 
@@ -14,14 +14,14 @@ Executor e revisor: Codex. Não houve auditor independente ou pentest completo. 
 
 | Verificação | Resultado | Limite |
 | --- | --- | --- |
-| Testes Node | 16 aprovados, catálogo e entradas/configuração defensivas | Não é suíte E2E completa de autenticação |
-| TypeScript, Vite, HTML independente e orçamento | Aprovados, aproximadamente 251,7 KB gzip de JS | Não prova acessibilidade ou escala |
-| Distribuição | 9 arquivos conferidos, scripts próprios e padrões administrativos examinados ausentes | Scanner de padrões não detecta todo segredo possível |
+| Testes Node | 23 aprovados, incluindo idiomas, monitor e backoff de quota | Não é suíte E2E completa de autenticação |
+| TypeScript, Vite, HTML independente e orçamento | Aprovados, aproximadamente 255,1 KB gzip de JS | Não prova acessibilidade ou escala |
+| Distribuição | 11 arquivos conferidos; bootstrap próprio, Turnstile sob demanda na origem oficial autorizada | Scanner de padrões não detecta todo segredo possível |
 | npm audit completo | 0 vulnerabilidades conhecidas reportadas | Não cobre falha inédita ou regra de negócio |
 | Gitleaks 8.30.1, histórico | 17 commits, aproximadamente 1,18 MB, nenhum achado | Histórico até ee6902e e diffs preparados conferidos; não detecta todo tipo de segredo |
-| CodeQL security-extended | Quatro alertas corrigidos, zero abertos após análise 39039774152 | Escopo da análise estática, sem certificação/pentest completo |
+| CodeQL security-extended | Seis alertas corrigidos, zero abertos após análise 39134719583 de bbf7b91 | Escopo da análise estática, sem certificação/pentest completo |
 | Supabase anônimo | Leitura e RPC negados com HTTP 401 | Duas requisições, sem JWT de usuário; não prova isolamento entre contas |
-| Auth no painel | Quotas registradas; CAPTCHA off e SMTP próprio pendente | Sem mudança de limite e sem ataque simulado |
+| Auth no painel | SMTP configurado, quota RPC aplicada; CAPTCHA backend ainda off | Sem mudança de limite e sem ataque simulado |
 | Safari local com CSP | Catálogo, busca Maccy, detalhes e tema claro após recarregar e coleções 21st.dev com abertura da pasta conferidos | Sem novo cadastro/recuperação ou edição de conta |
 | k6 2.3.0 local | 10 VUs/30s, 1.800 requisições, 0 falhas, p95 10,78 ms | Somente entrega HTTP estática local, sem banco |
 
@@ -31,12 +31,12 @@ Relatórios sanitizados ignorados: `artifacts/security/`; resultados públicos r
 
 | Prioridade | Entrega necessária | Estado |
 | --- | --- | --- |
-| Alta, antes de divulgar cadastro | SMTP e fluxo real de confirmação/recuperação; CAPTCHA integrado com tratamento no cliente | Pendente |
-| Alta, antes de escala | Quota de gravação por conta na API/RPC, sem contorno direto; monitoramento e alertas de abuso/consumo | Pendente |
+| Alta, antes de divulgar cadastro | Entrega SMTP e confirmação/recuperação; exigência CAPTCHA no backend | SMTP salvo, cliente/widget publicado; testes e ativação final pendentes |
+| Alta, antes de escala | Quota e monitoramento de abuso/consumo | Quota RPC aplicada e monitor público com e-mail ativo; métricas internas/consumo pendentes |
 | Alta, continuidade | Backup criptografado e restauração no ambiente separado; definir RPO/RTO | Pendente |
 | Alta, administrativo | Conferir MFA, recuperação, sessões, escopos de Apps/GitHub CLI e privilégios nos provedores com o proprietário | Não auditado integralmente |
-| Média | Supabase descartável e testes automatizados de isolamento, sessão, concorrência/offline e exclusão de conta | Pendente; testes SQL manuais anteriores não reaplicados |
-| Média | Ensaio autenticado de staging, aparelhos físicos, Core Web Vitals e alertas operacionais | Pendente |
+| Média | Testes de sessão, concorrência/offline e exclusão de conta | SQL de isolamento/quota e restore sintético automatizados; E2E Auth e Supabase de staging pendentes |
+| Média | Ensaio autenticado de staging, aparelhos físicos, Core Web Vitals | Pendente; monitor público já ativo |
 | Antes de futura IA | Gateway de ferramentas com autorização fora do modelo, sandbox/egress e testes de prompt injection com dados fictícios | Não aplicável ao runtime atual, obrigatório antes de adicionar LLM |
 
 Conclusão: primeira rodada defensiva com correções concretas e evidência delimitada. O produto não deve ser anunciado como invulnerável, auditado integralmente ou capaz de atender um volume específico de produção. A operação contínua e os riscos abertos fazem parte da entrega profissional.
@@ -59,6 +59,8 @@ Quota por conta aplicada na RPC, com tabela privada/RLS e bloqueio de escrita di
 
 SMTP Resend ativo. Monitor publicado em 0be23c2, execução 39042382783: nove controles passaram, API de envio aceitou o teste e painel Resend confirmou Delivered para o e-mail técnico autorizado. Recuperação completa depende da ação do proprietário. Cron nominal de 15 minutos não tem SLA e não cobre consumo/abuso interno.
 
-CodeQL da entrega anterior apontou dois alertas novos no monitor, apesar dos jobs verdes. Origem CSP passou a ser comparada por tokens exatos, com regressão de domínio embutido/malicioso. Valores de relatório são convertidos em constantes booleanas por condição, sem copiar conteúdo de resposta de rede. Correções aguardam reanálise, sem supressão manual.
+CodeQL da entrega anterior apontou dois alertas novos no monitor, apesar dos jobs verdes. Origem CSP passou a ser comparada por tokens exatos, com regressão de domínio embutido/malicioso. Valores de relatório são convertidos em constantes booleanas por condição, sem copiar conteúdo de resposta de rede. Reanálise 39134719583 concluída; consulta retornou zero alertas abertos, sem supressão manual.
 
 Turnstile: widget Managed criado, dois hostnames publicados, pre-clearance off, secret destinado somente ao Supabase e sitekey público salvo na Vercel Production. Componente preparado para ciclo de token, expiração/erro/repetição, bloqueio do submit sem token e remoção ao fechar formulário. CSP autoriza apenas origem oficial de scripts/frames necessária ao serviço. Backend ainda não ativado nesta etapa, para evitar bloquear formulários antes de publicar e conferir o cliente.
+
+Internacionalização: cobertura estática de 1.188 textos examinados, incluindo dados editoriais e guias; regressões de formato/protótipos, preservação de nomes/busca e limites de processamento. Idioma e traduções não alteram IDs, autorização ou notas. HTML independente compara JSON decodificado às fontes após escape. Revisão visual desktop no Safari foi feita em PT/EN/ES; a revisão estreita desta alteração foi interrompida pela indisponibilidade do acesso às janelas.

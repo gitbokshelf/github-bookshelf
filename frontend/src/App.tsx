@@ -1,3 +1,5 @@
+import { translate, useLanguage } from "./i18n";
+import LanguageSelector from "./components/language-selector";
 import Sidebar from "./components/layout/sidebar";
 import Hero from "./components/hero";
 import Collections from "./pages/collections";
@@ -25,7 +27,10 @@ import ProjectDetails from "./components/project-details";
 import { useTheme, type ThemePreference } from "./hooks/use-theme";
 import { useAuth } from "./context/auth-context";
 import AccountPanel from "./components/account-panel";
-import { parseLibraryBackup, MAX_BACKUP_BYTES } from "./utils/library-validation";
+import {
+  parseLibraryBackup,
+  MAX_BACKUP_BYTES,
+} from "./utils/library-validation";
 
 const platforms = [
   "Todos",
@@ -68,6 +73,7 @@ function storedWidgets(userId?: string) {
   return initialWidgets;
 }
 export default function App() {
+  const { language } = useLanguage();
   const { user, loading: authLoading, recovery } = useAuth();
   const [accountOpen, setAccountOpen] = useState(false);
   const { preference, theme, chooseTheme } = useTheme();
@@ -187,10 +193,15 @@ export default function App() {
           [
             p.name,
             p.description,
+            translate(p.description),
+            translate(p.tagline),
             p.repo,
             ...p.tags,
+            ...p.tags.map(translate),
             p.category,
             p.level,
+            translate(p.level),
+            translate(categories.find((c) => c.id === p.category)?.label),
             categories.find((c) => c.id === p.category)?.label,
             ...p.platforms,
           ].join(" "),
@@ -247,12 +258,18 @@ export default function App() {
       const text = await file.text();
       let importedCount = 0;
       const accepted = update((current) => {
-        const merged = parseLibraryBackup(text, current, new Set(projects.map(p => p.repo)));
+        const merged = parseLibraryBackup(
+          text,
+          current,
+          new Set(projects.map((p) => p.repo)),
+        );
         importedCount = Object.keys(merged).length;
         return merged;
       });
       if (!accepted) {
-        setToast("A sessão mudou. Aguarde a estante carregar e importe novamente.");
+        setToast(
+          "A sessão mudou. Aguarde a estante carregar e importe novamente.",
+        );
         return;
       }
       setToast(
@@ -269,7 +286,7 @@ export default function App() {
   return (
     <div className="app-shell">
       <a href="#main" className="skip-link">
-        Pular para o conteúdo
+        {translate("Pular para o conteúdo")}
       </a>
       <Sidebar
         menu={menu}
@@ -293,7 +310,7 @@ export default function App() {
         <button
           className="sidebar-overlay"
           onClick={() => setMenu(false)}
-          aria-label="Fechar navegação"
+          aria-label={translate("Fechar navegação")}
         />
       )}
       <div className="main-shell">
@@ -302,63 +319,68 @@ export default function App() {
             <button
               className="icon-button mobile-toggle"
               onClick={() => setMenu(!menu)}
-              aria-label="Abrir menu"
+              aria-label={translate("Abrir menu")}
             >
               <Icon name="menu" />
             </button>
             <span className="breadcrumb">
-              Sua biblioteca de possibilidades
+              {translate("Sua biblioteca de possibilidades")}
               <Icon name="right" size={13} />
               <strong>
-                {view === "discover"
-                  ? "Descobrir"
-                  : view === "collections"
-                    ? "Coleções"
-                    : view === "shelf"
-                      ? "Minha estante"
-                      : view === "releases"
-                        ? "Lançamentos"
-                        : "Guias"}
+                {translate(
+                  view === "discover"
+                    ? "Descobrir"
+                    : view === "collections"
+                      ? "Coleções"
+                      : view === "shelf"
+                        ? "Minha estante"
+                        : view === "releases"
+                          ? "Lançamentos"
+                          : "Guias",
+                )}
               </strong>
             </span>
           </div>
           <div className="topbar-actions">
+            <LanguageSelector />
             <button
               className="account-button github-button"
               onClick={() => setAccountOpen(true)}
               disabled={authLoading}
             >
               <Icon name="shield" size={17} />
-              {user ? "Minha conta" : "Entrar"}
+              {translate(user ? "Minha conta" : "Entrar")}
             </button>
             <label className="theme-control">
               <Icon name={theme === "light" ? "sun" : "moon"} size={16} />
               <select
-                aria-label="Tema do site"
+                aria-label={translate("Tema do site")}
                 value={preference}
                 onChange={(event) =>
                   chooseTheme(event.target.value as ThemePreference)
                 }
               >
-                <option value="light">Claro</option>
-                <option value="dark">Escuro</option>
-                <option value="system">Sistema</option>
+                <option value="light">{translate("Claro")}</option>
+                <option value="dark">{translate("Escuro")}</option>
+                <option value="system">{translate("Sistema")}</option>
               </select>
               <Icon name="down" size={12} />
             </label>
             <span className="curated-label">
               <span className="status-dot" />
-              Curadoria independente
+              {translate("Curadoria independente")}
             </span>
             <a
               className="github-button"
               href="https://github.com/gitbokshelf"
-              aria-label="Abrir perfil público do GitHub Bookshelf no GitHub"
+              aria-label={translate(
+                "Abrir perfil público do GitHub Bookshelf no GitHub",
+              )}
               target="_blank"
               rel="noreferrer"
             >
               <Icon name="github" size={17} />
-              <span>GitHub</span>
+              <span>{translate("GitHub")}</span>
               <Icon name="external" size={13} />
             </a>
           </div>
@@ -375,19 +397,22 @@ export default function App() {
                   if (!["discover", "shelf", "releases"].includes(view))
                     setView("discover");
                 }}
-                placeholder="Uma ideia, uma ferramenta, uma nova possibilidade..."
-                aria-label="Buscar projetos"
+                maxLength={200}
+                placeholder={translate(
+                  "Uma ideia, uma ferramenta, uma nova possibilidade...",
+                )}
+                aria-label={translate("Buscar projetos")}
               />
               {query ? (
                 <button
                   className="icon-button"
                   onClick={() => setQuery("")}
-                  aria-label="Limpar busca"
+                  aria-label={translate("Limpar busca")}
                 >
                   <Icon name="x" size={16} />
                 </button>
               ) : (
-                <kbd>/</kbd>
+                <kbd>{translate("/")}</kbd>
               )}
             </div>
             <button
@@ -395,7 +420,7 @@ export default function App() {
               onClick={() => setFilterOpen(true)}
             >
               <Icon name="sliders" size={17} />
-              <span>Filtros</span>
+              <span>{translate("Filtros")}</span>
               {activeFilters > 0 && <b>{activeFilters}</b>}
             </button>
           </div>
@@ -404,18 +429,19 @@ export default function App() {
             <div className="library-strip">
               <span>
                 <Icon name="library" size={17} />
-                <b>{projects.length}</b> projetos selecionados
+                <b>{projects.length}</b> {translate("projetos selecionados")}
               </span>
               <span>
                 <Icon name="layers" size={17} />
-                <b>{categories.length - 1}</b> universos para explorar
+                <b>{categories.length - 1}</b>{" "}
+                {translate("universos para explorar")}
               </span>
               <span>
                 <Icon name="shield" size={17} />
-                Fontes oficiais, contexto real
+                {translate("Fontes oficiais, contexto real")}
               </span>
               <button onClick={() => setAbout(true)}>
-                Uma curadoria, não um algoritmo
+                {translate("Uma curadoria, não um algoritmo")}
                 <Icon name="external" size={12} />
               </button>
             </div>
@@ -436,21 +462,26 @@ export default function App() {
                   <div className="page-heading shelf-heading">
                     <div>
                       <div className="eyebrow">
-                        ESPAÇO PARA AS SUAS DESCOBERTAS
+                        {translate("ESPAÇO PARA AS SUAS DESCOBERTAS")}
                       </div>
                       <h1>
-                        Sua estante. <em>Seu próximo passo.</em>
+                        {translate("Sua estante. ")}
+                        <em>{translate("Seu próximo passo.")}</em>
                       </h1>
-                      <p>Guarde o que faz sentido. Experimente no seu tempo.</p>
+                      <p>
+                        {translate(
+                          "Guarde o que faz sentido. Experimente no seu tempo.",
+                        )}
+                      </p>
                     </div>
                     <div className="backup-actions">
                       <button onClick={exportLibrary}>
                         <Icon name="download" size={15} />
-                        Exportar
+                        {translate("Exportar")}
                       </button>
                       <button onClick={() => importRef.current?.click()}>
                         <Icon name="upload" size={15} />
-                        Importar
+                        {translate("Importar")}
                       </button>
                       <input
                         type="file"
@@ -516,13 +547,15 @@ export default function App() {
                                   ).length}
                           </b>
                           <p>
-                            {item.id === "saved"
-                              ? "Projetos na estante"
-                              : item.id === "using"
-                                ? "Em uso"
-                                : item.id === "done"
-                                  ? "Já explorados"
-                                  : "Áreas descobertas"}
+                            {translate(
+                              item.id === "saved"
+                                ? "Projetos na estante"
+                                : item.id === "using"
+                                  ? "Em uso"
+                                  : item.id === "done"
+                                    ? "Já explorados"
+                                    : "Áreas descobertas",
+                            )}
                           </p>
                         </div>
                       )}
@@ -531,50 +564,56 @@ export default function App() {
                   <div className="shelf-meta">
                     <span>
                       <Icon name="shield" size={13} />
-                      {user
-                        ? {
-                            loading: "Carregando sua estante...",
-                            saving: "Salvando na sua conta...",
-                            limited: "Limite temporário de gravação. Suas alterações estão preservadas neste navegador; aguarde a sincronização ou tente novamente.",
-                            saved: "Estante salva na sua conta.",
-                            offline:
-                              "Sem conexão com a conta. Alterações guardadas neste navegador.",
-                            conflict:
-                              "Há outra versão na nuvem. Exporte um backup antes de resolver o conflito.",
-                            local: "Salvo neste navegador.",
-                          }[syncStatus]
-                        : "Salvo neste navegador. Exporte um backup para levar sua estante."}
-                    </span>
-                    <span>Arraste os widgets ou use Alt + setas.</span>
-                  </div>
-                  {user && ["offline", "conflict", "limited"].includes(syncStatus) && (
-                    <div className="sync-actions">
-                      <button
-                        className="secondary-button"
-                        onClick={exportLibrary}
-                      >
-                        Exportar minha versão
-                      </button>
-                      <button className="text-button" onClick={() => retry()}>
-                        Tentar sincronizar novamente
-                      </button>
-                      {syncStatus === "conflict" && (
-                        <button
-                          className="text-button"
-                          onClick={async () => {
-                            exportLibrary();
-                            setToast(
-                              (await reloadRemote())
-                                ? "Versão da nuvem carregada. Sua versão anterior foi preservada em backup."
-                                : "Não foi possível carregar a versão da nuvem. Sua estante foi preservada.",
-                            );
-                          }}
-                        >
-                          Exportar e carregar versão da nuvem
-                        </button>
+                      {translate(
+                        user
+                          ? {
+                              loading: "Carregando sua estante...",
+                              saving: "Salvando na sua conta...",
+                              limited:
+                                "Limite temporário de gravação. Suas alterações estão preservadas neste navegador; aguarde a sincronização ou tente novamente.",
+                              saved: "Estante salva na sua conta.",
+                              offline:
+                                "Sem conexão com a conta. Alterações guardadas neste navegador.",
+                              conflict:
+                                "Há outra versão na nuvem. Exporte um backup antes de resolver o conflito.",
+                              local: "Salvo neste navegador.",
+                            }[syncStatus]
+                          : "Salvo neste navegador. Exporte um backup para levar sua estante.",
                       )}
-                    </div>
-                  )}
+                    </span>
+                    <span>
+                      {translate("Arraste os widgets ou use Alt + setas.")}
+                    </span>
+                  </div>
+                  {user &&
+                    ["offline", "conflict", "limited"].includes(syncStatus) && (
+                      <div className="sync-actions">
+                        <button
+                          className="secondary-button"
+                          onClick={exportLibrary}
+                        >
+                          {translate("Exportar minha versão")}
+                        </button>
+                        <button className="text-button" onClick={() => retry()}>
+                          {translate("Tentar sincronizar novamente")}
+                        </button>
+                        {syncStatus === "conflict" && (
+                          <button
+                            className="text-button"
+                            onClick={async () => {
+                              exportLibrary();
+                              setToast(
+                                (await reloadRemote())
+                                  ? "Versão da nuvem carregada. Sua versão anterior foi preservada em backup."
+                                  : "Não foi possível carregar a versão da nuvem. Sua estante foi preservada.",
+                              );
+                            }}
+                          >
+                            {translate("Exportar e carregar versão da nuvem")}
+                          </button>
+                        )}
+                      </div>
+                    )}
                   <div className="shelf-tabs">
                     {[
                       ["all", "Todos"],
@@ -587,7 +626,7 @@ export default function App() {
                         className={shelfStatus === v ? "active" : ""}
                         onClick={() => setShelfStatus(v)}
                       >
-                        {l}
+                        {translate(l)}
                         <span>
                           {v === "all"
                             ? savedProjects.length
@@ -603,18 +642,21 @@ export default function App() {
               {view === "releases" && (
                 <div className="page-heading">
                   <div className="eyebrow">
-                    O PRÓXIMO CAPÍTULO DO OPEN SOURCE
+                    {translate("O PRÓXIMO CAPÍTULO DO OPEN SOURCE")}
                   </div>
                   <h1>
-                    Novas versões. <em>Novas possibilidades.</em>
+                    {translate("Novas versões. ")}
+                    <em>{translate("Novas possibilidades.")}</em>
                   </h1>
                   <p>
-                    Última release estável publicada por cada projeto, ordenada
-                    pela data de lançamento.
+                    {translate(
+                      "Última release estável publicada por cada projeto, ordenada pela data de lançamento.",
+                    )}
                   </p>
                   <small>
-                    Retrato da coleta de {date(fetchedAt)}. Projetos sem release
-                    não aparecem aqui.
+                    {translate("Retrato da coleta de ")}
+                    {translate(date(fetchedAt))}
+                    {translate(". Projetos sem release não aparecem aqui.")}
                   </small>
                 </div>
               )}
@@ -622,31 +664,36 @@ export default function App() {
                 <div className="catalog-heading">
                   <div>
                     <div className="eyebrow section-eyebrow">
-                      {home
-                        ? "ESCOLHIDOS PARA A SUA ESTANTE"
-                        : view === "shelf"
-                          ? "SUA BIBLIOTECA PESSOAL"
-                          : view === "releases"
-                            ? "DIRETO DOS REPOSITÓRIOS"
-                            : "ENCONTRE ALGO QUE VALE A PENA"}
+                      {translate(
+                        home
+                          ? "ESCOLHIDOS PARA A SUA ESTANTE"
+                          : view === "shelf"
+                            ? "SUA BIBLIOTECA PESSOAL"
+                            : view === "releases"
+                              ? "DIRETO DOS REPOSITÓRIOS"
+                              : "ENCONTRE ALGO QUE VALE A PENA",
+                      )}
                     </div>
                     <h2>
-                      {query
-                        ? `Resultados para “${query}”`
-                        : home
-                          ? "Seu próximo achado"
-                          : view === "shelf"
-                            ? "Projetos que você guardou"
-                            : view === "releases"
-                              ? "Últimos lançamentos"
-                              : categories.find((c) => c.id === category)
-                                  ?.label || "Explore a biblioteca"}
+                      {translate(
+                        query
+                          ? `Resultados para “${query}”`
+                          : home
+                            ? "Seu próximo achado"
+                            : view === "shelf"
+                              ? "Projetos que você guardou"
+                              : view === "releases"
+                                ? "Últimos lançamentos"
+                                : categories.find((c) => c.id === category)
+                                    ?.label || "Explore a biblioteca",
+                      )}
                       <span className="result-count">{filtered.length}</span>
                     </h2>
                     {home && (
                       <p>
-                        Ferramentas incríveis. Usos reais. Um mundo para
-                        explorar.
+                        {translate(
+                          "Ferramentas incríveis. Usos reais. Um mundo para explorar.",
+                        )}
                       </p>
                     )}
                   </div>
@@ -661,17 +708,17 @@ export default function App() {
                             ?.scrollIntoView({ behavior: "smooth" });
                         }}
                       >
-                        Ver mais populares
+                        {translate("Ver mais populares")}
                         <Icon name="arrow" size={14} />
                       </button>
                     )}
                     <div
                       className="view-switch"
                       role="group"
-                      aria-label="Visualização"
+                      aria-label={translate("Visualização")}
                     >
                       <button
-                        aria-label="Visualização em grade"
+                        aria-label={translate("Visualização em grade")}
                         aria-pressed={layout === "grid"}
                         className={layout === "grid" ? "active" : ""}
                         onClick={() => setLayout("grid")}
@@ -679,7 +726,7 @@ export default function App() {
                         <Icon name="grid" size={16} />
                       </button>
                       <button
-                        aria-label="Visualização em lista"
+                        aria-label={translate("Visualização em lista")}
                         aria-pressed={layout === "list"}
                         className={layout === "list" ? "active" : ""}
                         onClick={() => setLayout("list")}
@@ -693,7 +740,7 @@ export default function App() {
                   <div
                     className="platform-pills"
                     role="group"
-                    aria-label="Sistema operacional"
+                    aria-label={translate("Sistema operacional")}
                   >
                     {platforms.slice(0, 5).map((p) => (
                       <button
@@ -702,25 +749,38 @@ export default function App() {
                         aria-pressed={platform === p}
                         onClick={() => setPlatform(p)}
                       >
-                        {p === "macOS" && <Icon name="apple" size={13} />}{" "}
-                        {p === "Todos" ? "Todos os sistemas" : p}
+                        {p === "macOS" && <Icon name="apple" size={13} />}
+                        {translate(" ")}
+                        {translate(p === "Todos" ? "Todos os sistemas" : p)}
                       </button>
                     ))}
                   </div>
                   <label className="sort-select">
                     <Icon name="sort" size={14} />
                     <select
-                      aria-label="Ordenar projetos"
+                      aria-label={translate("Ordenar projetos")}
                       value={view === "releases" ? "release" : sort}
                       disabled={view === "releases"}
                       onChange={(e) => setSort(e.target.value)}
                     >
-                      <option value="curated">Escolha da curadoria</option>
-                      <option value="stars">Mais estrelas no GitHub</option>
-                      <option value="score">Melhor avaliação editorial</option>
-                      <option value="release">Release mais recente</option>
-                      <option value="newest">Repositório mais novo</option>
-                      <option value="updated">Atividade mais recente</option>
+                      <option value="curated">
+                        {translate("Escolha da curadoria")}
+                      </option>
+                      <option value="stars">
+                        {translate("Mais estrelas no GitHub")}
+                      </option>
+                      <option value="score">
+                        {translate("Melhor avaliação editorial")}
+                      </option>
+                      <option value="release">
+                        {translate("Release mais recente")}
+                      </option>
+                      <option value="newest">
+                        {translate("Repositório mais novo")}
+                      </option>
+                      <option value="updated">
+                        {translate("Atividade mais recente")}
+                      </option>
                     </select>
                     <Icon name="down" size={12} />
                   </label>
@@ -728,18 +788,25 @@ export default function App() {
                 {(category !== "all" || activeFilters > 0 || query) && (
                   <div className="active-filters">
                     <span>
-                      {filtered.length}{" "}
-                      {filtered.length === 1
-                        ? "projeto encontrado"
-                        : "projetos encontrados"}
-                      {category !== "all" &&
-                        ` em ${categories.find((c) => c.id === category)?.label}`}
-                      {platform !== "Todos" && ` · ${platform}`}
-                      {level !== "Todos" && ` · ${level}`}
-                      {license !== "Todas" && ` · Licença: ${license}`}
+                      {filtered.length}
+                      {translate(" ")}
+                      {translate(
+                        filtered.length === 1
+                          ? "projeto encontrado"
+                          : "projetos encontrados",
+                      )}
+                      {translate(
+                        category !== "all" &&
+                          ` em ${categories.find((c) => c.id === category)?.label}`,
+                      )}
+                      {translate(platform !== "Todos" && ` · ${platform}`)}
+                      {translate(level !== "Todos" && ` · ${level}`)}
+                      {translate(
+                        license !== "Todas" && ` · Licença: ${license}`,
+                      )}
                     </span>
                     <button onClick={reset}>
-                      Limpar filtros
+                      {translate("Limpar filtros")}
                       <Icon name="x" size={12} />
                     </button>
                   </div>
@@ -753,14 +820,18 @@ export default function App() {
                       />
                     </span>
                     <h3>
-                      {view === "shelf" && !savedProjects.length
-                        ? "Sua próxima descoberta merece um lugar."
-                        : "Ainda não encontramos esse capítulo."}
+                      {translate(
+                        view === "shelf" && !savedProjects.length
+                          ? "Sua próxima descoberta merece um lugar."
+                          : "Ainda não encontramos esse capítulo.",
+                      )}
                     </h3>
                     <p>
-                      {view === "shelf" && !savedProjects.length
-                        ? "Clique no + de um projeto para guardá-lo aqui. Depois, acompanhe seu uso e escreva suas notas."
-                        : "Experimente outro termo ou ajuste os filtros para explorar mais possibilidades."}
+                      {translate(
+                        view === "shelf" && !savedProjects.length
+                          ? "Clique no + de um projeto para guardá-lo aqui. Depois, acompanhe seu uso e escreva suas notas."
+                          : "Experimente outro termo ou ajuste os filtros para explorar mais possibilidades.",
+                      )}
                     </p>
                     <button
                       className="primary-button"
@@ -770,9 +841,11 @@ export default function App() {
                           nav("discover");
                       }}
                     >
-                      {view === "shelf" && !savedProjects.length
-                        ? "Descobrir projetos"
-                        : "Limpar filtros"}
+                      {translate(
+                        view === "shelf" && !savedProjects.length
+                          ? "Descobrir projetos"
+                          : "Limpar filtros",
+                      )}
                       <Icon name="arrow" size={15} />
                     </button>
                   </div>
@@ -796,8 +869,8 @@ export default function App() {
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <span>{p.release.tag}</span>
-                            {date(p.release.date)}
+                            <span>{translate(p.release.tag)}</span>
+                            {translate(date(p.release.date))}
                             <Icon name="external" size={12} />
                           </a>
                         )}
@@ -807,16 +880,20 @@ export default function App() {
                               className={`status-${library[p.repo].status}`}
                             >
                               <span className="status-dot" />
-                              {library[p.repo].status === "saved"
-                                ? "Para explorar"
-                                : library[p.repo].status === "using"
-                                  ? "Em uso"
-                                  : "Já explorado"}
+                              {translate(
+                                library[p.repo].status === "saved"
+                                  ? "Para explorar"
+                                  : library[p.repo].status === "using"
+                                    ? "Em uso"
+                                    : "Já explorado",
+                              )}
                             </span>
                             <button onClick={() => open(p)}>
-                              {library[p.repo].note
-                                ? "Ver minha nota"
-                                : "Adicionar nota"}
+                              {translate(
+                                library[p.repo].note
+                                  ? "Ver minha nota"
+                                  : "Adicionar nota",
+                              )}
                               <Icon name="external" size={11} />
                             </button>
                           </div>
@@ -831,19 +908,23 @@ export default function App() {
                       className="secondary-button"
                       onClick={() => setPage(page + 1)}
                     >
-                      Carregar mais{" "}
-                      {Math.min(24, filtered.length - visible.length)} projetos
+                      {translate("Carregar mais")}
+                      {translate(" ")}
+                      {Math.min(24, filtered.length - visible.length)}{" "}
+                      {translate("projetos")}
                       <Icon name="down" size={15} />
                     </button>
                     <button
                       className="text-button show-all"
                       onClick={() => setPage(Math.ceil(filtered.length / 24))}
                     >
-                      Mostrar todos os {filtered.length} projetos
+                      {translate("Mostrar todos os ")}
+                      {filtered.length} {translate("projetos")}
                       <Icon name="grid" size={14} />
                     </button>
                     <span>
-                      {visible.length} de {filtered.length} projetos
+                      {visible.length} {translate("de ")}
+                      {filtered.length} {translate("projetos")}
                     </span>
                   </div>
                 )}
@@ -853,43 +934,52 @@ export default function App() {
                   <section className="spotlight">
                     <div className="spotlight-art" aria-hidden="true">
                       <span>
-                        (<Icon name="flame" size={72} />)
+                        {translate("(")}
+                        <Icon name="flame" size={72} />
+                        {translate(")")}
                       </span>
-                      <small>freeCodeCamp</small>
+                      <small>{translate("freeCodeCamp")}</small>
                       <div className="code-lines">
-                        <span>&lt;your_next_chapter&gt;</span>
-                        <span> learn. build. repeat.</span>
-                        <span>&lt;/your_next_chapter&gt;</span>
+                        <span>{translate("<your_next_chapter>")}</span>
+                        <span> {translate("learn. build. repeat.")}</span>
+                        <span>{translate("</your_next_chapter>")}</span>
                       </div>
                     </div>
                     <div className="spotlight-copy">
                       <div className="eyebrow">
                         <Icon name="graduation" size={16} />
-                        UM BOM LUGAR PARA COMEÇAR
+                        {translate("UM BOM LUGAR PARA COMEÇAR")}
                       </div>
                       <h2>
-                        A próxima habilidade
+                        {translate("A próxima habilidade")}
                         <br />
-                        pode mudar <em>o seu caminho.</em>
+                        {translate("pode mudar ")}
+                        <em>{translate("o seu caminho.")}</em>
                       </h2>
                       <p>
-                        Comece pela prática com o freeCodeCamp. Uma plataforma
-                        gratuita para aprender programação, com conteúdo em
-                        português.
+                        {translate(
+                          "Comece pela prática com o freeCodeCamp. Uma plataforma gratuita para aprender programação, com conteúdo em português.",
+                        )}
                       </p>
                       <button
                         className="primary-button"
                         onClick={() => open(projects[0])}
                       >
-                        Conheça o freeCodeCamp
+                        {translate("Conheça o freeCodeCamp")}
                         <Icon name="arrow" size={15} />
                       </button>
                       <a
-                        href="https://www.freecodecamp.org/portuguese/"
+                        href={
+                          language === "pt-BR"
+                            ? "https://www.freecodecamp.org/portuguese/"
+                            : language === "es"
+                              ? "https://www.freecodecamp.org/espanol/"
+                              : "https://www.freecodecamp.org/"
+                        }
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Ir para o portal em português
+                        {translate("Visitar o freeCodeCamp")}
                         <Icon name="external" size={13} />
                       </a>
                     </div>
@@ -898,15 +988,15 @@ export default function App() {
                     <div className="catalog-heading">
                       <div>
                         <div className="eyebrow section-eyebrow">
-                          SIGA A SUA CURIOSIDADE
+                          {translate("SIGA A SUA CURIOSIDADE")}
                         </div>
-                        <h2>Um universo para cada interesse.</h2>
+                        <h2>{translate("Um universo para cada interesse.")}</h2>
                       </div>
                       <button
                         className="text-button"
                         onClick={() => nav("collections")}
                       >
-                        Todas as coleções
+                        {translate("Todas as coleções")}
                         <Icon name="arrow" size={15} />
                       </button>
                     </div>
@@ -927,13 +1017,14 @@ export default function App() {
                               <Icon name={c.icon} size={23} />
                             </span>
                             <span>
-                              <strong>{c.label}</strong>
+                              <strong>{translate(c.label)}</strong>
                               <small>
                                 {
                                   projects.filter((p) => p.category === c.id)
                                     .length
-                                }{" "}
-                                projetos para explorar
+                                }
+                                {translate(" ")}
+                                {translate("projetos para explorar")}
                               </small>
                             </span>
                             <Icon name="external" size={15} />
@@ -956,17 +1047,23 @@ export default function App() {
               }}
             >
               <Icon name="library" size={17} />
-              GitHub Bookshelf<span>.</span>
+              {translate("GitHub Bookshelf")}
+              <span>{translate(".")}</span>
             </a>
-            <p>O código é aberto. As possibilidades também.</p>
+            <p>{translate("O código é aberto. As possibilidades também.")}</p>
             <div>
-              <button onClick={() => setAbout(true)}>Sobre a curadoria</button>
-              <span className="footer-date">Dados de {date(fetchedAt)}</span>
+              <button onClick={() => setAbout(true)}>
+                {translate("Sobre a curadoria")}
+              </button>
+              <span className="footer-date">
+                {translate("Dados de ")}
+                {translate(date(fetchedAt))}
+              </span>
               <a
                 href="https://github.com/gitbokshelf/github-bookshelf"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Abrir código do GitHub Bookshelf"
+                aria-label={translate("Abrir código do GitHub Bookshelf")}
               >
                 <Icon name="github" size={16} />
               </a>
@@ -976,76 +1073,79 @@ export default function App() {
       </div>
       {storageError && (
         <div className="storage-warning" role="alert">
-          O navegador bloqueou o armazenamento. Exporte sua estante para guardar
-          as alterações.
+          {translate(
+            "O navegador bloqueou o armazenamento. Exporte sua estante para guardar as alterações.",
+          )}
         </div>
       )}
       {accountOpen && <AccountPanel onClose={() => setAccountOpen(false)} />}
       {toast && (
         <div className="toast" role="status">
           <Icon name="check" size={17} />
-          {toast}
+          {translate(toast)}
         </div>
       )}
       {filterOpen && (
         <Modal
-          label="Filtros de projetos"
+          label={translate("Filtros de projetos")}
           onClose={() => setFilterOpen(false)}
           className="filters-modal"
         >
-          <div className="eyebrow">ENCONTRE O SEU PRÓXIMO PROJETO</div>
-          <h2>Do seu jeito.</h2>
+          <div className="eyebrow">
+            {translate("ENCONTRE O SEU PRÓXIMO PROJETO")}
+          </div>
+          <h2>{translate("Do seu jeito.")}</h2>
           <label className="field-label">
-            Sistema ou ambiente
+            {translate("Sistema ou ambiente")}
             <select
               value={platform}
               onChange={(e) => setPlatform(e.target.value)}
             >
               {platforms.map((p) => (
-                <option key={p}>{p}</option>
+                <option key={p}>{translate(p)}</option>
               ))}
             </select>
           </label>
           <label className="field-label">
-            Categoria
+            {translate("Categoria")}
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
               {categories.map((c) => (
                 <option value={c.id} key={c.id}>
-                  {c.label}
+                  {translate(c.label)}
                 </option>
               ))}
             </select>
           </label>
           <label className="field-label">
-            Experiência para começar
+            {translate("Experiência para começar")}
             <select value={level} onChange={(e) => setLevel(e.target.value)}>
               {["Todos", "Iniciante", "Intermediário", "Avançado"].map((v) => (
-                <option key={v}>{v}</option>
+                <option key={v}>{translate(v)}</option>
               ))}
             </select>
           </label>
           <label className="field-label">
-            Licença identificada pela API
+            {translate("Licença identificada pela API")}
             <select
               value={license}
               onChange={(e) => setLicense(e.target.value)}
             >
               {["Todas", "MIT", "Identificada"].map((v) => (
-                <option key={v}>{v}</option>
+                <option key={v}>{translate(v)}</option>
               ))}
             </select>
           </label>
           <p className="field-hint">
-            macOS, Windows e Linux incluem execução local com as dependências
-            documentadas, como Docker. Web indica acesso pelo navegador. Confira
-            requisitos no projeto.
+            {translate(
+              "macOS, Windows e Linux incluem execução local com as dependências documentadas, como Docker. Web indica acesso pelo navegador. Confira requisitos no projeto.",
+            )}
           </p>
           <div className="modal-actions">
             <button className="text-button" onClick={reset}>
-              Limpar filtros
+              {translate("Limpar filtros")}
             </button>
             <button
               className="primary-button"
@@ -1055,7 +1155,7 @@ export default function App() {
                   setView("discover");
               }}
             >
-              Ver resultados
+              {translate("Ver resultados")}
               <Icon name="arrow" size={15} />
             </button>
           </div>
@@ -1073,31 +1173,32 @@ export default function App() {
       )}
       {guide && (
         <Modal
-          label={guide.title}
+          label={translate(guide.title)}
           onClose={() => setGuide(null)}
           className="guide-modal"
         >
           <div className="eyebrow">
-            <Icon name={guide.icon} size={16} /> GUIA DE BOLSO · {guide.time}
+            <Icon name={guide.icon} size={16} /> {translate("GUIA DE BOLSO · ")}
+            {translate(guide.time)}
           </div>
-          <h2>{guide.title}</h2>
-          <p className="guide-subtitle">{guide.sub}</p>
+          <h2>{translate(guide.title)}</h2>
+          <p className="guide-subtitle">{translate(guide.sub)}</p>
           <div className="guide-steps">
             {guide.steps.map(([title, body], i) => (
               <div key={title}>
-                <span>{String(i + 1).padStart(2, "0")}</span>
+                <span>{translate(String(i + 1).padStart(2, "0"))}</span>
                 <section>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
+                  <h3>{translate(title)}</h3>
+                  <p>{translate(body)}</p>
                 </section>
               </div>
             ))}
           </div>
           <div className="guide-sources">
-            <h3>Continue nas fontes oficiais</h3>
+            <h3>{translate("Continue nas fontes oficiais")}</h3>
             {guide.sources.map(([label, url]) => (
               <a key={url} href={url} target="_blank" rel="noreferrer">
-                {label}
+                {translate(label)}
                 <Icon name="external" size={13} />
               </a>
             ))}
@@ -1106,49 +1207,50 @@ export default function App() {
       )}
       {about && (
         <Modal
-          label="Sobre a curadoria"
+          label={translate("Sobre a curadoria")}
           onClose={() => setAbout(false)}
           className="about-modal"
         >
-          <div className="eyebrow">UM LUGAR PARA BOAS DESCOBERTAS</div>
+          <div className="eyebrow">
+            {translate("UM LUGAR PARA BOAS DESCOBERTAS")}
+          </div>
           <h2>
-            Uma estante com <em>intenção.</em>
+            {translate("Uma estante com ")}
+            <em>{translate("intenção.")}</em>
           </h2>
           <p>
-            GitHub Bookshelf organiza projetos públicos em torno de problemas e
-            interesses reais. É um catálogo independente, sem vínculo oficial
-            com o GitHub.
+            {translate(
+              "GitHub Bookshelf organiza projetos públicos em torno de problemas e interesses reais. É um catálogo independente, sem vínculo oficial com o GitHub.",
+            )}
           </p>
-          <h3>Como escolhemos</h3>
+          <h3>{translate("Como escolhemos")}</h3>
           <p>
-            A coleção inicial prioriza utilidade prática, documentação pública e
-            diversidade de objetivos. As notas de 1 a 5 representam uma leitura
-            editorial de utilidade, clareza e facilidade para começar. A média
-            aparece nos cartões. Não representam testes de instalação ou
-            opiniões de usuários.
+            {translate(
+              "A coleção inicial prioriza utilidade prática, documentação pública e diversidade de objetivos. As notas de 1 a 5 representam uma leitura editorial de utilidade, clareza e facilidade para começar. A média aparece nos cartões. Não representam testes de instalação ou opiniões de usuários.",
+            )}
           </p>
-          <h3>De onde vêm os dados</h3>
+          <h3>{translate("De onde vêm os dados")}</h3>
           <p>
-            Estrelas, forks, datas, linguagens e licença identificada vêm da API
-            oficial do GitHub. O catálogo é um retrato da coleta de{" "}
-            {date(fetchedAt)}, sem atualização automática em tempo real. Novas
-            versões listam a primeira release estável entre as cinco publicações
-            mais recentes por projeto; quando não há uma, consultamos o endpoint
-            oficial de última release.
+            {translate(
+              "Estrelas, forks, datas, linguagens e licença identificada vêm da API oficial do GitHub. O catálogo é um retrato da coleta de",
+            )}
+            {translate(" ")}
+            {translate(date(fetchedAt))}
+            {translate(
+              ", sem atualização automática em tempo real. Novas versões listam a primeira release estável entre as cinco publicações mais recentes por projeto; quando não há uma, consultamos o endpoint oficial de última release.",
+            )}
           </p>
-          <h3>Sua estante fica com você</h3>
+          <h3>{translate("Sua estante fica com você")}</h3>
           <p>
-            Como visitante, favoritos, progresso e notas ficam neste navegador.
-            Ao entrar, sua conta usa uma estante separada no Supabase, com cache
-            local e controle de revisão. Use Exportar e Importar para fazer
-            backup e trazer sua estante de visitante. A ordem dos widgets é
-            local e separada por conta.
+            {translate(
+              "Como visitante, favoritos, progresso e notas ficam neste navegador. Ao entrar, sua conta usa uma estante separada no Supabase, com cache local e controle de revisão. Use Exportar e Importar para fazer backup e trazer sua estante de visitante. A ordem dos widgets é local e separada por conta.",
+            )}
           </p>
-          <h3>Componentes que dão vida à biblioteca</h3>
+          <h3>{translate("Componentes que dão vida à biblioteca")}</h3>
           <p>
-            Glass Folder Cards e Draggable Widget Grid são os componentes
-            fornecidos nos anexos via 21st.dev, adaptados ao catálogo. As capas
-            e os livros são composições visuais do portal.
+            {translate(
+              "Glass Folder Cards e Draggable Widget Grid são os componentes fornecidos nos anexos via 21st.dev, adaptados ao catálogo. As capas e os livros são composições visuais do portal.",
+            )}
           </p>
           <div className="attribution-links">
             <a
@@ -1157,7 +1259,7 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
             >
-              Pastas: Kedhareswer Naidu / 21st.dev
+              {translate("Pastas: Kedhareswer Naidu / 21st.dev")}
               <Icon name="external" size={13} />
             </a>
             <a
@@ -1166,7 +1268,7 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
             >
-              Widgets: carolina / 21st.dev
+              {translate("Widgets: carolina / 21st.dev")}
               <Icon name="external" size={13} />
             </a>
           </div>

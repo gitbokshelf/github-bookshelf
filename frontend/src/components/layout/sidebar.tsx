@@ -1,3 +1,4 @@
+import { translate, useLanguage } from "../../i18n";
 import { useEffect, useRef, useState } from "react";
 import { categories, projects } from "../../data";
 import { guideList, type Guide } from "../../data/guides";
@@ -27,6 +28,7 @@ export default function Sidebar({
   setAbout,
   onClose,
 }: Props) {
+  useLanguage();
   const root = useRef<HTMLElement>(null);
   const closeRef = useRef(onClose);
   closeRef.current = onClose;
@@ -87,7 +89,7 @@ export default function Sidebar({
     <aside
       ref={root}
       inert={compact && !menu}
-      aria-label="Navegação do catálogo"
+      aria-label={translate("Navegação do catálogo")}
       className={`sidebar ${menu ? "mobile-open" : ""}`}
     >
       <div className="sidebar-header">
@@ -106,21 +108,24 @@ export default function Sidebar({
             <i />
           </span>
           <span>
-            GitHub
+            {translate("GitHub")}
             <span className="brand-serif">
-              Bookshelf<span className="brand-period">.</span>
+              {translate("Bookshelf")}
+              <span className="brand-period">{translate(".")}</span>
             </span>
           </span>
         </a>
-        <span className="workspace-label">SUA PRÓXIMA DESCOBERTA</span>
+        <span className="workspace-label">
+          {translate("SUA PRÓXIMA DESCOBERTA")}
+        </span>
       </div>
       <div
         className="sidebar-navigation"
         tabIndex={0}
         role="region"
-        aria-label="Navegação e categorias"
+        aria-label={translate("Navegação e categorias")}
       >
-        <nav aria-label="Navegação principal" className="main-nav">
+        <nav aria-label={translate("Navegação principal")} className="main-nav">
           {(
             [
               ["discover", "compass", "Descobrir"],
@@ -134,14 +139,16 @@ export default function Sidebar({
               onClick={() => nav(v)}
             >
               <Icon name={i} />
-              {l}
+              {translate(l)}
               {v === "shelf" && <span className="nav-count">{savedCount}</span>}
               {v === "discover" && <span className="active-dot" />}
             </button>
           ))}
         </nav>
-        <div className="nav-section-title">EXPLORE POR CATEGORIA</div>
-        <nav className="category-nav" aria-label="Categorias">
+        <div className="nav-section-title">
+          {translate("EXPLORE POR CATEGORIA")}
+        </div>
+        <nav className="category-nav" aria-label={translate("Categorias")}>
           {categories.slice(1).map((c) => (
             <button
               key={c.id}
@@ -151,7 +158,7 @@ export default function Sidebar({
               onClick={() => chooseCategory(c.id)}
             >
               <Icon name={c.icon} size={17} />
-              <span>{c.label}</span>
+              <span>{translate(c.label)}</span>
               <span className="category-count">
                 {projects.filter((p) => p.category === c.id).length}
               </span>
@@ -159,7 +166,10 @@ export default function Sidebar({
           ))}
         </nav>
         <div className="sidebar-divider" />
-        <nav className="main-nav secondary-nav" aria-label="Recursos">
+        <nav
+          className="main-nav secondary-nav"
+          aria-label={translate("Recursos")}
+        >
           <button
             className={view === "releases" ? "active" : ""}
             onClick={() => {
@@ -168,7 +178,7 @@ export default function Sidebar({
             }}
           >
             <Icon name="clock" />
-            Últimos lançamentos
+            {translate("Últimos lançamentos")}
             <span className="new-indicator" />
           </button>
           <button
@@ -176,7 +186,7 @@ export default function Sidebar({
             onClick={() => nav("guides")}
           >
             <Icon name="book" />
-            Guias para começar
+            {translate("Guias para começar")}
             <Icon name="external" size={14} />
           </button>
         </nav>
@@ -187,29 +197,30 @@ export default function Sidebar({
             <Icon name="sparkles" size={18} />
           </span>
           <h3>
-            Boas ferramentas.
+            {translate("Boas ferramentas.")}
             <br />
-            Novas possibilidades.
+            {translate("Novas possibilidades.")}
           </h3>
           <p>
-            Uma descoberta pode mudar
-            <br />o seu jeito de criar.
+            {translate("Uma descoberta pode mudar")}
+            <br />
+            {translate("o seu jeito de criar.")}
           </p>
           <button
             onClick={() => {
               setGuide(guideList[0]);
             }}
           >
-            Por onde começar
+            {translate("Por onde começar")}
             <Icon name="arrow" size={14} />
           </button>
         </div>
         <button className="curation-about" onClick={() => setAbout(true)}>
-          <span className="curation-avatar">gb.</span>
+          <span className="curation-avatar">{translate("gb.")}</span>
           <span>
-            Feito para gente curiosa
+            {translate("Feito para gente curiosa")}
             <small>
-              Conheça a curadoria
+              {translate("Conheça a curadoria")}
               <Icon name="external" size={10} />
             </small>
           </span>

@@ -1,37 +1,34 @@
 # Validação vigente
 
-Estado de 17/10/2026. Este documento resume o que foi verificado e seus limites. O histórico das etapas está no [registro obrigatório](REGISTRO-DE-EXECUCAO.md); o mapa vigente está na [arquitetura](ARQUITETURA.md).
+Atualização de 18/10/2026. Histórico no [registro obrigatório](REGISTRO-DE-EXECUCAO.md). Executor e revisor: Codex, sem auditoria independente ou pentest completo.
 
-## Produto e publicação
+## Produto e execução
 
-Portal: [githubbokshelf.hubdetrabalho.com.br](https://githubbokshelf.hubdetrabalho.com.br/). Código: [gitbokshelf/github-bookshelf](https://github.com/gitbokshelf/github-bookshelf). Vercel hospeda o frontend; Supabase fornece autenticação e estantes por conta; Locaweb mantém o DNS. O endereço vercel.app permanece como alias. O repositório pessoal anterior ainda aguarda exclusão futura específica, conforme a integração GitHub.
+[Portal](https://githubbokshelf.hubdetrabalho.com.br/) e [código público](https://github.com/gitbokshelf/github-bookshelf). Vercel hospeda o frontend; Supabase mantém Auth e estantes; Locaweb mantém DNS; Resend fornece envio; Cloudflare Turnstile está em implantação. Catálogo com 150 projetos únicos em oito categorias. Metadados datados da API oficial e notas editoriais, sem certificação de instalação dos aplicativos.
 
-Catálogo com 150 projetos únicos em oito categorias. Metadados são um retrato datado da API oficial, sem contagens simuladas. Avaliações são editoriais. Os aplicativos catalogados não foram instalados ou certificados por esta curadoria.
+- 23 testes Node aprovados: catálogo, contratos de backup/UTF-8, entradas hostis, URLs, headers, parser HTML, idiomas, política de alertas e espera de quota.
+- TypeScript, cobertura de 1.188 textos, grafo de 36 fontes, Vite, HTML independente, orçamento e inspeção de distribuição aprovados. Quatro módulos, aproximadamente 255,1 KB JS gzip. JSON dos dois idiomas no HTML independente passou por comparação completa após decodificação, incluindo caracteres HTML.
+- Isolamento entre duas identidades, quota por conta/refill e pg_dump/pg_restore em banco separado passaram em PostgreSQL descartável local e na CI. Contrato Auth mínimo emulado, com dados sintéticos; cluster/dump removidos ao terminar.
+- Migração 002 aplicada no Supabase. Consulta somente leitura confirmou seis indicadores: tabela quota, RLS, privacidade, bloqueio de escrita direta, RPC authenticated e PT429. Nenhuma estante real foi modificada.
+- Monitor publicado: nove verificações públicas/negação anônima, estado de incidente, supressão de repetição, e-mail de teste autorizado entregue no Resend. Execução 39042382783 passou. Cron nominal de 15 minutos pode atrasar e não cobre métricas internas/consumo.
+- SMTP configurado e persistido no Supabase, com chave Resend restrita. Isso ainda não comprova entrega via SMTP ou recuperação completa. A entrega confirmada acima é do monitor pela API.
+- Turnstile Managed criado para os dois domínios publicados, pre-clearance off. Sitekey público salvo na Vercel Production e cliente publicado em bbf7b91. Secret/exigência no backend ainda aguardam a conferência do formulário publicado.
+- CI 39134719571 e segurança 39134719583 passaram para bbf7b91. CodeQL apontou seis alertas ao longo das rodadas; todos corrigidos e zero abertos na consulta após essa análise. Resultados da publicação seguinte devem ser registrados após consulta real.
 
-## Verificações atuais
+## Interface observada
 
-- Dezesseis testes aprovados: catálogo, contratos de backup, tamanho UTF-8, entradas malformadas, chaves hostis, URLs, headers, CSS do componente e inspeção de scripts.
-- TypeScript, grafo de 30 fontes, Vite, HTML independente, orçamento e inspeção da distribuição aprovados. Aproximadamente 251,7 KB gzip de JavaScript em quatro módulos. Nenhum import local ausente, fonte sem vínculo ou declaração local sem uso identificada pelo conjunto de verificações.
-- Auditoria npm completa: zero vulnerabilidades conhecidas reportadas. Gitleaks verificou histórico e diff preparado sem achados nos padrões examinados. Isso não prova ausência de falhas inéditas ou de todo tipo de segredo.
-- CodeQL encontrou quatro alertas nas ferramentas ao longo da revisão. Correções e regressões foram implementadas; a análise final confirmou todos corrigidos e zero abertos, com CI e publicação aprovadas para ee6902e.
-- Publicação conferida com HTTP 200, sete headers esperados e sete recursos próprios com HTTP 200. Assets com hash usam cache imutável; script de tema permanece revalidável.
-- Safari de produção: sessão e leitura de estante mantidas após implantação da CSP, sem edição de dados da conta.
-- Safari local: modo claro preservado após recarregar, busca por Maccy, detalhes, coleções 21st.dev e abertura de pasta. Backup sintético válido importado; nota hostil exibida como texto; backup inválido rejeitado sem apagar a estante. Item e arquivos sintéticos removidos ao terminar.
-- Supabase: leitura e RPC anônimos negados por HTTP 401. Os testes transacionais anteriores de isolamento entre duas identidades não foram reaplicados nesta rodada.
-- k6 exclusivamente local: 10 VUs por 30s, 1.800 requisições, zero falhas HTTP e p95 10,78 ms. Não mede banco, renderização, tráfego real ou capacidade da Vercel.
+Safari local, preview 4177: português com ilustrações traduzidas; seletor mudou para inglês, com navegação, catálogo, números e título alterados. Recarregar preservou inglês. Mudança para espanhol funcionou. Busca por ventanas retornou cinco projetos pelo conteúdo traduzido; AeroSpace mostrou descrição, orientações e ressalva em espanhol. Guia GitHub sin laberintos abriu com títulos, parágrafos e fontes traduzidos.
 
-A [revisão de segurança](../security/REVISAO.md) registra controles, fontes e riscos. Os resultados mais recentes de CI/CodeQL e publicação devem ser conferidos no registro, sem interpretar conclusão do job como ausência de alertas.
+A tentativa de conferir layout estreito foi interrompida porque o acesso às janelas do Safari deixou de estar disponível. Não declarar aprovação móvel desta alteração. A janela privada do teste de recuperação ficou bloqueada pelo Safari e depende do proprietário; não foi desbloqueada pelo agente. Não houve edição de estante de usuário ou definição de senha.
 
-## Evidências anteriores ainda relevantes
+Em rodadas anteriores foram conferidos temas claro/escuro, busca, coleções 21st.dev, importação válida/inválida com nota hostil exibida como texto e sincronização entre Chrome local e Safari de produção na mesma conta. Itens sintéticos foram removidos. Emulação de 1366×600, 390×844 e 844×390 foi feita em 16/10, sem repetir todas essas dimensões agora; dois dispositivos físicos continuam pendentes.
 
-Em 16/10 foram conferidos Chrome emulado em 1366×600, 390×844 e 844×390, navegação por teclado, busca, carregamento de todos os cards e leitura do HTML independente. Não substitui aparelhos físicos, e essas dimensões não foram todas repetidas nesta rodada.
+## Limites e próximos passos
 
-Em 17/10 foram conferidos salvar projeto, nota/progresso, recarregar, sincronizar a mesma conta entre Chrome local e Safari de produção e remover o registro temporário. Ainda no mesmo Mac; dois dispositivos físicos e concorrência real permanecem pendentes. Nenhuma senha foi recebida ou preenchida pelo agente.
+- Concluir teste SMTP/cadastro/recuperação com o proprietário e configurar mensagens de e-mail por idioma.
+- Conferir formulário Turnstile publicado e só então exigir token no Supabase; testar negação de requisição sem token.
+- Executar backup criptografado de produção e restaurar em ambiente separado. Senha de conexão do banco ainda não está preenchida no arquivo privado; não há backup real nem RPO/RTO comprovados.
+- Completar MFA/escopos administrativos, privacidade/exclusão de conta, testes E2E de identidades/offline/concorrência, telas estreitas e aparelhos físicos.
+- Medir capacidade autenticada em staging e Core Web Vitals. O ensaio k6 anterior mediu somente HTTP local estático, sem banco ou capacidade contratada.
 
-## Pendências
-
-SMTP e ciclo completo de cadastro/confirmação/recuperação para usuários externos; idiomas e seletor; privacidade/exclusão de conta; testes de troca de identidade/offline/concorrência; CAPTCHA; quota de escrita no backend; alertas operacionais; backup e restauração; revisão administrativa de MFA/escopos; carga autenticada em staging, acessibilidade e aparelhos físicos.
-
-A limpeza removeu rascunhos e cache sem consumidor, fixtures temporárias e snapshots obsoletos. Testes ativos, migração aplicada, credenciais locais e dados de usuários foram preservados. Build e organização não equivalem a certificação de segurança ou desempenho.
-
-[Guia da aplicação](../frontend/README.md) · [Curadoria](CURADORIA.md) · [Engenharia de segurança](../security/README.md)
+A [engenharia de segurança](../security/README.md) reúne controles e modelos reutilizáveis. Build, scanners e organização não equivalem a proteção absoluta ou capacidade certificada. O repositório pessoal anterior continua preservado para exclusão futura específica.

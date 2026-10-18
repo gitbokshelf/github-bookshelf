@@ -1,6 +1,6 @@
 # Operação e resposta a incidentes
 
-Responsável pelo produto: Thiago Ebias. Estas rotinas precisam de execução e registro; o documento não constitui serviço de monitoramento ativo.
+Responsável pelo produto: Thiago Ebias. Estas rotinas precisam de execução e registro. Há monitor público agendado no GitHub Actions, descrito abaixo, com limites e sem SLA.
 
 ## A cada mudança
 
@@ -12,7 +12,7 @@ Revisar superfícies alteradas e permissões; testes negativos, build e inspeç�
 - Conferir erros HTTP, uso/custos, tráfego anômalo e eventos de segurança na Vercel; erros Auth/API, conexões e consumo no Supabase.
 - Revisar advisories dos fornecedores e dependências usadas. Confirmar versão afetada e exposição antes de agir.
 - Revisar acessos administrativos e integrações após entrada/saída de colaborador; conferir MFA e recuperação com o proprietário, sem registrar códigos.
-- Registrar risco, responsável, prazo e reteste. Automatizar alerta para um canal escolhido pelo responsável numa próxima etapa; nenhum alerta externo foi contratado nesta revisão.
+- Registrar risco, responsável, prazo e reteste. Conferir o monitor agendado e a entrega ao e-mail técnico autorizado; alertas de consumo e atividade interna ainda precisam de configuração.
 
 ## Incidente
 

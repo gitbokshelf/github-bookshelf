@@ -7,14 +7,14 @@
 
 Menos abas abertas. Mais descobertas.
 
-Um portal em português para descobrir projetos úteis do GitHub e entender onde eles entram na vida real. Criado por [Thiago Ebias](https://github.com/thiagoebias).
+Um portal em português, inglês e espanhol para descobrir projetos úteis do GitHub e entender onde eles entram na vida real. Criado por [Thiago Ebias](https://github.com/thiagoebias).
 
 [Abrir o portal](https://githubbokshelf.hubdetrabalho.com.br/) · [HTML nos artefatos da CI](https://github.com/gitbokshelf/github-bookshelf/actions/workflows/ci.yml) · [Como contribuir](../CONTRIBUTING.md) · [Fontes e metodologia](../docs/CURADORIA.md)
 
 ## O que você encontra
 
 - 150 projetos reais, distribuídos em 8 categorias.
-- Busca por nome, descrição, categoria, tags e sistema, com tratamento de acentos.
+- Busca por nome, descrição, categoria, tags e sistema, incluindo conteúdo traduzido e tratamento de acentos.
 - 24 cartões por vez e opção para exibir todos os resultados.
 - Filtros por sistema, experiência e licença identificada.
 - Ordenação por curadoria, estrelas, avaliação editorial, release, criação e atividade.
@@ -22,6 +22,7 @@ Um portal em português para descobrir projetos úteis do GitHub e entender onde
 - Estante pessoal com favoritos, notas, progresso e widgets reorganizáveis.
 - Exportação e importação da estante em JSON.
 - Temas claro, escuro e do sistema, com preferência salva.
+- Seletor de português, inglês e espanhol, incluindo guias, catálogo, ilustrações, mensagens e rótulos acessíveis.
 - Login por e-mail e integração de estante privada com Supabase, disponíveis em ambientes configurados.
 - Guias sobre GitHub, organização de projetos, skills e produtividade no Mac.
 - Uma versão HTML independente gerada no build, para abrir localmente.
@@ -110,7 +111,7 @@ Depois de revisar os textos e resultados, faça commit e envie para `main`. O Gi
 
 Como visitante, favoritos, notas e progresso ficam no `localStorage`. Em ambiente com Supabase configurado, entrar abre uma estante separada por conta e sincroniza projetos, notas e progresso com o banco. O cache é isolado por usuário. A estante de visitante não é enviada automaticamente. O controle de revisão interrompe gravações quando outra sessão já alterou a estante; a interface permite exportar a versão local e carregar a remota. A ordem dos widgets continua local e separada por conta.
 
-Domínio próprio, alias Vercel, origens locais e GitHub Pages têm sessões e caches separados. A mesma conta recupera a estante remota ao entrar em cada origem; os dados de visitante continuam locais. Exporte e importe o JSON para levar a estante entre eles. A importação mescla projetos e substitui notas e status dos mesmos registros. Não há analytics. O login da conta do produto e a persistência de projeto, nota e progresso após recarregar foram conferidos no Chrome. A remoção do registro temporário também persistiu. Recuperação de senha e uso em dois dispositivos continuam pendentes. A produção está em `https://githubbokshelf.hubdetrabalho.com.br/`. Login, nota e progresso foram conferidos no Safari de produção e no Chrome local, na mesma conta e no mesmo Mac. SMTP de produção, recuperação e dois dispositivos físicos continuam pendentes.
+Domínio próprio, alias Vercel, origens locais e GitHub Pages têm sessões e caches separados. A mesma conta recupera a estante remota ao entrar em cada origem; os dados de visitante continuam locais. Exporte e importe o JSON para levar a estante entre eles. A importação mescla projetos e substitui notas e status dos mesmos registros. Não há analytics. O login da conta do produto e a persistência de projeto, nota e progresso após recarregar foram conferidos no Chrome. A remoção do registro temporário também persistiu. Recuperação de senha e uso em dois dispositivos continuam pendentes. A produção está em `https://githubbokshelf.hubdetrabalho.com.br/`. Login, nota e progresso foram conferidos no Safari de produção e no Chrome local, na mesma conta e no mesmo Mac. SMTP está configurado; entrega via SMTP, recuperação completa e dois dispositivos físicos continuam pendentes.
 
 ## Curadoria e limites
 
@@ -123,11 +124,19 @@ Leia a [metodologia](../docs/CURADORIA.md), o [registro de validação](../docs/
 - Ampliar a curadoria com casos de uso e fontes verificadas.
 - Adicionar comparações entre ferramentas para o mesmo objetivo.
 - Avaliar atualização periódica dos metadados sem perder revisão editorial.
-- Validar a sincronização entre dispositivos e configurar o envio de e-mail para produção.
-- Concluir português, inglês e espanhol. A implementação e o seletor continuam pendentes; os rascunhos sem uso foram removidos.
+- Validar a sincronização entre dispositivos, entrega SMTP e recuperação de acesso.
+- Ampliar a revisão visual de PT/EN/ES em telas estreitas e aparelhos físicos; implementação e seletor já integrados.
 
 ## Licença
 
 O código original do portal está sob [MIT](../LICENSE). Componentes e dependências de terceiros preservam suas próprias atribuições. GitHub Bookshelf é um projeto independente, sem afiliação oficial com o GitHub ou com os projetos listados.
 
 Documentação relacionada: [Curadoria](../docs/CURADORIA.md), [Validação](../docs/VALIDACAO.md) e [Supabase](../backend/supabase/CONFIGURACAO.md).
+
+## Manter os idiomas
+
+Fontes editoriais permanecem em português e IDs de projeto/estante não mudam com o idioma. `src/i18n.ts` controla troca atômica e preferência em bookshelf:language. JSONs em public/locales são carregados somente quando escolhidos; falha mantém o idioma anterior. `?lang=en` ou `?lang=es` pode escolher o idioma inicial. Dados pessoais, nomes de projetos, código e URLs são preservados.
+
+Cada texto novo de interface usa translate e o componente assina useLanguage. Conteúdo editorial novo exige entradas nos dois JSONs. `npm run check:locales` verifica cobertura e rejeita texto JSX/atributo textual literal fora do tradutor. Marcas e nomes técnicos têm exceções explícitas. Textos montados dinamicamente também exigem revisão dos padrões de mensagem; o verificador estático não demonstra toda combinação em execução.
+
+O HTML independente incorpora os JSONs em bloco não executável, com escape e comparação de round-trip no build. Confira visualmente a navegação após alterações. Somente um build aprovado não comprova todos os fluxos nem aparelhos físicos.

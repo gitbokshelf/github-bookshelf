@@ -1,3 +1,4 @@
+import { translate, useLanguage } from "../i18n";
 import { useState, type FormEvent } from "react";
 import { supabase, authRedirect } from "../api/supabase";
 import { useAuth } from "../context/auth-context";
@@ -6,6 +7,7 @@ import Icon from "./ui/icon";
 import Turnstile, { captchaSiteKey } from "./turnstile";
 
 export default function AccountPanel({ onClose }: { onClose: () => void }) {
+  const { language } = useLanguage();
   const { user, recovery, dismissRecovery } = useAuth();
   const [mode, setMode] = useState<"login" | "signup" | "forgot" | "reset">(
     recovery ? "reset" : "login",
@@ -56,7 +58,11 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: authRedirect(), captchaToken: captchaToken || undefined },
+          options: {
+            emailRedirectTo: authRedirect(),
+            data: { language },
+            captchaToken: captchaToken || undefined,
+          },
         });
         if (error) throw error;
         setPassword("");
@@ -81,44 +87,52 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
         code === "captcha_failed"
           ? "A verificação de segurança falhou. Repita a verificação e tente novamente."
           : code === "invalid_credentials"
-          ? "E-mail ou senha inválidos."
-          : code === "email_not_confirmed"
-            ? "Confirme seu e-mail antes de entrar."
-            : code === "over_email_send_rate_limit"
-              ? "Limite de envio atingido. Aguarde antes de tentar novamente."
-              : "Não foi possível concluir. Confira os dados e tente novamente.",
+            ? "E-mail ou senha inválidos."
+            : code === "email_not_confirmed"
+              ? "Confirme seu e-mail antes de entrar."
+              : code === "over_email_send_rate_limit"
+                ? "Limite de envio atingido. Aguarde antes de tentar novamente."
+                : "Não foi possível concluir. Confira os dados e tente novamente.",
       );
     } finally {
       setCaptchaToken("");
-      setChallengeRound(value => value + 1);
+      setChallengeRound((value) => value + 1);
       setBusy(false);
     }
   };
   return (
-    <Modal label="Sua conta" onClose={onClose} className="account-modal">
-      <div className="eyebrow">SUA ESTANTE, COM VOCÊ</div>
+    <Modal
+      label={translate("Sua conta")}
+      onClose={onClose}
+      className="account-modal"
+    >
+      <div className="eyebrow">{translate("SUA ESTANTE, COM VOCÊ")}</div>
       <h2>
-        {user && !recovery
-          ? "Sua conta."
-          : mode === "signup"
-            ? "Comece sua estante."
-            : mode === "forgot"
-              ? "Recupere o acesso."
-              : mode === "reset"
-                ? "Uma nova senha."
-                : "Bem-vindo de volta."}
+        {translate(
+          user && !recovery
+            ? "Sua conta."
+            : mode === "signup"
+              ? "Comece sua estante."
+              : mode === "forgot"
+                ? "Recupere o acesso."
+                : mode === "reset"
+                  ? "Uma nova senha."
+                  : "Bem-vindo de volta.",
+        )}
       </h2>
       {!supabase ? (
         <p>
-          Login ainda não configurado neste ambiente. Você pode continuar com
-          sua estante local.
+          {translate(
+            "Login ainda não configurado neste ambiente. Você pode continuar com sua estante local.",
+          )}
         </p>
       ) : user && !recovery ? (
         <>
           <p className="account-email">{user.email}</p>
           <p>
-            Projetos, notas e progresso desta conta são guardados no Supabase. A
-            estante de visitante permanece separada neste navegador.
+            {translate(
+              "Projetos, notas e progresso desta conta são guardados no Supabase. A estante de visitante permanece separada neste navegador.",
+            )}
           </p>
           <button
             className="secondary-button"
@@ -126,25 +140,33 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
             onClick={async () => {
               if (!supabase) return;
               setBusy(true);
-              const { error } = await supabase.auth.signOut({ scope: "local" });
+              const { error } = await supabase.auth.signOut({
+                scope: "local",
+              });
               setBusy(false);
               if (error) setError("Não foi possível sair. Tente novamente.");
               else onClose();
             }}
           >
-            Sair desta conta
+            {translate("Sair desta conta")}
             <Icon name="external" size={16} />
           </button>
         </>
       ) : (
         <>
           <p>
-            {mode === "forgot" ? "Informe o e-mail da sua conta para receber o link de recuperação." : mode === "reset" ? "Defina uma nova senha para recuperar o acesso à sua estante." : "Entre para guardar seus projetos, notas e progresso na sua conta."}
+            {translate(
+              mode === "forgot"
+                ? "Informe o e-mail da sua conta para receber o link de recuperação."
+                : mode === "reset"
+                  ? "Defina uma nova senha para recuperar o acesso à sua estante."
+                  : "Entre para guardar seus projetos, notas e progresso na sua conta.",
+            )}
           </p>
           <form onSubmit={submit}>
             {mode !== "reset" && (
               <label className="field-label">
-                E-mail
+                {translate("E-mail")}
                 <input
                   required
                   type="email"
@@ -157,7 +179,7 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
             )}
             {mode !== "forgot" && (
               <label className="field-label">
-                Senha
+                {translate("Senha")}
                 <input
                   required
                   type="password"
@@ -170,21 +192,34 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 {mode !== "login" && (
-                  <small>Use pelo menos 12 caracteres.</small>
+                  <small>{translate("Use pelo menos 12 caracteres.")}</small>
                 )}
               </label>
             )}
-            {needsCaptcha && <Turnstile key={`${mode}-${challengeRound}`} action={mode} onToken={setCaptchaToken} />}
-            <button className="primary-button" type="submit" disabled={busy || (needsCaptcha && !captchaToken)}>
-              {busy
-                ? "Aguarde..."
-                : mode === "signup"
-                  ? "Criar conta"
-                  : mode === "forgot"
-                    ? "Enviar link"
-                    : mode === "reset"
-                      ? "Atualizar senha"
-                      : "Entrar"}
+            {needsCaptcha && (
+              <Turnstile
+                key={`${mode}-${challengeRound}`}
+                action={mode}
+                language={language}
+                onToken={setCaptchaToken}
+              />
+            )}
+            <button
+              className="primary-button"
+              type="submit"
+              disabled={busy || (needsCaptcha && !captchaToken)}
+            >
+              {translate(
+                busy
+                  ? "Aguarde..."
+                  : mode === "signup"
+                    ? "Criar conta"
+                    : mode === "forgot"
+                      ? "Enviar link"
+                      : mode === "reset"
+                        ? "Atualizar senha"
+                        : "Entrar",
+              )}
               <Icon name="arrow" size={16} />
             </button>
           </form>
@@ -196,32 +231,35 @@ export default function AccountPanel({ onClose }: { onClose: () => void }) {
                   changeMode(mode === "login" ? "signup" : "login")
                 }
               >
-                {mode === "login" ? "Criar uma conta" : "Já tenho conta"}
+                {translate(
+                  mode === "login" ? "Criar uma conta" : "Já tenho conta",
+                )}
               </button>
               {mode === "login" && (
                 <button
                   className="text-button"
                   onClick={() => changeMode("forgot")}
                 >
-                  Esqueci minha senha
+                  {translate("Esqueci minha senha")}
                 </button>
               )}
             </div>
           )}
           <p className="field-hint">
-            A estante de visitante não é enviada automaticamente. Depois de
-            entrar, use Importar para trazer um backup.
+            {translate(
+              "A estante de visitante não é enviada automaticamente. Depois de entrar, use Importar para trazer um backup.",
+            )}
           </p>
         </>
       )}
       {message && (
         <p role="status" className="account-message">
-          {message}
+          {translate(message)}
         </p>
       )}
       {error && (
         <p role="alert" className="account-error">
-          {error}
+          {translate(error)}
         </p>
       )}
     </Modal>

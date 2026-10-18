@@ -1,4 +1,5 @@
-"use client";
+import { translate, useLanguage } from "../../i18n";
+("use client");
 
 /** Original: carolina (carolinaraulino), via 21st.dev. See THIRD_PARTY_NOTICES.md. https://21st.dev/@carolinaraulino/components/draggable-widget-grid */
 
@@ -478,6 +479,7 @@ const Widget = memo(function Widget({
   count: number;
   renderItem?: (item: never, size: WidgetSize) => ReactNode;
 }) {
+  useLanguage();
   const controls = useDragControls();
   const node = useRef(null as HTMLDivElement | null);
   const press = useRef(null as Press | null);
@@ -567,7 +569,7 @@ const Widget = memo(function Widget({
       data-slot="widget"
       data-widget-id={item.id}
       tabIndex={editable ? 0 : undefined}
-      aria-label={item.label ?? `${SIZE_LABELS[item.size]} widget`}
+      aria-label={translate(item.label ?? `${SIZE_LABELS[item.size]} widget`)}
       aria-describedby={editable ? hintId : undefined}
       aria-posinset={position}
       aria-setsize={count}
@@ -631,7 +633,7 @@ const Widget = memo(function Widget({
           landed ? "ring-2 ring-foreground/40" : "ring-1 ring-border"
         }`}
       >
-        {renderItem?.(item as never, sizeOf(w, h))}
+        {translate(renderItem?.(item as never, sizeOf(w, h)))}
       </motion.div>
     </motion.div>
   );
@@ -652,6 +654,7 @@ export function DraggableWidgetGrid({
   radius = 24,
   className = "",
 }: DraggableWidgetGridProps) {
+  useLanguage();
   const [items, setItems] = useState(() => initialItems);
   const grid = useRef(null as HTMLDivElement | null);
   const hintId = useId();
@@ -885,8 +888,9 @@ export function DraggableWidgetGrid({
       >
         {editable && (
           <p id={hintId} className="sr-only">
-            Arraste para reorganizar. Em telas de toque, pressione e segure.
-            Pelo teclado, segure Alt e use as setas.
+            {translate(
+              "Arraste para reorganizar. Em telas de toque, pressione e segure. Pelo teclado, segure Alt e use as setas.",
+            )}
           </p>
         )}
         <div
