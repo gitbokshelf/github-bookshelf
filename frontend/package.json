@@ -29,7 +29,7 @@
     "esbuild": "0.28.2",
     "parse5": "8.0.1",
     "tailwindcss": "^4.1.0",
-    "typescript": "~5.9.3",
+    "typescript": "~7.0.2",
     "vite": "^7.1.0"
   },
   "description": "Um catálogo de projetos do GitHub com curadoria em português, coleções interativas e estante pessoal.",
