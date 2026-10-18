@@ -40,3 +40,5 @@ Em 18/10/2026, Chrome no domínio principal sem sessão: login concluiu Turnstil
 Viewport emulada de 390 × 844: largura de conteúdo 390 px, controles sem corte horizontal, PT/EN/ES e temas claro/escuro examinados. Evidências locais em artifacts/security/mobile-en-light.png e mobile-es-dark.png. Não comprova aparelhos físicos ou toda combinação de texto.
 
 Dois modelos de Auth salvos no painel, com assuntos localizados. A revisão local que trata Data completamente ausente aguarda reaplicação por indisponibilidade da janela administrativa. Teste real com os motores Go html/template e text/template passou em vinte renderizações sintéticas, sem rede/envio. Preview do painel não resolve condicionais Go.
+
+Publicação complementar ab43ba6: CI 39138376436, segurança 39138376413 e status Vercel aprovados. Vinte renderizações Go passaram também no Ubuntu da CI; consulta de code scanning em main retornou zero abertos. Não há certificado de ausência de vulnerabilidades.
