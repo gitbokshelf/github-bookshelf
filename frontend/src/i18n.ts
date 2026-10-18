@@ -47,7 +47,10 @@ export async function chooseLanguage(next: Language) {
           );
         else {
           const response = await fetch(
-            new URL(`./locales/${next}.json`, document.baseURI),
+            new URL(
+              next === "en" ? "./locales/en.json" : "./locales/es.json",
+              document.baseURI,
+            ),
             { signal: AbortSignal.timeout(10000) },
           );
           if (!response.ok) throw new Error("Dictionary unavailable");

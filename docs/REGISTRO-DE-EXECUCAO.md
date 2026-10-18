@@ -366,3 +366,7 @@ Internacionalização implementada nesta continuidade:
 - Conferência da conexão de backup imprimiu somente nomes/indicadores: SUPABASE_DB_PASSWORD e SUPABASE_SECRET_KEY permanecem vazios. Solicitado preenchimento local da senha do banco, sem envio no chat. Backup real, restauração Supabase completa e RPO/RTO permanecem pendentes.
 
 Revisão pelo executor: fontes/imports e build conferidos; traduções preservam parâmetros de consulta, nomes, IDs, notas e valores. Documentação vigente atualizada. Geração de tradução usou scripts temporários na área ignorada; serão removidos após consolidação. Publicação desta etapa ainda precisa de envio, CI e conferência remota. CAPTCHA backend e recuperação aguardam acesso ao navegador/proprietário; não serão apresentados como finalizados.
+
+Revisão adicional do cabeçalho: os quatro controles de idioma/conta/tema/GitHub aumentaram a largura intrínseca. A regra móvel agora limita o grupo a 100%, permite redução/quebra em linhas e mantém controles em 14px, sem cortar o nome do idioma. A mudança será validada pelo build; conferência visual estreita segue pendente pela indisponibilidade do Safari, sem inventar resultado.
+
+Publicação ee4a071 confirmada na Vercel; CI 39136928138 e segurança 39136928128 passaram. A consulta de alertas encontrou um novo apontamento js/client-side-request-forgery no caminho de idioma, apesar da allowlist em runtime. A montagem interpolada foi substituída por escolha entre dois caminhos constantes; será reanalisada, sem supressão do alerta.

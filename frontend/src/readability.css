@@ -248,12 +248,23 @@ footer {
     display: none;
   }
   .topbar-actions {
-    gap: 7px;
+    gap: 8px;
+    flex: 1 1 260px;
+    min-width: 0;
+    max-width: 100%;
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
   .github-button,
   .theme-control select {
-    font-size: 12px;
+    font-size: 14px;
+  }
+  .github-button,
+  .theme-control {
+    min-height: 40px;
+  }
+  .language-control .theme-control select {
+    max-width: 96px;
   }
   .hero-copy > p {
     font-size: 15px;
